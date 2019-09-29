@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "nhactube"
+  },
+  "targets": {
+    "nhactube": {
+      "hosting": {
+        "nhactube": [
+          "nhactube"
+        ]
+      }
+    }
+  }
+}

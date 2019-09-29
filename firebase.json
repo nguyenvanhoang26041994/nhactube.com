@@ -1,0 +1,46 @@
+{
+  "hosting": [
+    {
+      "target": "nhactube",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|reset.min.css)",
+          "headers": [{
+            "key": "Access-Control-Allow-Origin",
+            "value": "max-age=31557600"
+          }]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png)",
+          "headers": [ {
+            "key": "Cache-Control",
+            "value": "max-age=31557600"
+          } ]
+        },
+        {
+          "source": "**/*.@(js|gz)",
+          "headers": [ {
+            "key": "Cache-Control",
+            "value": "max-age=31557600"
+          } ]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/api/**",
+          "function": "api"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

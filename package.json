@@ -1,0 +1,61 @@
+{
+  "name": "nhactube.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "engines": {
+    "node": ">=10.15.3",
+    "yarn": ">=1.16.0"
+  },
+  "scripts": {
+    "clean-dist": "rimraf \"dist\"",
+    "build": "yarn clean-dist && cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
+    "build-mobile": "yarn clean-dist && cross-env-shell APP_MODE=mobile NODE_ENV=production webpack --config webpack/prod.config.js",
+    "build-desktop": "yarn clean-dist && cross-env-shell APP_MODE=desktop NODE_ENV=production webpack --config webpack/prod.config.js",
+    "dev": "cross-env NODE_ENV=development node dev-server",
+    "start": "yarn build && serve dist -p 8080",
+    "deploy": "yarn build && firebase deploy --only hosting:nhactube"
+  },
+  "author": "Hoang Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "reselect": "^4.0.0",
+    "styled-components": "^4.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "chalk": "^2.4.2",
+    "compression": "^1.7.4",
+    "compression-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "cross-env": "^5.2.1",
+    "express": "^4.17.1",
+    "favicons-webpack-plugin": "^1.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "3.2.0",
+    "ip": "^1.1.5",
+    "offline-plugin": "^5.0.7",
+    "path": "^0.12.7",
+    "preload-webpack-plugin": "^3.0.0-beta.3",
+    "redux-devtools-extension": "^2.13.8",
+    "rimraf": "^3.0.0",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-middleware": "^3.7.1",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-pwa-manifest": "^4.0.0"
+  }
+}
