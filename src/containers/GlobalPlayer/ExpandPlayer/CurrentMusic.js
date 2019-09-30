@@ -84,6 +84,7 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
           className={cn({ '--hidden': !isExpanded })}
           src={music.avatarUrl}
           style={{ transform: `rotate(${rotate}deg)` }}
+          alt={music.name}
         />
         <div className="flex items-center my-5">
           <Icon

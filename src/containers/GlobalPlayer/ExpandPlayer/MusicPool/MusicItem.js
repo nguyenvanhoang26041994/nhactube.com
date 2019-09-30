@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Image, Icon } from '../../../../components/core';
+import { Icon } from '../../../../components/core';
 
 import { useGlobalPlayerMusic } from '../../../../hooks';
 

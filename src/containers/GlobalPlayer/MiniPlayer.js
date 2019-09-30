@@ -96,7 +96,7 @@ const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded
         <Icon name={iconMode} color="white" size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
       <InforWrapper className="w-7/12 mx-10">
-        <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentMusic.avatarUrl} />
+        <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentMusic.avatarUrl} alt={currentMusic.name} />
         <div className="flex flex-col justify-center grow-1">
           <div className="flex items-center justify-between">
             <MusicText>

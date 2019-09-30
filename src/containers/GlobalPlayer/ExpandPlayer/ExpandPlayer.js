@@ -38,7 +38,7 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
           onListIconClick={onListIconClick}
         />
       </div>
-      <BlurBackground src={currentMusic.avatarUrl} />
+      <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
     </Wrapper>
   );
 };

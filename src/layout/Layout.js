@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
       <MainWrapper className="flex-1">
         {children}
       </MainWrapper>
-      <BlurBackground src={currentMusic.avatarUrl} />
+      <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
       <GlobalPlayer />
     </Wrapper>
   );

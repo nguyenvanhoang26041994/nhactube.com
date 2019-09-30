@@ -66,7 +66,7 @@ const GlobalPlayer = ({ className }) => {
           isExpanded={expanded}
         />
       </RelativeContainer>
-      <BlurBackground src={music.avatarUrl} />
+      <BlurBackground src={music.avatarUrl} alt={music.name} />
     </Wrapper>
   );
 };

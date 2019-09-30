@@ -36,7 +36,7 @@ const NameStyled = styled.div`
 const MusicCard = ({ className, avatarUrl, name, channel, onClick }) => {
   return (
     <Wrapper className={className}>
-      <StyledImage src={avatarUrl} onClick={onClick} />
+      <StyledImage src={avatarUrl} onClick={onClick} alt={name} />
       <OtherInfoStyled className="w-full flex flex-col justify-center">
         <NameStyled color="white" size="base" className="mb-2">{name}</NameStyled>
         <NameStyled color="gray-500" size="sm">{channel.name}</NameStyled>
