@@ -38,7 +38,7 @@ const List = styled.ul`
   }
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
 
   &::-webkit-scrollbar-track {
