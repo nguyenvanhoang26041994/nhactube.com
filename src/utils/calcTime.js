@@ -1,6 +1,6 @@
 export default secondTime => {
-  if (typeof secondTime !== 'number') {
-    return '';
+  if (typeof secondTime !== 'number' || !secondTime) {
+    return '00:00';
   }
   let _secondTime = secondTime;
   const hours = Math.floor(_secondTime / 3600);
