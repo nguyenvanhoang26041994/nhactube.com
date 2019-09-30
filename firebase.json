@@ -10,14 +10,21 @@
       ],
       "headers": [
         {
-          "source": "**/*.@(eot|otf|ttf|ttc|woff|reset.min.css)",
+          "source": "**/*.@(eot|otf|ttf|ttc|woff)",
           "headers": [{
-            "key": "Access-Control-Allow-Origin",
+            "key": "Cache-Control",
             "value": "max-age=31557600"
           }]
         },
         {
           "source": "**/*.@(jpg|jpeg|gif|png)",
+          "headers": [ {
+            "key": "Cache-Control",
+            "value": "max-age=31557600"
+          } ]
+        },
+        {
+          "source": "**/*.@(css)",
           "headers": [ {
             "key": "Cache-Control",
             "value": "max-age=31557600"
