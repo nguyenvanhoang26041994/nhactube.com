@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { loadable, isMobile } from './utils';
+import { loadable } from './utils';
 import GlobalAudio from './containers/GlobalAudio';
 import theme from './variables/theme';
-import App from './App.mobile';
-
 import store from './store';
+
+const App =  loadable(() => import('./App.mobile'));
 
 const NhacTubeApp = () => {
   return (

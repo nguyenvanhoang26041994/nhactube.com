@@ -14,6 +14,7 @@
     "build-desktop": "yarn clean-dist && cross-env-shell APP_MODE=desktop NODE_ENV=production webpack --config webpack/prod.config.js",
     "dev": "cross-env NODE_ENV=development node dev-server",
     "start": "yarn build && serve dist -p 8080",
+    "start-desktop": "electron ./src/desktop-app",
     "deploy": "yarn build && firebase deploy --only hosting:nhactube"
   },
   "author": "Hoang Nguyen",
@@ -41,6 +42,7 @@
     "compression-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "cross-env": "^5.2.1",
+    "electron": "^6.0.10",
     "express": "^4.17.1",
     "favicons-webpack-plugin": "^1.0.2",
     "html-loader": "^0.5.5",
@@ -52,6 +54,7 @@
     "redux-devtools-extension": "^2.13.8",
     "rimraf": "^3.0.0",
     "script-ext-html-webpack-plugin": "^2.1.4",
+    "url": "^0.11.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-middleware": "^3.7.1",

@@ -13,16 +13,16 @@ function createWindow () {
     height: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
+      nodeIntegration: false,
     }
   })
 
   // and load the index.html of the app.
 
-  mainWindow.loadFile(path.join(__dirname, '../../dist/index.html'));
+  mainWindow.loadURL('https://www.nhactube.com');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
