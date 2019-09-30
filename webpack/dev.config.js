@@ -10,6 +10,7 @@ module.exports = require('./base.config')({
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
+    publicPath: '/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

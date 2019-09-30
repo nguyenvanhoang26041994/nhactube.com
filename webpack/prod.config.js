@@ -17,6 +17,7 @@ module.exports = require('./base.config')({
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath: '/',
   },
   plugins: [
     new CopyPlugin([
