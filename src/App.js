@@ -11,7 +11,7 @@ const HomePage = loadable(() => import('./pages/HomePage'));
 const App = () => {
   return (
     <BrowserRouter>
-      <Prefetch />
+      {/* <Prefetch /> */}
       <Layout>
         <Switch>
           <Route exact path="/" component={HomePage} />

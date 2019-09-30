@@ -68,11 +68,11 @@ export default () => {
       return;
     }
 
-    if (currentMode === modeConstants.SHUFFLE || currentMode === modeConstants.REPEAT) {
+    if (currentMode === modeConstants.SHUFFLE) {
       return changeMusic(makeShuffeMusic(currentMusics));
     }
 
-    if (currentMode === modeConstants.LOOP) {
+    if (currentMode === modeConstants.LOOP || currentMode === modeConstants.REPEAT) {
       const idxOfCurrentMusic = findIndex(currentMusics, music => music.id === currentMusic.id);
       const maxIdxOfCurrentMusics = currentMusics.length - 1;
       if (idxOfCurrentMusic === 0) {

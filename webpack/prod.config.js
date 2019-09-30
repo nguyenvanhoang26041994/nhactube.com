@@ -16,7 +16,7 @@ module.exports = require('./base.config')({
   ],
   output: {
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    chunkFilename: '[name].[chunkhash].js',
     publicPath: '/',
   },
   plugins: [
@@ -29,11 +29,9 @@ module.exports = require('./base.config')({
     new OfflinePlugin({
       relativePaths: false,
       publicPath: '/',
-      appShell: '/',
-      excludes: ['.htaccess'],
       caches: {
         main: [':rest:'],
-        additional: ['*.chunk.js'],
+        additional: ['*.js'],
       },
       safeToUseOptionalCaches: true,
     }),
