@@ -22,6 +22,13 @@ const NhacTubeApp = () => {
 
 ReactDOM.render(<NhacTubeApp />, document.getElementById('app'));
 
-if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
 }
+

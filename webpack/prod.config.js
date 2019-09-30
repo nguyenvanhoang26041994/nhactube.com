@@ -1,8 +1,8 @@
 const path = require('path');
-const OfflinePlugin = require('offline-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const entryMains = {
   mobile: 'src/main.mobile-only.js',
@@ -26,15 +26,6 @@ module.exports = require('./base.config')({
         to: 'static',
       },
     ]),
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-      caches: {
-        main: [':rest:'],
-        additional: ['*.js'],
-      },
-      safeToUseOptionalCaches: true,
-    }),
     new WebpackPwaManifest({
       name: 'NhacTube.Com',
       short_name: 'NhacTube',
@@ -60,6 +51,30 @@ module.exports = require('./base.config')({
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8,
+    }),
+    new GenerateSW({
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/firebasestorage\.googleapis\.com/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'storage-cache',
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+        {
+          urlPattern: /^https:\/\/wwww\.nhactube\.com\/api/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+      ],
     }),
   ],
   performance: {
