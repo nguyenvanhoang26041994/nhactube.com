@@ -60,7 +60,10 @@ module.exports = require('./base.config')({
           options: {
             cacheName: 'storage-cache',
             cacheableResponse: {
-              statuses: [0, 200],
+              statuses: [0, 200, 206],
+            },
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 30,
             },
           },
         },
@@ -70,7 +73,10 @@ module.exports = require('./base.config')({
           options: {
             cacheName: 'api-cache',
             cacheableResponse: {
-              statuses: [0, 200],
+              statuses: [0, 200, 206],
+            },
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 30,
             },
           },
         },
