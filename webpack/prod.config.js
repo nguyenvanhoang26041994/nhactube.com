@@ -53,7 +53,7 @@ module.exports = require('./base.config')({
       minRatio: 0.8,
     }),
     new GenerateSW({
-      cleanupOutdatedCaches: true,
+      skipWaiting: true,
       include: [
         /\.(html|js|css|png|jpg|jpeg|worf|json|ico|woff2)$/,
       ],
