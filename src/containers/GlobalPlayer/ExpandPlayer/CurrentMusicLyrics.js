@@ -112,7 +112,7 @@ const CurrentMusicLyrics = ({ className, isActive }) => {
           <p style={{ height: '2rem' }} />
         </li>
       </LyricsWrapper>
-      <IconStyled color="white" name="copy" className={cn({ 'none-important': !isHasLyrics })} />
+      <IconStyled color="white" name="cog" />
     </Wrapper>
   );
 };

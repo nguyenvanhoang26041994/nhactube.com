@@ -9,6 +9,7 @@ const icons = {
   //FA
   'ellipsis-h': require('./ellipsis-h').default,
   'copy': require('./copy').default,
+  'cog': require('./cog').default,
   'random': require('./player/random').default,
   'repeat-1': require('./player/repeat-1').default,
   'repeat': require('./player/repeat').default,

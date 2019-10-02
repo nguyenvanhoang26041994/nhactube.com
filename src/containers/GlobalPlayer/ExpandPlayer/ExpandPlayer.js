@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -25,19 +25,21 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
 
   return (
     <Wrapper className={className} ref={expandPlayerRef} style={style}>
-      <div className="flex w-full">
-        <MusicPool
-          className={cn({ 'none-important': !isMusicPoolActive })}
-          style={{ width: '26rem' }}
-          isActive={isMusicPoolActive}
-        />
-        <CurrentMusic
-          className="flex-1"
-          isMusicPoolActive={isMusicPoolActive}
-          isExpanded={isExpanded}
-          onListIconClick={onListIconClick}
-        />
-      </div>
+      {isExpanded && (
+        <div className="flex w-full">
+          <MusicPool
+            className={cn({ 'none-important': !isMusicPoolActive })}
+            style={{ width: '26rem' }}
+            isActive={isMusicPoolActive}
+          />
+          <CurrentMusic
+            className="flex-1"
+            isMusicPoolActive={isMusicPoolActive}
+            isExpanded={isExpanded}
+            onListIconClick={onListIconClick}
+          />
+        </div>
+      )}
       <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
     </Wrapper>
   );
