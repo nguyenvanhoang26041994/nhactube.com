@@ -53,6 +53,10 @@ module.exports = require('./base.config')({
       minRatio: 0.8,
     }),
     new GenerateSW({
+      cleanupOutdatedCaches: true,
+      include: [
+        /\.(html|js|css|png|jpg|jpeg|worf|json|ico|woff2)$/,
+      ],
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/firebasestorage\.googleapis\.com/,
