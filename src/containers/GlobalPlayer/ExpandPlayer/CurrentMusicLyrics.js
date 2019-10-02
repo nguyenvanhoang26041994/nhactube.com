@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from '../../../components/core';
-import { useGlobalPlayerMusic } from '../../../hooks';
+import { useGlobalPlayerMusic, useGlobalAudio } from '../../../hooks';
+import { getPageY } from '../../../utils';
 
 const Wrapper = styled.div`
   position: relative;
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
   transition: all 0.5s;
 `;
 
-const LyricWrapper = styled.ul`
+const LyricsWrapper = styled.ul`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -43,13 +44,6 @@ const LyricWrapper = styled.ul`
   }
 `;
 
-const LyricText = styled.p`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 0 0.5rem;
-`;
-
 const IconStyled = styled(Icon)`
   position: absolute;
   right: 0;
@@ -58,18 +52,55 @@ const IconStyled = styled(Icon)`
   margin-bottom: 3rem;
 `;
 
+const LyricTextStyled = styled.p`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0 0.5rem;
+  transition: all 0.2s;
+
+  &.--is-active {
+    color: ${props => props.theme.colors['yellow-500']};
+  }
+`;
+
+const LyricText = ({ className, isActive, parentRef, children }) => {
+  const ref = useRef();
+
+  const handleScrollToMiddle = useCallback(() => {
+    parentRef.current.scrollTo({
+      top: getPageY(ref.current) - getPageY(parentRef.current) - 200,
+      behavior: 'smooth',
+    });
+  }, [parentRef, ref]);
+
+  useEffect(() => {
+    if (isActive) {
+      handleScrollToMiddle();
+    }
+  }, [isActive]);
+
+  return (
+    <LyricTextStyled className={cn({ '--is-active': isActive}, className)} ref={ref}>
+      {children}
+    </LyricTextStyled>
+  );
+}
+
 const CurrentMusicLyrics = ({ className, isActive }) => {
+  const lyricsWrapperRef = useRef();
+  const { currentTime } = useGlobalAudio();
   const { music, isHasLyrics } = useGlobalPlayerMusic();
 
   return (
     <Wrapper className={className}>
-      <LyricWrapper isActive={isActive}>
+      <LyricsWrapper isActive={isActive} ref={lyricsWrapperRef}>
         <li>
           <p style={{ height: '2rem' }} />
         </li>
         {music.lyrics.map((lyric, idx) => (
           <li key={idx}>
-            <LyricText>{lyric.text}</LyricText>
+            <LyricText parentRef={lyricsWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
           </li>
         ))}
         {!isHasLyrics && (
@@ -80,7 +111,7 @@ const CurrentMusicLyrics = ({ className, isActive }) => {
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-      </LyricWrapper>
+      </LyricsWrapper>
       <IconStyled color="white" name="copy" className={cn({ 'none-important': !isHasLyrics })} />
     </Wrapper>
   );

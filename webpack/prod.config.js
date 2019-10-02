@@ -63,7 +63,7 @@ module.exports = require('./base.config')({
               statuses: [0, 200, 206],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 30,
+              maxAgeSeconds: 60 * 60 * 24 * 30 * 12,
             },
           },
         },
@@ -76,7 +76,7 @@ module.exports = require('./base.config')({
               statuses: [0, 200, 206],
             },
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 30,
+              maxAgeSeconds: 60 * 60 * 24,
             },
           },
         },
