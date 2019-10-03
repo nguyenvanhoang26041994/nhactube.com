@@ -84,6 +84,19 @@ module.exports = require('./base.config')({
             },
           },
         },
+        {
+          urlPattern: /^http.*/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'http-cache',
+            cacheableResponse: {
+              statuses: [0, 200, 206],
+            },
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24,
+            },
+          },
+        }
       ],
     }),
   ],

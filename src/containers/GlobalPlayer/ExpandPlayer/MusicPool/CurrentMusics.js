@@ -23,7 +23,7 @@ const Title = styled.div`
   color: #ffffff;
   padding: 1rem 1rem 1rem 1rem;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255,.1);
+  /* border-bottom: 1px solid rgba(255, 255, 255,.1); */
   white-space: nowrap;
 `;
 
@@ -31,14 +31,14 @@ const List = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   width: 100%;
-  mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));
+  /* mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0)); */
 
-  & li:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.08);
-  }
+  /* & li:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.01);
+  } */
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
   }
 
   &::-webkit-scrollbar-track {
