@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { loadable, isMobile } from './utils';
-import GlobalAudio from './containers/GlobalAudio';
 import theme from './variables/theme';
 
 const App = isMobile
@@ -19,7 +18,6 @@ const NhacTubeApp = () => {
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-      <GlobalAudio />
     </Provider>
   );
 };

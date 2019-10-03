@@ -2,8 +2,11 @@ import React, { useRef, useEffect, useMemo, useCallback } from 'react';
 import { useGlobalPlayer } from '../hooks';
 import { mode as modeConstants } from '../store/constants';
 
+export const getNode = () => document.getElementById('global-audio');
+
 const GlobalAudio = () => {
-  const audioRef = useRef();
+  const globalAudio = useMemo(() => getNode(), []);
+
   const { currentMode, currentMusic, changeIsPlaying, autoGoNextMusic } = useGlobalPlayer();
   const loop = useMemo(() => currentMode === modeConstants.REPEAT, [currentMode]);
 
@@ -14,44 +17,38 @@ const GlobalAudio = () => {
   const onPlaying = useCallback(e => changeIsPlaying(!e.target.paused), [changeIsPlaying]);
 
   useEffect(() => {
-    audioRef.current.addEventListener('play', onPlay);
-    audioRef.current.addEventListener('pause', onPause);
-    audioRef.current.addEventListener('waiting', onWaiting);
-    audioRef.current.addEventListener('playing', onPlaying);
-    audioRef.current.addEventListener('ended', onEnded);
+    globalAudio.addEventListener('play', onPlay);
+    globalAudio.addEventListener('pause', onPause);
+    globalAudio.addEventListener('waiting', onWaiting);
+    globalAudio.addEventListener('playing', onPlaying);
+    globalAudio.addEventListener('ended', onEnded);
 
     return () => {
-      audioRef.current.removeEventListener('play', onPlay);
-      audioRef.current.removeEventListener('pause', onPause);
-      audioRef.current.removeEventListener('waiting', onWaiting);
-      audioRef.current.removeEventListener('playing', onPlaying);
-      audioRef.current.removeEventListener('ended', onEnded);
+      globalAudio.removeEventListener('play', onPlay);
+      globalAudio.removeEventListener('pause', onPause);
+      globalAudio.removeEventListener('waiting', onWaiting);
+      globalAudio.removeEventListener('playing', onPlaying);
+      globalAudio.removeEventListener('ended', onEnded);
     }
-  }, [onPlay, onPause, onWaiting, onWaiting, onPlaying, onEnded, audioRef.current]);
+  }, [onPlay, onPause, onWaiting, onWaiting, onPlaying, onEnded, globalAudio]);
 
   useEffect(() => {
+    globalAudio.querySelector('source').src = currentMusic.url;
     if (currentMusic.url) {
-      audioRef.current.load && audioRef.current.load();
-      audioRef.current.play && audioRef.current.play();
+      globalAudio.load && globalAudio.load();
+      globalAudio.play && globalAudio.play();
     }
 
-    if (!currentMusic.url && !audioRef.current.paused) {
-      audioRef.current.pause();
+    if (!currentMusic.url && !globalAudio.paused) {
+      globalAudio.pause();
     }
-  }, [currentMusic.url]);
+  }, [currentMusic.url, globalAudio]);
 
-  return (
-    <audio
-      id="music-audio"
-      className="hidden"
-      ref={audioRef}
-      loop={loop}
-    >
-      <source src={currentMusic.url} />
-    </audio>
-  );
+  useEffect(() => {
+    globalAudio.loop = loop;
+  }, [loop, globalAudio])
+
+  return null;
 };
-
-export const getNode = () => document.getElementById('music-audio');
 
 export default GlobalAudio;

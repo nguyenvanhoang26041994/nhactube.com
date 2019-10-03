@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BlurBackground } from '../../components/commons';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
+import GlobalAudio from '../GlobalAudio';
 import { useGlobalPlayerMusic, useOnClickOutside, useGlobalPlayer, useGlobalAudio } from '../../hooks';
 
 const Wrapper = styled.div`
@@ -54,6 +55,7 @@ const GlobalPlayer = ({ className }) => {
         height: music.url ? '4rem' : '0',
       }}
     >
+      <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer
           isExpanded={expanded}

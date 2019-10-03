@@ -8,6 +8,7 @@
     "yarn": ">=1.16.0"
   },
   "scripts": {
+    "lint": "eslint ./src --",
     "clean-dist": "rimraf \"dist\"",
     "build": "yarn clean-dist && cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
     "build-mobile": "yarn clean-dist && cross-env-shell APP_MODE=mobile NODE_ENV=production webpack --config webpack/prod.config.js",
@@ -45,6 +46,10 @@
     "copy-webpack-plugin": "^5.0.4",
     "cross-env": "^5.2.1",
     "electron": "^6.0.10",
+    "eslint": "^6.5.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.15.1",
+    "eslint-plugin-react-hooks": "^2.1.1",
     "express": "^4.17.1",
     "favicons-webpack-plugin": "^1.0.2",
     "html-loader": "^0.5.5",
