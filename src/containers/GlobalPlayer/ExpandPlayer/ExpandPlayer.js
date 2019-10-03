@@ -8,7 +8,8 @@ import MusicPool from './MusicPool';
 import { useGlobalPlayerMusic, useGlobalPlayerMusics } from '../../../hooks';
 
 const Wrapper = styled.div`
-  transition: height 0.35s cubic-bezier(0.21, 0.63, 0.36, 1);
+  /* transition: height 0.35s cubic-bezier(0.21, 0.63, 0.36, 1); */
+  transition: all 0.5s cubic-bezier(0.21, 0.63, 0.36, 1);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

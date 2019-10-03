@@ -63,7 +63,11 @@ const GlobalPlayer = ({ className }) => {
           miniPlayerRef={miniPlayerRef}
         />
         <ExpandPlayerStyled
-          style={{ height: expanded ? 'calc(100vh - 4rem)' : '0' }}
+          style={{
+            height: 'calc(100vh - 4rem)',
+            transform: expanded ? null : 'translateY(100vh)',
+            opacity: expanded ? '1' : '0',
+          }}
           expandPlayerRef={expandPlayerRef}
           isExpanded={expanded}
         />
