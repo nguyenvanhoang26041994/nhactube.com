@@ -4,12 +4,7 @@ import cn from 'classnames';
 import { Icon, Tag } from '../../../../components/core';
 
 import { useGlobalPlayerMusic } from '../../../../hooks';
-
-const releaseMapper = Object.freeze({
-  'OFFICIAL': '',
-  'REMIX': 'REMIX',
-  'COVER': 'COVER',
-});
+import { releaseMapper, storageCaches } from '../../../../utils';
 
 const Wrapper = styled.div`
   display: flex;
@@ -95,7 +90,7 @@ const MusicItem = ({ className, firstText, ...music }) => {
           {releaseMapper[music.release] && <Tag className="__release-tag">{releaseMapper[music.release]}</Tag>}
         </span>
         <span className="__channel-name">
-          <Icon name="check" className="mr-1" size="xs" />
+          {storageCaches[music.url] && <Icon name="check" className="mr-1" size="xs" />}
           {music.channel.name}
         </span>
       </div>

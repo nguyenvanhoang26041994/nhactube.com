@@ -3,9 +3,10 @@ import cn from 'classnames';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Image, Icon } from '../../../components/core';
+import { Image, Icon, Tag } from '../../../components/core';
 import CurrentMusicLyrics from './CurrentMusicLyrics';
 import { useGlobalPlayerMusic } from '../../../hooks';
+import { releaseMapper } from '../../../utils';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const MusicText = styled.div`
   color: ${props => props.theme.colors['gray-400']};
 
   .__music-name {
+    display: flex;
     color: ${props => props.theme.colors.white};
   }
 `;
@@ -96,7 +98,10 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
           <Icon name="plus" color="white" className="mx-2" size="lg" />
         </div>
         <MusicText className="flex items-center justify-center">
-          <span className="__music-name">{music.name}</span>
+          <span className="__music-name">
+            {music.name}
+            {releaseMapper[music.release] && <Tag className="ml-1">{releaseMapper[music.release]}</Tag>}
+          </span>
           <span className="mx-1">–</span>
           <span className="__channel-name">{music.channel.name}</span>
         </MusicText>

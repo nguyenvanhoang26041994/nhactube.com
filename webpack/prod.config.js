@@ -75,6 +75,7 @@ module.exports = require('./base.config')({
           urlPattern: /^https:\/\/wwww\.nhactube\.com\/api/,
           handler: 'NetworkFirst',
           options: {
+            networkTimeoutSeconds: 5,
             cacheName: 'api-cache',
             cacheableResponse: {
               statuses: [0, 200, 206],
@@ -88,6 +89,7 @@ module.exports = require('./base.config')({
           urlPattern: /^http.*/,
           handler: 'NetworkFirst',
           options: {
+            networkTimeoutSeconds: 7,
             cacheName: 'http-cache',
             cacheableResponse: {
               statuses: [0, 200, 206],

@@ -2,10 +2,11 @@ import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { Icon, Image, Slider } from '../../components/core';
+import { Icon, Image, Slider, Tag } from '../../components/core';
 import { CircleIcon } from '../../components/commons';
 import { mode as modeConstants } from '../../store/constants';
 import { useGlobalPlayer, useGlobalAudio } from '../../hooks';
+import { releaseMapper } from '../../utils';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -39,6 +40,7 @@ const MusicText = styled.div`
   color: ${props => props.theme.colors['gray-400']};
 
   .__music-name {
+    display: flex;
     color: ${props => props.theme.colors.white};
   }
 `;
@@ -100,7 +102,10 @@ const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded
         <div className="flex flex-col justify-center grow-1">
           <div className="flex items-center justify-between">
             <MusicText>
-              <Link to={`/music/${currentMusic.id}`} className="__music-name">{currentMusic.name}</Link>
+              <Link to={`/music/${currentMusic.id}`} className="__music-name">
+                {currentMusic.name}
+                {releaseMapper[currentMusic.release] && <Tag className="ml-1">{releaseMapper[currentMusic.release]}</Tag>}
+              </Link>
               <span className="mx-1">-</span>
               <div className="__channel-name">{currentMusic.channel.name}</div>
             </MusicText>

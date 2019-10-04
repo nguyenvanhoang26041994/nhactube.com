@@ -4,7 +4,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { loadable, isMobile } from './utils';
+import { register } from './utils/storageCaches';
 import theme from './variables/theme';
+
+register();
 
 const App = isMobile
   ? loadable(() => import('./App.mobile'))

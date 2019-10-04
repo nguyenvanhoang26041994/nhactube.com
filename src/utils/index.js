@@ -5,3 +5,5 @@ export { default as findIndex } from './findIndex';
 export { default as getPageX } from './getPageX';
 export { default as getPageY } from './getPageY';
 export { default as calcTime } from './calcTime';
+export { default as releaseMapper } from './releaseMapper';
+export { default as storageCaches } from './storageCaches';

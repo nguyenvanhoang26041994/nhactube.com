@@ -10,6 +10,9 @@ const initialState = {
     name: '',
     channel: {},
     views: 0,
+    dowloaded: 0,
+    shared: 0,
+    release: '',
     lyrics: [],
     isPlaying: false,
   },
@@ -34,8 +37,7 @@ export default (state = initialState, action) => {
           avatarUrl: action.payload.avatarUrl,
           name: action.payload.name,
           channel: action.payload.channel || {},
-          views: action.payload.views || 0,
-          lyrics: action.payload.lyrics || [],
+          release: action.payload.release,
         },
       };
     case globalPlayer.CHANGE_IS_PLAYING:
