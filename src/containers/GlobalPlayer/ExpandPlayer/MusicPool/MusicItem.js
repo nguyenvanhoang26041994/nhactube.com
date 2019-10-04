@@ -1,20 +1,34 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Icon } from '../../../../components/core';
+import { Icon, Tag } from '../../../../components/core';
 
 import { useGlobalPlayerMusic } from '../../../../hooks';
+
+const releaseMapper = Object.freeze({
+  'OFFICIAL': '',
+  'REMIX': 'REMIX',
+  'COVER': 'COVER',
+});
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
   color: #ffffff;
   height: 3.5rem;
   cursor: pointer;
   font-size: ${props => props.theme.fontSizes.base};
 
+  .__release-tag {
+    color: #ffffff;
+    border-color: #ffffff;
+    margin: 0 0.5rem;
+  }
+
   .__name,
   .__channel-name {
+    display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -32,6 +46,8 @@ const Wrapper = styled.div`
   }
 
   .__actions {
+    position: absolute;
+    right: 0;
     padding-right: 1rem;
     display: flex;
     align-items: center;
@@ -51,6 +67,11 @@ const Wrapper = styled.div`
     .__channel-name {
       color: ${props => props.theme.colors['yellow-400']};
     }
+
+    .__release-tag {
+      color: ${props => props.theme.colors['yellow-500']};
+      border-color: ${props => props.theme.colors['yellow-500']};
+    }
   }
 `;
 
@@ -68,12 +89,17 @@ const MusicItem = ({ className, firstText, ...music }) => {
       )}
       onClick={onClick}
     >
-      <div className="__first-text w-2/12">{firstText}</div>
-      <div className="w-7/12 flex flex-col">
-        <span className="__name mb-2">{music.name}</span>
-        <span className="__channel-name">{music.channel.name}</span>
+      <div className="flex flex-col px-8 flex-1">
+        <span className="__name mb-2">
+          {music.name}
+          {releaseMapper[music.release] && <Tag className="__release-tag">{releaseMapper[music.release]}</Tag>}
+        </span>
+        <span className="__channel-name">
+          <Icon name="check" className="mr-1" size="xs" />
+          {music.channel.name}
+        </span>
       </div>
-      <div className="__actions w-3/12">
+      <div className="__actions">
         <Icon name="ellipsis-h" />
       </div>
     </Wrapper>
