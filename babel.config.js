@@ -4,6 +4,7 @@ module.exports = {
     '@babel/preset-react',
   ],
   plugins: [
-    '@babel/plugin-transform-async-to-generator'
+    '@babel/plugin-transform-async-to-generator',
+    '@babel/plugin-transform-runtime',
   ],
 };

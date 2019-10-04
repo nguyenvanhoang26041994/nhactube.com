@@ -92,7 +92,8 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
             color={isHasLyrics ? 'yellow-500' : 'white'}
             className="mx-2" size="lg"
           />
-          <Icon name="ellipsis-h" color="white" className="mx-2" size="lg" />
+          <Icon name="share" color="white" className="mx-2" size="lg" />
+          <Icon name="plus" color="white" className="mx-2" size="lg" />
         </div>
         <MusicText className="flex items-center justify-center">
           <span className="__music-name">{music.name}</span>

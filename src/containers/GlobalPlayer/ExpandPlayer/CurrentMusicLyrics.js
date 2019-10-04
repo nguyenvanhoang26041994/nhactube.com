@@ -90,7 +90,11 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
 const CurrentMusicLyrics = ({ className, isActive }) => {
   const lyricsWrapperRef = useRef();
   const { currentTime } = useGlobalAudio();
-  const { music, isHasLyrics } = useGlobalPlayerMusic();
+  const { music, isHasLyrics, actions } = useGlobalPlayerMusic();
+
+  useEffect(() => {
+    actions.fetchLyrics();
+  }, [music.id])
 
   return (
     <Wrapper className={className}>
@@ -98,7 +102,7 @@ const CurrentMusicLyrics = ({ className, isActive }) => {
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-        {music.lyrics.map((lyric, idx) => (
+        {music.lyrics && music.lyrics.map((lyric, idx) => (
           <li key={idx}>
             <LyricText parentRef={lyricsWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
           </li>

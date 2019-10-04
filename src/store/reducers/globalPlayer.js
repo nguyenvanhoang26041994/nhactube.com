@@ -51,6 +51,33 @@ export default (state = initialState, action) => {
         ...state,
         musics: action.payload,
       };
+
+    // LYRICS
+    case globalPlayer.GET_LYRICS_REQUEST:
+      return {
+        ...state,
+        isLyricsFetching: true,
+        isLyricsError: false,
+        isLyricsSuccess: false,
+      };
+    case globalPlayer.GET_LYRICS_FAILURE:
+      return {
+        ...state,
+        isLyricsFetching: false,
+        isLyricsError: true,
+        isLyricsSuccess: false,
+      };
+    case globalPlayer.GET_LYRICS_SUCCESS:
+      return {
+        ...state,
+        music: {
+          ...state.music,
+          lyrics: action.payload || [],
+        },
+        isLyricsFetching: false,
+        isLyricsError: false,
+        isLyricsSuccess: true,
+      };
     default:
       return state;
   }

@@ -8,6 +8,8 @@ const icons = {
 
   //FA
   'ellipsis-h': require('./ellipsis-h').default,
+  'plus': require('./plus').default,
+  'share': require('./share').default,
   'copy': require('./copy').default,
   'cog': require('./cog').default,
   'random': require('./player/random').default,

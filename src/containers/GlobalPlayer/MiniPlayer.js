@@ -106,7 +106,7 @@ const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded
             </MusicText>
             <MusicTiming>
               <span className="__current-time">{currentTimeFormat}</span>
-              <span className="mx-1">-</span>
+              <span className="mx-1">/</span>
               <span className="__duration">{durationFormat}</span>
             </MusicTiming>
           </div>
