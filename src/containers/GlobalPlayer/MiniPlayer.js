@@ -28,8 +28,8 @@ const InforWrapper = styled.div`
 `;
 
 const AvatarImage = styled(Image)`
-  height: ${props => props.theme.sizes[12]};
-  width: ${props => props.theme.sizes[20]};
+  height: 2.5rem;
+  width: 4rem;
   transition: all 0.5s;
 `;
 
