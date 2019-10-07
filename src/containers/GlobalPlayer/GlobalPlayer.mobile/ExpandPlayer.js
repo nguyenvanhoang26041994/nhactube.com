@@ -5,6 +5,8 @@ import cn from 'classnames';
 import { BlurBackground } from '../../../components/commons';
 import CurrentMusic from '../ExpandPlayer/CurrentMusic';
 import MusicPool from '../ExpandPlayer/MusicPool';
+import MiniPlayer from '../MiniPlayer';
+
 import { useGlobalPlayerMusic, useGlobalPlayerMusics } from '../../../hooks';
 
 const Wrapper = styled.div`
@@ -12,8 +14,25 @@ const Wrapper = styled.div`
   transition: all 0.5s cubic-bezier(0.21, 0.63, 0.36, 1);
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   flex-direction: row;
   overflow: hidden;
+  position: relative;
+`;
+
+const MiniPlayerStyled = styled(MiniPlayer)`
+  position: fixed;
+  bottom: 0;
+  height: 5rem;
+
+  .w-3\\\/12 {
+    width: 100%;
+  }
+
+  .w-7\\\/12,
+  .w-2\\\/12 {
+    display: none;
+  }
 `;
 
 const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
@@ -40,6 +59,7 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
           />
         </div>
       )}
+      <MiniPlayerStyled />
       <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
     </Wrapper>
   );

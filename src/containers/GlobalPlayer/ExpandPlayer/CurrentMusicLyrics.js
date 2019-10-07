@@ -27,6 +27,8 @@ const LyricsWrapper = styled.ul`
   overflow: overlay;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height:100%;
   mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));
 
   &::-webkit-scrollbar {
