@@ -16,7 +16,7 @@ const makeShuffeMusic = musics => musics[random(0, musics.length - 1)];
 export default () => {
   const { mode: currentMode, actions: { changeMode } } = useGlobalPlayerMode();
   const { music: currentMusic, actions: { changeMusic, changeIsPlaying }} = useGlobalPlayerMusic();
-  const { musics: currentMusics, actions: { changeMusics }} = useGlobalPlayerMusics();
+  const { musics: currentMusics, actions: { changeMusics, fetchMusics }} = useGlobalPlayerMusics();
 
 
   const isShouldNotAutoChangeMusic = useMemo(() => currentMode === modeConstants.REPEAT || !currentMusics.length, [currentMode, currentMusics]);
@@ -83,21 +83,28 @@ export default () => {
     }
   }, [currentMode, currentMusics, currentMusic, isShouldNotChangeMusic]);
 
-  const playMusics = useCallback(groupId => {
-    
-  }, []);
+  const playMusics = useCallback(async (groupId) => {
+    const musics = await fetchMusics(groupId);
+
+    if (musics[0]) {
+      changeMusic(musics[0]);
+    }
+  }, [fetchMusics, changeMusic]);
+
   return useMemo(() => ({
     currentMode,
     currentMusic,
     currentMusics,
     changeMode,
     changeMusic,
+    playMusics,
     changeIsPlaying,
     changeMusics,
     goNextMode,
     goNextMusic,
     goPrevMusic,
     autoGoNextMusic,
+    fetchMusics,
   }), [
     currentMode,
     currentMusic,
@@ -110,5 +117,7 @@ export default () => {
     goNextMusic,
     goPrevMusic,
     autoGoNextMusic,
+    fetchMusics,
+    playMusics,
   ]);
 };

@@ -26,6 +26,7 @@ export const fetchLyrics = musicId => async (dispatch) => {
   try {
     const data = await fetch(`https://www.nhactube.com/api/lyrics/${musicId}`).then(res => res.json());
     dispatch(fetchLyricsSuccess(data.data));
+    return data.data;
   } catch(e) {
     dispatch(fetchLyricsFailure());
   }
@@ -70,6 +71,7 @@ export const fetchMusics = groupId => async (dispatch) => {
   try {
     const data = await fetch(`https://www.nhactube.com/api/group-musics/${groupId}`).then(res => res.json());
     dispatch(fetchMusicsSuccess(data.musics));
+    return data.musics;
   } catch(e) {
     dispatch(fetchMusicsFailure());
   }
