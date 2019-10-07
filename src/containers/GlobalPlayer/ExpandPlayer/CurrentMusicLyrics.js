@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  color: #ffffff;
+  color: #fff;
   width: 100%;
   font-size: 1.125rem;
   line-height: 1.25em;

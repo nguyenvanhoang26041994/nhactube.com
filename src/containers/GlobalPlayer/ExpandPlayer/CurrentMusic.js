@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   transition: all 0.5s;
   position: relative;
+  color: #fff;
 `;
 
 const InforWrapper = styled.div`
@@ -42,12 +43,6 @@ const MusicText = styled.div`
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.fontSizes.lg};
-  color: ${props => props.theme.colors['gray-400']};
-
-  .__music-name {
-    display: flex;
-    color: ${props => props.theme.colors.white};
-  }
 `;
 
 const ToggleMusicPool = styled(Icon)`
@@ -78,7 +73,7 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
     <Wrapper className={className}>
       <ToggleMusicPool
         name="list-music"
-        color={isMusicPoolActive ? 'yellow-500' : 'white' }
+        color={isMusicPoolActive ? 'yellow-500' : null }
         onClick={onListIconClick}
       />
       <InforWrapper>
@@ -89,21 +84,22 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
           alt={music.name}
         />
         <div className="flex items-center my-5">
-          <Icon
-            name="lyrics"
-            color={isHasLyrics ? 'yellow-500' : 'white'}
-            className="mx-2" size="lg"
-          />
-          <Icon name="share" color="white" className="mx-2" size="lg" />
-          <Icon name="plus" color="white" className="mx-2" size="lg" />
+          {isHasLyrics && (
+            <Icon
+              name="lyrics"
+              className="mx-2" size="lg"
+            />
+          )}
+          <Icon name="share" className="mx-2" size="lg" />
+          <Icon name="plus" className="mx-2" size="lg" />
         </div>
         <MusicText className="flex items-center justify-center">
-          <span className="__music-name">
+          <span>
             {music.name}
             {releaseMapper[music.release] && <Tag className="ml-1">{releaseMapper[music.release]}</Tag>}
           </span>
           <span className="mx-1">–</span>
-          <span className="__channel-name">{music.channel.name}</span>
+          <span>{music.channel.name}</span>
         </MusicText>
       </InforWrapper>
       <CurrentMusicLyricsStyled />

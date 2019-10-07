@@ -10,14 +10,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  color: #ffffff;
+  color: #fff;
   height: 3.5rem;
   cursor: pointer;
-  font-size: ${props => props.theme.fontSizes.base};
 
   .__release-tag {
-    color: #ffffff;
-    border-color: #ffffff;
+    border-color: #fff;
     margin: 0 0.5rem;
   }
 
@@ -30,14 +28,8 @@ const Wrapper = styled.div`
   }
 
   .__channel-name {
-    color: ${props => props.theme.colors['gray-400']};
     font-size: ${props => props.theme.fontSizes.sm};
-  }
-
-  .__first-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: ${props => props.theme.colors['gray-400']};
   }
 
   .__actions {
@@ -60,11 +52,10 @@ const Wrapper = styled.div`
     color: ${props => props.theme.colors['yellow-500']};
 
     .__channel-name {
-      color: ${props => props.theme.colors['yellow-400']};
+      color: ${props => props.theme.colors['yellow-500']};
     }
 
     .__release-tag {
-      color: ${props => props.theme.colors['yellow-500']};
       border-color: ${props => props.theme.colors['yellow-500']};
     }
   }
@@ -85,7 +76,7 @@ const MusicItem = ({ className, firstText, ...music }) => {
       onClick={onClick}
     >
       <div className="flex flex-col px-8 flex-1">
-        <span className="__name mb-2">
+        <span className="mb-2">
           {music.name}
           {releaseMapper[music.release] && <Tag className="__release-tag">{releaseMapper[music.release]}</Tag>}
         </span>
