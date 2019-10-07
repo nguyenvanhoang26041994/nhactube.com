@@ -83,6 +83,9 @@ export default () => {
     }
   }, [currentMode, currentMusics, currentMusic, isShouldNotChangeMusic]);
 
+  const playMusics = useCallback(groupId => {
+    
+  }, []);
   return useMemo(() => ({
     currentMode,
     currentMusic,

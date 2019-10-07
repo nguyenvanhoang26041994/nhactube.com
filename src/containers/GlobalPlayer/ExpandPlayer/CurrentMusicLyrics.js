@@ -92,11 +92,7 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
 const CurrentMusicLyrics = ({ className, isActive }) => {
   const lyricsWrapperRef = useRef();
   const { currentTime } = useGlobalAudio();
-  const { music, isHasLyrics, actions } = useGlobalPlayerMusic();
-
-  useEffect(() => {
-    actions.fetchLyrics();
-  }, [music.id])
+  const { music, isHasLyrics } = useGlobalPlayerMusic();
 
   return (
     <Wrapper className={className}>

@@ -2,6 +2,10 @@ import { mode, globalPlayer } from '../constants';
 
 const initialState = {
   mode: mode.REPEAT,
+
+  isLyricsFetching: false,
+  isLyricsError: false,
+  isLyricsSuccess: false,
   music: {
     id: '',
     link: '',
@@ -16,11 +20,16 @@ const initialState = {
     lyrics: [],
     isPlaying: false,
   },
+
+  isMusicsFetching: false,
+  isMusicsError: false,
+  isMusicsSuccess: false,
   musics: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    // MODE
     case globalPlayer.CHANGE_MODE:
       return {
         ...state,
@@ -51,7 +60,7 @@ export default (state = initialState, action) => {
     case globalPlayer.CHANGE_MUSICS:
       return {
         ...state,
-        musics: action.payload,
+        musics: action.payload || [],
       };
 
     // LYRICS
@@ -79,6 +88,30 @@ export default (state = initialState, action) => {
         isLyricsFetching: false,
         isLyricsError: false,
         isLyricsSuccess: true,
+      };
+
+    // MUSICS
+    case globalPlayer.GET_MUSICS_REQUEST:
+      return {
+        ...state,
+        isMusicsFetching: true,
+        isMusicsError: false,
+        isMusicsSuccess: false,
+      };
+    case globalPlayer.GET_MUSICS_FAILURE:
+      return {
+        ...state,
+        isMusicsFetching: false,
+        isMusicsError: true,
+        isMusicsSuccess: false,
+      };
+    case globalPlayer.GET_MUSICS_SUCCESS:
+      return {
+        ...state,
+        musics: action.payload || [],
+        isMusicsFetching: false,
+        isMusicsError: false,
+        isMusicsSuccess: true,
       };
     default:
       return state;
