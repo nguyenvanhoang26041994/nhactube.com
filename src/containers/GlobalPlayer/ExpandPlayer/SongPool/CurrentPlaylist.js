@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useGlobalPlayer } from '../../../../hooks';
 
 import { Icon } from '../../../../components/core';
-import MusicItem from './MusicItem';
+import SongItem from './SongItem';
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,19 +54,19 @@ const List = styled.ul`
   }
 `;
 
-const CurrentMusics = ({ className, style }) => {
-  const { currentMusics } = useGlobalPlayer();
+const CurrentPlaylist = ({ className, style }) => {
+  const { currentPlaylist } = useGlobalPlayer();
   return (
     <Wrapper className={className} style={style}>
       <OtherWrapper>
         <Title>
           <Icon name="list-music" className="mr-2" />
-          Danh sách phát ({currentMusics.length})
+          Danh sách phát ({currentPlaylist.songs.length})
         </Title>
         <List>
-          {currentMusics.map((music, idx) => (
-            <li key={music.id}>
-              <MusicItem {...music} firstText={idx + 1}>{music.name}-{music.channel.name}</MusicItem>
+          {currentPlaylist.songs.map((song, idx) => (
+            <li key={song.id}>
+              <SongItem {...song} firstText={idx + 1}>{song.name}-{song.artistsName}</SongItem>
             </li>
           ))}
         </List>
@@ -75,4 +75,4 @@ const CurrentMusics = ({ className, style }) => {
   );
 };
 
-export default CurrentMusics;
+export default CurrentPlaylist;

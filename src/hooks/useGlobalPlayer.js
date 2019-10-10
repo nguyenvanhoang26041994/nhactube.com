@@ -1,8 +1,8 @@
 import { useMemo, useCallback } from 'react';
 import { mode as modeConstants } from '../store/constants';
 import useGlobalPlayerMode from './useGlobalPlayerMode';
-import useGlobalPlayerMusic from './useGlobalPlayerMusic';
-import useGlobalPlayerMusics from './useGlobalPlayerMusics';
+import useGlobalPlayerSong from './useGlobalPlayerSong';
+import useGlobalPlayerPlaylist from './useGlobalPlayerPlaylist';
 import { random, findIndex } from '../utils';
 
 const mappingNextMode = {
@@ -11,113 +11,112 @@ const mappingNextMode = {
   [modeConstants.SHUFFLE]: modeConstants.LOOP,
 };
 
-const makeShuffeMusic = musics => musics[random(0, musics.length - 1)];
+const makeShuffeSong = songs => songs[random(0, songs.length - 1)];
 
 export default () => {
   const { mode: currentMode, actions: { changeMode } } = useGlobalPlayerMode();
-  const { music: currentMusic, actions: { changeMusic, changeIsPlaying }} = useGlobalPlayerMusic();
-  const { musics: currentMusics, actions: { changeMusics, fetchMusics }} = useGlobalPlayerMusics();
+  const { song: currentSong, actions: { changeSong, changeIsPlaying }} = useGlobalPlayerSong();
+  const { playlist: currentPlaylist, actions: { changePlaylist }} = useGlobalPlayerPlaylist();
 
-
-  const isShouldNotAutoChangeMusic = useMemo(() => currentMode === modeConstants.REPEAT || !currentMusics.length, [currentMode, currentMusics]);
-  const isShouldNotChangeMusic = useMemo(() => !currentMusics.length, [currentMusics]);
+  const isShouldNotAutoChangeSong = useMemo(() => currentMode === modeConstants.REPEAT || !currentPlaylist.songs.length, [currentMode, currentPlaylist.songs]);
+  const isShouldNotChangeSong = useMemo(() => !currentPlaylist.songs.length, [currentPlaylist.songs]);
 
   const goNextMode = useCallback(() => changeMode(mappingNextMode[currentMode]), [currentMode, changeMode]);
-  const autoGoNextMusic = useCallback(() => {
-    if (isShouldNotAutoChangeMusic) {
+  const autoGoNextSong = useCallback(() => {
+    if (isShouldNotAutoChangeSong) {
       return;
     }
 
     if (currentMode === modeConstants.SHUFFLE) {
-      return changeMusic(makeShuffeMusic(currentMusics));
+      return changeSong(makeShuffeSong(currentPlaylist.songs));
     }
 
     if (currentMode === modeConstants.LOOP) {
-      const idxOfCurrentMusic = findIndex(currentMusics, music => music.id === currentMusic.id);
-      const maxIdxOfCurrentMusics = currentMusics.length - 1;
-      if (idxOfCurrentMusic === maxIdxOfCurrentMusics) {
-        return changeMusic(currentMusics[0]);
+      const idxOfCurrentSong = findIndex(currentPlaylist.songs, song => song.id === currentSong.id);
+      const maxIdxOfCurrentPlaylistSongs = currentPlaylist.songs.length - 1;
+      if (idxOfCurrentSong === maxIdxOfCurrentPlaylistSongs) {
+        return changeSong(currentPlaylist.songs[0]);
       }
       
-      return changeMusic(currentMusics[idxOfCurrentMusic + 1]);
+      return changeSong(currentPlaylist.songs[idxOfCurrentSong + 1]);
     }
-  }, [currentMode, currentMusic, currentMusics, isShouldNotAutoChangeMusic, changeMusic]);
+  }, [currentMode, currentSong, currentPlaylist.songs, isShouldNotAutoChangeSong, changeSong]);
 
-  const goNextMusic = useCallback(() => {
-    if (isShouldNotChangeMusic) {
+  // Click Next Song Button be like
+  const goNextSong = useCallback(() => {
+    if (isShouldNotChangeSong) {
       return;
     }
 
     if (currentMode === modeConstants.SHUFFLE) {
-      return changeMusic(makeShuffeMusic(currentMusics));
+      return changeSong(makeShuffeSong(currentPlaylist.songs));
     }
 
     if (currentMode === modeConstants.LOOP || currentMode === modeConstants.REPEAT) {
-      const idxOfCurrentMusic = findIndex(currentMusics, music => music.id === currentMusic.id);
-      const maxIdxOfCurrentMusics = currentMusics.length - 1;
-      if (idxOfCurrentMusic === maxIdxOfCurrentMusics) {
-        return changeMusic(currentMusics[0]);
+      const idxOfCurrentSong = findIndex(currentPlaylist.songs, song => song.id === currentSong.id);
+      const maxIdxOfCurrentPlaylistSongs = currentPlaylist.songs.length - 1;
+      if (idxOfCurrentSong === maxIdxOfCurrentPlaylistSongs) {
+        return changeSong(currentPlaylist.songs[0]);
       }
       
-      return changeMusic(currentMusics[idxOfCurrentMusic + 1]);
+      return changeSong(currentPlaylist.songs[idxOfCurrentSong + 1]);
     }
-  }, [currentMode, currentMusic, currentMusics, isShouldNotChangeMusic, changeMusic]);
+  }, [currentMode, currentSong, currentPlaylist.songs, isShouldNotChangeSong, changeSong]);
 
-  const goPrevMusic = useCallback(() => {
-    if (isShouldNotChangeMusic) {
+  // Click Prev Song Button be like
+  const goPrevSong = useCallback(() => {
+    if (isShouldNotChangeSong) {
       return;
     }
 
     if (currentMode === modeConstants.SHUFFLE) {
-      return changeMusic(makeShuffeMusic(currentMusics));
+      return changeSong(makeShuffeSong(currentPlaylist.songs));
     }
 
     if (currentMode === modeConstants.LOOP || currentMode === modeConstants.REPEAT) {
-      const idxOfCurrentMusic = findIndex(currentMusics, music => music.id === currentMusic.id);
-      const maxIdxOfCurrentMusics = currentMusics.length - 1;
-      if (idxOfCurrentMusic === 0) {
-        return changeMusic(currentMusics[maxIdxOfCurrentMusics]);
+      const idxOfCurrentSong = findIndex(currentPlaylist.songs, song => song.id === currentSong.id);
+      const maxIdxOfCurrentPlaylistSongs = currentPlaylist.songs.length - 1;
+      if (idxOfCurrentSong === 0) {
+        return changeSong(currentPlaylist.songs[maxIdxOfCurrentPlaylistSongs]);
       }
       
-      return changeMusic(currentMusics[idxOfCurrentMusic - 1]);
+      return changeSong(currentPlaylist.songs[idxOfCurrentSong - 1]);
     }
-  }, [currentMode, currentMusics, currentMusic, isShouldNotChangeMusic]);
+  }, [currentMode, currentPlaylist.songs, currentSong, isShouldNotChangeSong]);
 
-  const playMusics = useCallback(async (groupId) => {
-    const musics = await fetchMusics(groupId);
+  const playPlaylist = useCallback((playlist) => {
+    changePlaylist(playlist);
 
-    if (musics[0]) {
-      changeMusic(musics[0]);
+    if (playlist.songs[0]) {
+      changeSong(playlist.songs[0]);
     }
-  }, [fetchMusics, changeMusic]);
+  }, [changePlaylist, changeSong]);
 
   return useMemo(() => ({
     currentMode,
-    currentMusic,
-    currentMusics,
+    currentSong,
+    currentPlaylist,
     changeMode,
-    changeMusic,
-    playMusics,
+    changeSong,
+    playPlaylist,
     changeIsPlaying,
-    changeMusics,
+    changePlaylist,
     goNextMode,
-    goNextMusic,
-    goPrevMusic,
-    autoGoNextMusic,
-    fetchMusics,
+    goNextSong,
+    goPrevSong,
+    autoGoNextSong,
   }), [
     currentMode,
-    currentMusic,
-    currentMusics,
+    currentSong,
+    currentPlaylist,
     changeMode,
-    changeMusic,
+    changeSong,
+    playPlaylist,
     changeIsPlaying,
-    changeMusics,
+    changePlaylist,
     goNextMode,
-    goNextMusic,
-    goPrevMusic,
-    autoGoNextMusic,
-    fetchMusics,
-    playMusics,
+    goNextSong,
+    goPrevSong,
+    autoGoNextSong,
   ]);
 };

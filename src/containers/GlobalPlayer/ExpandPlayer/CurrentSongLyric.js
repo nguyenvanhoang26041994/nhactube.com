@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Icon } from '../../../components/core';
-import { useGlobalPlayerMusic, useGlobalAudio } from '../../../hooks';
+import { useGlobalPlayerSong, useGlobalAudio } from '../../../hooks';
 import { getPageY } from '../../../utils';
 
 const Wrapper = styled.div`
@@ -20,7 +19,7 @@ const Wrapper = styled.div`
   transition: all 0.5s;
 `;
 
-const LyricsWrapper = styled.ul`
+const LyricWrapper = styled.ul`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -89,23 +88,23 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
   );
 }
 
-const CurrentMusicLyrics = ({ className, isActive }) => {
-  const lyricsWrapperRef = useRef();
+const CurrentSongLyric = ({ className, isActive }) => {
+  const lyricWrapperRef = useRef();
   const { currentTime } = useGlobalAudio();
-  const { music, isHasLyrics } = useGlobalPlayerMusic();
+  const { song, isHasLyric } = useGlobalPlayerSong();
 
   return (
     <Wrapper className={className}>
-      <LyricsWrapper isActive={isActive} ref={lyricsWrapperRef}>
+      <LyricWrapper isActive={isActive} ref={lyricWrapperRef}>
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-        {music.lyrics && music.lyrics.map((lyric, idx) => (
+        {song.lyric && song.lyric.map((lyric, idx) => (
           <li key={idx}>
-            <LyricText parentRef={lyricsWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
+            <LyricText parentRef={lyricWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
           </li>
         ))}
-        {!isHasLyrics && (
+        {!isHasLyric && (
           <li>
             <LyricText>Lời bài hát đang được cập nhật</LyricText>
           </li>
@@ -113,10 +112,10 @@ const CurrentMusicLyrics = ({ className, isActive }) => {
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-      </LyricsWrapper>
+      </LyricWrapper>
       <IconStyled color="white" name="cog" />
     </Wrapper>
   );
 };
 
-export default CurrentMusicLyrics;
+export default CurrentSongLyric;

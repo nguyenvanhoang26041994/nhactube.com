@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import { Icon, Tag } from '../../../../components/core';
 
-import { useGlobalPlayerMusic } from '../../../../hooks';
+import { useGlobalPlayerSong } from '../../../../hooks';
 import { releaseMapper, storageCaches } from '../../../../utils';
 
 const Wrapper = styled.div`
@@ -20,14 +20,14 @@ const Wrapper = styled.div`
   }
 
   .__name,
-  .__channel-name {
+  .__artists-name {
     display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .__channel-name {
+  .__artists-name {
     font-size: ${props => props.theme.fontSizes.sm};
     color: ${props => props.theme.colors['gray-400']};
   }
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   &.--is-active {
     color: ${props => props.theme.colors['yellow-500']};
 
-    .__channel-name {
+    .__artists-name {
       color: ${props => props.theme.colors['yellow-500']};
     }
 
@@ -61,15 +61,16 @@ const Wrapper = styled.div`
   }
 `;
 
-const MusicItem = ({ className, firstText, ...music }) => {
-  const { music: currentMusic, actions: { changeMusic }} = useGlobalPlayerMusic();
-  const onClick = useCallback(() => changeMusic(music), [changeMusic, music]);
+const SongItem = ({ className, firstText, ...song }) => {
+  const { song: currentSong, actions: { changeSong }} = useGlobalPlayerSong();
+
+  const onClick = useCallback(() => changeSong(song), [changeSong]);
 
   return (
     <Wrapper
       className={cn(
         {
-          '--is-active': currentMusic.id === music.id,
+          '--is-active': currentSong.id === song.id,
         },
         className
       )}
@@ -77,12 +78,12 @@ const MusicItem = ({ className, firstText, ...music }) => {
     >
       <div className="flex flex-col px-8 flex-1">
         <span className="mb-2">
-          {music.name}
-          {releaseMapper[music.release] && <Tag className="__release-tag">{releaseMapper[music.release]}</Tag>}
+          {song.name}
+          {releaseMapper[song.release] && <Tag className="__release-tag">{releaseMapper[song.release]}</Tag>}
         </span>
-        <span className="__channel-name">
-          {storageCaches[music.url] && <Icon name="check" className="mr-1" size="xs" />}
-          {music.channel.name}
+        <span className="__artists-name">
+          {storageCaches[song.url] && <Icon name="check" className="mr-1" size="xs" />}
+          {song.artistsName}
         </span>
       </div>
       <div className="__actions">
@@ -92,4 +93,4 @@ const MusicItem = ({ className, firstText, ...music }) => {
   );
 };
 
-export default MusicItem;
+export default SongItem;

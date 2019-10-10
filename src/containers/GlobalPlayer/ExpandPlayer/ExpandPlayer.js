@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import { BlurBackground } from '../../../components/commons';
-import CurrentMusic from './CurrentMusic';
-import MusicPool from './MusicPool';
-import { useGlobalPlayerMusic, useGlobalPlayerMusics } from '../../../hooks';
+import CurrentSong from './CurrentSong';
+import SongPool from './SongPool';
+import { useGlobalPlayerSong, useGlobalPlayerPlaylist } from '../../../hooks';
 
 const Wrapper = styled.div`
   /* transition: height 0.35s cubic-bezier(0.21, 0.63, 0.36, 1); */
@@ -17,30 +17,30 @@ const Wrapper = styled.div`
 `;
 
 const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
-  const { music: currentMusic } = useGlobalPlayerMusic();
-  const { musics: currentMusics } = useGlobalPlayerMusics();
-  const [isMusicPoolHidden, setMusicPoolHidden] = useState(false);
+  const { song: currentSong } = useGlobalPlayerSong();
+  const { playlist: currentPlaylist } = useGlobalPlayerPlaylist();
+  const [isSongPoolHidden, setSongPoolHidden] = useState(false);
 
-  const isMusicPoolActive = useMemo(() => !isMusicPoolHidden && currentMusics.length, [isMusicPoolHidden, currentMusics.length]);
-  const onListIconClick = useCallback(() => setMusicPoolHidden(prev => !prev), [setMusicPoolHidden]);
+  const isSongPoolActive = useMemo(() => !isSongPoolHidden && currentPlaylist.songs.length, [isSongPoolHidden, currentPlaylist.songs.length]);
+  const onListIconClick = useCallback(() => setSongPoolHidden(prev => !prev), [setSongPoolHidden]);
 
   return (
     <Wrapper className={className} ref={expandPlayerRef} style={style}>
       {isExpanded && (
         <div className="flex w-full">
-          <MusicPool
-            className={cn('w-1/2', { 'none-important': !isMusicPoolActive })}
-            isActive={isMusicPoolActive}
+          <SongPool
+            className={cn('w-1/2', { 'none-important': !isSongPoolActive })}
+            isActive={isSongPoolActive}
           />
-          <CurrentMusic
+          <CurrentSong
             className="flex-1"
-            isMusicPoolActive={isMusicPoolActive}
+            isSongPoolActive={isSongPoolActive}
             isExpanded={isExpanded}
             onListIconClick={onListIconClick}
           />
         </div>
       )}
-      <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
+      <BlurBackground src={currentSong.avatarUrl} alt={currentSong.name} />
     </Wrapper>
   );
 };

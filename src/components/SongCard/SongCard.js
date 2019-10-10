@@ -33,31 +33,31 @@ const NameStyled = styled.div`
   color: ${props => props.theme.colors[props.color]};
 `;
 
-const MusicCard = ({ className, avatarUrl, name, channel, onClick }) => {
+const SongCard = ({ className, avatarUrl, name, artists, onClick }) => {
   return (
     <Wrapper className={className}>
       <StyledImage src={avatarUrl} onClick={onClick} alt={name} />
       <OtherInfoStyled className="w-full flex flex-col justify-center">
         <NameStyled color="white" size="base" className="mb-2">{name}</NameStyled>
-        <NameStyled color="gray-500" size="sm">{channel.name}</NameStyled>
+        <NameStyled color="gray-500" size="sm">{artistsName}</NameStyled>
       </OtherInfoStyled>
     </Wrapper>
   );
 };
 
-MusicCard.propTypes = {
+SongCard.propTypes = {
   className: PropTypes.string,
   avatarUrl: PropTypes.string,
   name: PropTypes.string,
-  channel: PropTypes.object,
+  artists: PropTypes.array,
   onClick: PropTypes.func,
 };
 
-MusicCard.defaultProps = {
-  channel: {},
+SongCard.defaultProps = {
+  artists: [],
   onClick: f => f,
 };
 
-MusicCard.Skeleton = Skeleton;
+SongCard.Skeleton = Skeleton;
 
-export default MusicCard;
+export default SongCard;

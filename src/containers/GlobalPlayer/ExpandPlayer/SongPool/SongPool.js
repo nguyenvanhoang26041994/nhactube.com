@@ -1,8 +1,7 @@
 import React from 'react';
-import cn from 'classnames';
 import styled from 'styled-components';
 
-import CurrentMusics from './CurrentMusics';
+import CurrentPlaylist from './CurrentPlaylist';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,12 +13,12 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const MusicPool = ({ className, style }) => {
+const SongPool = ({ className, style }) => {
   return (
     <Wrapper className={className} style={style}>
-      <CurrentMusics />
+      <CurrentPlaylist />
     </Wrapper>
   );
 };
 
-export default MusicPool;
+export default SongPool;

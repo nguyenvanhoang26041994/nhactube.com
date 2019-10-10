@@ -7,10 +7,10 @@ export const getNode = () => document.getElementById('global-audio');
 const GlobalAudio = () => {
   const globalAudio = useMemo(() => getNode(), []);
 
-  const { currentMode, currentMusic, changeIsPlaying, autoGoNextMusic } = useGlobalPlayer();
+  const { currentMode, currentSong, changeIsPlaying, autoGoNextSong } = useGlobalPlayer();
   const loop = useMemo(() => currentMode === modeConstants.REPEAT, [currentMode]);
 
-  const onEnded = useCallback(() => autoGoNextMusic(), [autoGoNextMusic]);
+  const onEnded = useCallback(() => autoGoNextSong(), [autoGoNextSong]);
   const onPlay = useCallback(e => changeIsPlaying(!e.target.paused), [changeIsPlaying]);
   const onPause = useCallback(e => changeIsPlaying(!e.target.paused), [changeIsPlaying]);
   const onWaiting = useCallback(e => changeIsPlaying(!e.target.paused), [changeIsPlaying]);
@@ -33,16 +33,16 @@ const GlobalAudio = () => {
   }, [onPlay, onPause, onWaiting, onWaiting, onPlaying, onEnded, globalAudio]);
 
   useEffect(() => {
-    globalAudio.querySelector('source').src = currentMusic.url;
-    if (currentMusic.url) {
+    globalAudio.querySelector('source').src = currentSong.url;
+    if (currentSong.url) {
       globalAudio.load && globalAudio.load();
       globalAudio.play && globalAudio.play();
     }
 
-    if (!currentMusic.url && !globalAudio.paused) {
+    if (!currentSong.url && !globalAudio.paused) {
       globalAudio.pause();
     }
-  }, [currentMusic.url, globalAudio]);
+  }, [currentSong.url, globalAudio]);
 
   useEffect(() => {
     globalAudio.loop = loop;

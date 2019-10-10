@@ -1,1 +1,1 @@
-export { default } from './GlobalPlayer';
+export default () => null;

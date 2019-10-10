@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MusicCardSkeleton = () => {
+const SongCardSkeleton = () => {
   return (
     <div className="flex flex-col" style={{ maxWidth: '14.5rem' }}>
       <div className="ui-skeleton" style={{ height: '7.34375rem' }} />
@@ -12,4 +12,4 @@ const MusicCardSkeleton = () => {
   );
 };
 
-export default MusicCardSkeleton;
+export default SongCardSkeleton;

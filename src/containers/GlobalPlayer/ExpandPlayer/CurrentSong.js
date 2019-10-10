@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Image, Icon, Tag } from '../../../components/core';
-import CurrentMusicLyrics from './CurrentMusicLyrics';
-import { useGlobalPlayerMusic } from '../../../hooks';
+import CurrentSongLyric from './CurrentSongLyric';
+import { useGlobalPlayerSong } from '../../../hooks';
 import { releaseMapper } from '../../../utils';
 
 const Wrapper = styled.div`
@@ -39,52 +39,52 @@ const AvatarImage = styled(Image)`
   }
 `;
 
-const MusicText = styled.div`
+const SongText = styled.div`
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.fontSizes.lg};
 `;
 
-const ToggleMusicPool = styled(Icon)`
+const ToggleSongPool = styled(Icon)`
   position: absolute;
   left: 1rem;
   top: 1rem;
 `;
 
-const CurrentMusicLyricsStyled = styled(CurrentMusicLyrics)`
+const CurrentSongLyricStyled = styled(CurrentSongLyric)`
   padding: 0 0 3rem 0;
   box-sizing: border-box;
 `;
 
-const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClick }) => {
+const CurrentSong = ({ className, isSongPoolActive, isExpanded, onListIconClick }) => {
   const [rotate, setRotate] = useState(0);
-  const { music, isHasLyrics } = useGlobalPlayerMusic();
+  const { song, isHasLyric } = useGlobalPlayerSong();
 
   useEffect(() => {
     let timer;
-    if (music.isPlaying) {
+    if (song.isPlaying) {
       timer = setInterval(() => setRotate(prev => prev + 2), 200);
     }
 
     return () => clearInterval(timer);
-  }, [music.isPlaying, setRotate]);
+  }, [song.isPlaying, setRotate]);
 
   return (
     <Wrapper className={className}>
-      <ToggleMusicPool
+      <ToggleSongPool
         name="list-music"
-        color={isMusicPoolActive ? 'yellow-500' : null }
+        color={isSongPoolActive ? 'yellow-500' : null }
         onClick={onListIconClick}
       />
       <InforWrapper>
         <AvatarImage
           className={cn({ '--hidden': !isExpanded })}
-          src={music.avatarUrl}
+          src={song.avatarUrl}
           style={{ transform: `rotate(${rotate}deg)` }}
-          alt={music.name}
+          alt={song.name}
         />
         <div className="flex items-center my-5">
-          {isHasLyrics && (
+          {isHasLyric && (
             <Icon
               name="lyrics"
               className="mx-2" size="lg"
@@ -93,18 +93,18 @@ const CurrentMusic = ({ className, isMusicPoolActive, isExpanded, onListIconClic
           <Icon name="share" className="mx-2" size="lg" />
           <Icon name="plus" className="mx-2" size="lg" />
         </div>
-        <MusicText className="flex items-center justify-center">
+        <SongText className="flex items-center justify-center">
           <span>
-            {music.name}
-            {releaseMapper[music.release] && <Tag className="ml-1">{releaseMapper[music.release]}</Tag>}
+            {song.name}
+            {releaseMapper[song.release] && <Tag className="ml-1">{releaseMapper[song.release]}</Tag>}
           </span>
           <span className="mx-1">–</span>
-          <span>{music.channel.name}</span>
-        </MusicText>
+          <span>{song.artistsName}</span>
+        </SongText>
       </InforWrapper>
-      <CurrentMusicLyricsStyled />
+      <CurrentSongLyricStyled />
     </Wrapper>
   );
 };
 
-export default CurrentMusic;
+export default CurrentSong;

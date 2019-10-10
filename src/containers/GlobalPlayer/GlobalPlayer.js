@@ -1,10 +1,10 @@
-import React, { useCallback, useState, useRef, useMemo } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { BlurBackground } from '../../components/commons';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
-import { useGlobalPlayerMusic, useOnClickOutside, useGlobalPlayer, useGlobalAudio } from '../../hooks';
+import { useGlobalPlayerSong, useOnClickOutside } from '../../hooks';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -35,7 +35,7 @@ const GlobalPlayer = ({ className }) => {
   const expandPlayerRef = useRef();
   const miniPlayerRef = useRef();
 
-  const { music } = useGlobalPlayerMusic();
+  const { song } = useGlobalPlayerSong();
   const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [setExpanded]);
 
   const onClickExpandPlayerOutSide = useCallback(e => {
@@ -51,15 +51,15 @@ const GlobalPlayer = ({ className }) => {
     <Wrapper
       className={className}
       style={{
-        opacity: music.url ? '1' : '0',
-        height: music.url ? '4rem' : '0',
+        opacity: song.url ? '1' : '0',
+        height: song.url ? '4rem' : '0',
       }}
     >
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer
           isExpanded={expanded}
-          onMusicListIconClick={toggleExpanded}
+          onSongListIconClick={toggleExpanded}
           miniPlayerRef={miniPlayerRef}
         />
         <ExpandPlayerStyled
@@ -72,7 +72,7 @@ const GlobalPlayer = ({ className }) => {
           isExpanded={expanded}
         />
       </RelativeContainer>
-      <BlurBackground src={music.avatarUrl} alt={music.name} />
+      <BlurBackground src={song.avatarUrl} alt={song.name} />
     </Wrapper>
   );
 };

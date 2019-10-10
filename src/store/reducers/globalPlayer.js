@@ -3,28 +3,27 @@ import { mode, globalPlayer } from '../constants';
 const initialState = {
   mode: mode.REPEAT,
 
-  isLyricsFetching: false,
-  isLyricsError: false,
-  isLyricsSuccess: false,
-  music: {
+  isLyricFetching: false,
+  isLyricError: false,
+  isLyricSuccess: false,
+
+  song: {
     id: '',
-    link: '',
-    url: '',
-    avatarUrl: '',
     name: '',
-    channel: {},
+    artists: [],
     views: 0,
     dowloaded: 0,
     shared: 0,
     release: '',
-    lyrics: [],
+    lyric: [],
     isPlaying: false,
   },
 
-  isMusicsFetching: false,
-  isMusicsError: false,
-  isMusicsSuccess: false,
-  musics: [],
+  playlist: {
+    id: '',
+    name: '',
+    songs: [],
+  },
 };
 
 export default (state = initialState, action) => {
@@ -35,83 +34,61 @@ export default (state = initialState, action) => {
         ...state,
         mode: action.payload,
       };
-    case globalPlayer.CHANGE_MUSIC:
+    case globalPlayer.CHANGE_SONG:
       return {
         ...state,
-        music: {
-          ...state.music,
+        song: {
+          ...state.song,
           id: action.payload.id,
-          link: action.payload.link,
-          url: action.payload.url,
-          avatarUrl: action.payload.avatarUrl,
           name: action.payload.name,
-          channel: action.payload.channel || {},
+          artists: action.payload.artists || [],
           release: action.payload.release,
         },
       };
     case globalPlayer.CHANGE_IS_PLAYING:
       return {
         ...state,
-        music: {
-          ...state.music,
+        song: {
+          ...state.song,
           isPlaying: action.payload,
         },
       };
-    case globalPlayer.CHANGE_MUSICS:
+    case globalPlayer.CHANGE_PLAYLIST:
       return {
         ...state,
-        musics: action.payload || [],
+        playlist: {
+          ...state.playlist,
+          id: action.payload.id,
+          name: action.payload.name,
+          songs: action.payload.songs || [],
+        },
       };
 
-    // LYRICS
-    case globalPlayer.GET_LYRICS_REQUEST:
+    // LYRIC
+    case globalPlayer.GET_LYRIC_REQUEST:
       return {
         ...state,
         isLyricsFetching: true,
         isLyricsError: false,
         isLyricsSuccess: false,
       };
-    case globalPlayer.GET_LYRICS_FAILURE:
+    case globalPlayer.GET_LYRIC_FAILURE:
       return {
         ...state,
-        isLyricsFetching: false,
-        isLyricsError: true,
-        isLyricsSuccess: false,
+        isLyricFetching: false,
+        isLyricError: true,
+        isLyricSuccess: false,
       };
-    case globalPlayer.GET_LYRICS_SUCCESS:
+    case globalPlayer.GET_LYRIC_SUCCESS:
       return {
         ...state,
-        music: {
-          ...state.music,
-          lyrics: action.payload || [],
+        song: {
+          ...state.song,
+          lyric: action.payload || [],
         },
-        isLyricsFetching: false,
-        isLyricsError: false,
-        isLyricsSuccess: true,
-      };
-
-    // MUSICS
-    case globalPlayer.GET_MUSICS_REQUEST:
-      return {
-        ...state,
-        isMusicsFetching: true,
-        isMusicsError: false,
-        isMusicsSuccess: false,
-      };
-    case globalPlayer.GET_MUSICS_FAILURE:
-      return {
-        ...state,
-        isMusicsFetching: false,
-        isMusicsError: true,
-        isMusicsSuccess: false,
-      };
-    case globalPlayer.GET_MUSICS_SUCCESS:
-      return {
-        ...state,
-        musics: action.payload || [],
-        isMusicsFetching: false,
-        isMusicsError: false,
-        isMusicsSuccess: true,
+        isLyricFetching: false,
+        isLyricError: false,
+        isLyricSuccess: true,
       };
     default:
       return state;

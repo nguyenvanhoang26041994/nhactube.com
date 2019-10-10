@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BlurBackground } from '../components/commons';
 import GlobalPlayer from '../containers/GlobalPlayer';
 import Header from './Header';
-import { useGlobalPlayerMusic } from '../hooks';
+import { useGlobalPlayerSong } from '../hooks';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -18,14 +18,14 @@ const MainWrapper = styled.main`
 `;
 
 const Layout = ({ children }) => {
-  const { music: currentMusic } = useGlobalPlayerMusic();
+  const { song: currentSong } = useGlobalPlayerSong();
   return (
     <Wrapper>
       <Header />
       <MainWrapper className="flex-1">
         {children}
       </MainWrapper>
-      <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
+      <BlurBackground src={currentSong.avatarUrl} alt={currentSong.name} />
       <GlobalPlayer />
     </Wrapper>
   );
