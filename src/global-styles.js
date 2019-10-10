@@ -12,6 +12,10 @@ const keletonGlow = keyframes`
 `;
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 16px;
   }
