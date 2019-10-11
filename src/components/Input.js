@@ -11,6 +11,7 @@ const Input = styled.input`
   padding-right: 0.75em;
   height: 2em;
   font-size: ${props => props.theme.fontSizes[props.size]};
+  font-family: inherit;
   border-radius: 0.25em;
 `;
 

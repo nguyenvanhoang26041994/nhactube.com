@@ -79,7 +79,7 @@ const SongItem = ({ className, firstText, ...song }) => {
       <div className="flex flex-col px-8 flex-1">
         <span className="mb-2">
           {song.name}
-          {releaseMapper[song.release] && <Tag className="__release-tag">{releaseMapper[song.release]}</Tag>}
+          {releaseMapper[song.release] && `(${releaseMapper[song.release]})`}
         </span>
         <span className="__artists-name">
           {storageCaches[song.url] && <Icon name="check" className="mr-1" size="xs" />}
