@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import SongCardSkeleton from '../../components/SongCard/Skeleton';
+import CardSkeleton from '../../components/CardSkeleton';
 import { PlaylistCard } from '../../components/commons';
 import SongCard from '../../containers/SongCard';
+import ShelfRenderer from './ShelfRenderer';
 import { useGlobalPlayer, useAsyncStatus } from '../../hooks';
 
 const Wrapper = styled.div``;
@@ -21,65 +22,77 @@ const HomePage = () => {
   const [playlists, setPlaylists] = useState([]);
   const [songs, setSongs] = useState([]);
   const { playPlaylist, changeSong } = useGlobalPlayer();
-  const { status, fetchRequest, fetchSuccess } = useAsyncStatus();
+  const songsAsync = useAsyncStatus();
+  const playlistsAsync = useAsyncStatus();
 
   const _playPlaylist = useCallback((playlistId) => {
     fetch(`https://www.nhactube.com/api/playlists/${playlistId}`)
       .then(res => res.json())
       .then(({ data }) => {
         playPlaylist(data);
-      });
+      })
+      .catch(e => songsAsync.fetchFailure());
   }, [playPlaylist]);
 
   useEffect(() => {
+    playlistsAsync.fetchRequest();
     fetch('https://www.nhactube.com/api/playlists/new')
       .then(res => res.json())
       .then(({ data }) => {
         setPlaylists(data);
-      });
+        playlistsAsync.fetchSuccess();
+      })
+      .catch(() => playlistsAsync.fetchFailure());
   }, []);
 
   useEffect(() => {
-    fetchRequest();
+    songsAsync.fetchRequest();
     fetch('https://www.nhactube.com/api/songs/new')
       .then(res => res.json())
       .then(({ data }) => {
         setSongs(data);
-        fetchSuccess();
-      });
+        songsAsync.fetchSuccess();
+      })
+      .catch(() => songsAsync.fetchFailure());
   }, []);
 
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <PlaylistsWrapper className="w-full">
-        {playlists.map(playlist => (
-          <div className="p-1 w-1/5">
-           <PlaylistCard
-             key={playlist.id}
-             onClick={() => _playPlaylist(playlist.id)}
-             {...playlist}
-           />
-         </div>
-        ))}
-      </PlaylistsWrapper>
-      <SongsWrapper className="w-full">
-        {songs.map(song => (
-          <div className="p-1 w-1/5">
-           <SongCard
-             key={song.id}
-             {...song}
-           />
-         </div>
-        ))}
-      </SongsWrapper>
-
-
-
-      {status.isLoading && [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((v, idx) => (
-        <div style={{ padding: '0.25rem', boxSizing: 'border-box' }} key={idx} className="w-1/4">
-          <SongCardSkeleton />
-        </div>
-      ))}
+      <ShelfRenderer title="Playlist tuyển chọn">
+        <PlaylistsWrapper className="w-full">
+          {playlists.map(playlist => (
+            <div className="p-1 w-1/5">
+            <PlaylistCard
+              key={playlist.id}
+              onClick={() => _playPlaylist(playlist.id)}
+              {...playlist}
+            />
+          </div>
+          ))}
+          {playlistsAsync.status.isLoading && [0,0,0,0,0,].map((v, idx) => (
+            <div className="p-1 w-1/5">
+              <CardSkeleton />
+            </div>
+          ))}
+        </PlaylistsWrapper>
+      </ShelfRenderer>
+      <ShelfRenderer title="Bài hát dành riêng cho bạn" wrapperClassName="mt-5">
+        <SongsWrapper className="w-full">
+          {songs.map(song => (
+            <div className="p-1 w-1/5">
+            <SongCard
+              key={song.id}
+              {...song}
+            />
+          </div>
+          ))}
+          {songsAsync.status.isLoading && [0,0,0,0,0,0,0,0,0,0].map((v, idx) => (
+            <div className="p-1 w-1/5">
+              <CardSkeleton />
+            </div>
+          ))}
+        </SongsWrapper>
+      </ShelfRenderer>
     </Wrapper>
   );
 };
