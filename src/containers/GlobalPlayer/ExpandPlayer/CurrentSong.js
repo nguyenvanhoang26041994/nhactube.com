@@ -94,9 +94,9 @@ const CurrentSong = ({ className, isSongPoolActive, isExpanded, onListIconClick 
           <Icon name="plus" className="mx-2" size="lg" />
         </div>
         <SongText className="flex items-center justify-center">
-          <span>
+          <span className="flex">
             {song.name}
-            {releaseMapper[song.release] && <Tag className="ml-1">{releaseMapper[song.release]}</Tag>}
+            {releaseMapper[song.release] && `(${releaseMapper[song.release]})`}
           </span>
           <span className="mx-1">–</span>
           <span>{song.artistsName}</span>

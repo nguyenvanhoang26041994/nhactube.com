@@ -1,6 +1,6 @@
 export default {
   'OFFICIAL': '',
-  'POPULAR': 'POPULAR',
-  'REMIX': 'REMIX',
-  'COVER': 'COVER',
+  'POPULAR': 'Popular',
+  'REMIX': 'Remix',
+  'COVER': 'Cover',
 };

@@ -61,16 +61,15 @@ const HomePage = () => {
       <ShelfRenderer title="Playlist ngầu hôm nay">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
-            <div className="p-1 w-1/5">
-            <PlaylistCard
-              key={playlist.id}
-              onClick={() => _playPlaylist(playlist.id)}
-              {...playlist}
-            />
+            <div className="p-1 w-1/5" key={playlist.id}>
+              <PlaylistCard
+                onClick={() => _playPlaylist(playlist.id)}
+                {...playlist}
+              />
           </div>
           ))}
           {playlistsAsync.status.isLoading && [0,0,0,0,0,].map((v, idx) => (
-            <div className="p-1 w-1/5">
+            <div className="p-1 w-1/5" key={idx}>
               <CardSkeleton />
             </div>
           ))}
@@ -79,15 +78,12 @@ const HomePage = () => {
       <ShelfRenderer title="Bài hát dành riêng cho bạn" wrapperClassName="mt-5">
         <SongsWrapper className="w-full">
           {songs.map(song => (
-            <div className="p-1 w-1/5">
-            <SongCard
-              key={song.id}
-              {...song}
-            />
+            <div className="p-1 w-1/5"  key={song.id}>
+            <SongCard {...song} />
           </div>
           ))}
           {songsAsync.status.isLoading && [0,0,0,0,0,0,0,0,0,0].map((v, idx) => (
-            <div className="p-1 w-1/5">
+            <div className="p-1 w-1/5" key={idx}>
               <CardSkeleton />
             </div>
           ))}

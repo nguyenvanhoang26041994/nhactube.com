@@ -20,7 +20,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border-radius: 0.25em
+  border-radius: 0.25em;
+  user-select: none;
 `;
 
 const SVGStyled = styled(SVG)`

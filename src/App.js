@@ -5,6 +5,7 @@ import GlobalStyle from './global-styles';
 import Layout from './layout';
 
 const HomePage = loadable(() => import('./pages/HomePage'));
+const SearchPage = loadable(() => import('./pages/SearchPage'));
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Layout>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/search" component={SearchPage} />
           <Route path="" component={HomePage} />
         </Switch>
         <GlobalStyle />

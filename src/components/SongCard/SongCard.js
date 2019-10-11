@@ -30,6 +30,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   border-radius: 0.25em;
+  user-select: none;
 
   &.--is-active {
     color: ${props => props.theme.colors['yellow-500']};

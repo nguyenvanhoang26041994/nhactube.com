@@ -1,10 +1,10 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { BlurBackground } from '../../components/commons';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
-import { useGlobalPlayerSong, useOnClickOutside } from '../../hooks';
+import { useGlobalPlayerSong, useOnClickOutside, useRippleEffect } from '../../hooks';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -30,7 +30,7 @@ const ExpandPlayerStyled = styled(ExpandPlayer)`
   z-index: -1;
 `;
 
-const GlobalPlayer = ({ className }) => {
+const GlobalPlayer = ({ className, onExpanded }) => {
   const [expanded, setExpanded] = useState(false);
   const expandPlayerRef = useRef();
   const miniPlayerRef = useRef();
@@ -46,6 +46,10 @@ const GlobalPlayer = ({ className }) => {
   }, [miniPlayerRef.current]);
 
   useOnClickOutside(expandPlayerRef, onClickExpandPlayerOutSide);
+
+  useEffect(() => {
+    onExpanded(expanded);
+  }, [expanded]);
 
   return (
     <Wrapper
