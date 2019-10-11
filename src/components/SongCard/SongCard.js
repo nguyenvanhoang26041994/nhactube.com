@@ -11,8 +11,8 @@ const SVG = (props) => (
 );
 
 const SVGStyled = styled(SVG)`
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   margin: 0 auto;
   fill: rgba(255, 255, 255, 0.7);
 `;
@@ -20,7 +20,7 @@ const SVGStyled = styled(SVG)`
 const Wrapper = styled.div`
   cursor: pointer;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   max-width: 12rem;
   height: 12rem;
   width: 100%;
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  box-sizing: border-box;
+  border-radius: 0.25em;
 
   &.--is-active {
     color: ${props => props.theme.colors['yellow-500']};

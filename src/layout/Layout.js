@@ -17,15 +17,24 @@ const MainWrapper = styled.main`
   position: relative;
 `;
 
+const HeaderStyled = styled(Header)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+`;
+
 const Layout = ({ children }) => {
   const { song: currentSong } = useGlobalPlayerSong();
   return (
     <Wrapper>
-      <Header />
+      <div style={{ height: '4rem' }}>
+        <HeaderStyled />
+      </div>
       <MainWrapper className="flex-1">
         {children}
       </MainWrapper>
-      <BlurBackground src={currentSong.avatarUrl} alt={currentSong.name} />
+      <BlurBackground alt={currentSong.name} />
       <GlobalPlayer />
     </Wrapper>
   );

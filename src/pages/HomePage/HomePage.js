@@ -58,7 +58,7 @@ const HomePage = () => {
 
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <ShelfRenderer title="Playlist tuyển chọn">
+      <ShelfRenderer title="Playlist ngầu hôm nay">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
             <div className="p-1 w-1/5">
@@ -93,6 +93,7 @@ const HomePage = () => {
           ))}
         </SongsWrapper>
       </ShelfRenderer>
+      <div style={{ height: '5rem' }} />
     </Wrapper>
   );
 };
