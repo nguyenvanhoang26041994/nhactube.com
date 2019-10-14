@@ -24,6 +24,12 @@ const HeaderStyled = styled(Header)`
   z-index: 10;
 `;
 
+const BlurBackgroundStyled = styled(BlurBackground)`
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
 const Layout = ({ children }) => {
   const { song: currentSong } = useGlobalPlayerSong();
   const [expanded, setExpanded] = useState(false);
@@ -49,7 +55,7 @@ const Layout = ({ children }) => {
       >
         {children}
       </MainWrapper>
-      <BlurBackground src={bgSrc} alt={currentSong.name} />
+      <BlurBackgroundStyled src={bgSrc} alt={currentSong.name} />
       <GlobalPlayer onExpanded={onExpanded} />
     </Wrapper>
   );
