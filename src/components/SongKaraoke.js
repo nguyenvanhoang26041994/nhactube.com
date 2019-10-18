@@ -1,17 +1,16 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Icon } from '../../../components/core';
-import { useGlobalPlayerSong, useGlobalAudio } from '../../../hooks';
-import { getPageY } from '../../../utils';
+import { Icon } from '../components/core';
+import { getPageY } from '../utils';
 
 const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
   color: #fff;
-  width: 100%;
   font-size: 1.125rem;
   line-height: 1.25em;
   word-spacing: 0.125em;
@@ -27,7 +26,9 @@ const LyricWrapper = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  height:100%;
+  max-height: 30rem;
+  height: 100%;
+  width: 100%;
   mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));
 
   &::-webkit-scrollbar {
@@ -59,9 +60,11 @@ const LyricTextStyled = styled.p`
   text-align: center;
   padding: 0 0.5rem;
   transition: all 0.2s;
+  color: ${props => props.theme.colors['gray-400']};
 
   &.--is-active {
-    color: ${props => props.theme.colors['yellow-500']};
+    font-weight: 900;
+    color: #fff;
   }
 `;
 
@@ -88,20 +91,19 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
   );
 }
 
-const CurrentSongLyric = ({ className, isActive }) => {
+const SongKaraoke = ({ className, lyric, currentTime }) => {
   const lyricWrapperRef = useRef();
-  const { currentTime } = useGlobalAudio();
-  const { song, isHasLyric } = useGlobalPlayerSong();
+  const isHasLyric = useMemo(() => !!lyric.length, [lyric.length]);
 
   return (
     <Wrapper className={className}>
-      <LyricWrapper isActive={isActive} ref={lyricWrapperRef}>
+      <LyricWrapper ref={lyricWrapperRef}>
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-        {song.lyric && song.lyric.map((lyric, idx) => (
+        {lyric.map((item, idx) => (
           <li key={idx}>
-            <LyricText parentRef={lyricWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
+            <LyricText parentRef={lyricWrapperRef} isActive={item.timeStart <= currentTime && item.timeEnd >= currentTime}>{item.text}</LyricText>
           </li>
         ))}
         {!isHasLyric && (
@@ -118,4 +120,4 @@ const CurrentSongLyric = ({ className, isActive }) => {
   );
 };
 
-export default CurrentSongLyric;
+export default SongKaraoke;

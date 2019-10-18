@@ -10,8 +10,7 @@ const SVG = (props) => (
 
 const Wrapper = styled.div`
   cursor: pointer;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
+  /* background-color: rgba(255, 255, 255, 0.05); */
   max-width: 12rem;
   height: 12rem;
   width: 100%;
@@ -22,6 +21,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   border-radius: 0.25em;
   user-select: none;
+  color: #fff;
 `;
 
 const SVGStyled = styled(SVG)`

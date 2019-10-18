@@ -5,7 +5,7 @@ export default node => {
   do {
     pageY += _nextNode.offsetTop;
     _nextNode = _nextNode.offsetParent;
-  } while(_nextNode.offsetParent)
+  } while(_nextNode && _nextNode.offsetParent)
 
   return pageY;
 }

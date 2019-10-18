@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div``;
-const Title = styled.div`
+const Wrapper = styled.div`
   color: #fff;
+`;
+const Title = styled.div`
   font-size: ${props => props.theme.fontSizes.xl};
+  font-weight: 600;
 `;
 const RestWrapper = styled.div``;
 

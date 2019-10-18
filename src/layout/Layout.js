@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
 
   const onExpanded = useCallback(value => setExpanded(value), [setExpanded]);
-  const bgSrc = useMemo(() => expanded ? currentSong.avatarUrl : null);
+  const bgSrc = useMemo(() => currentSong.avatarUrl);
 
   return (
     <Wrapper>

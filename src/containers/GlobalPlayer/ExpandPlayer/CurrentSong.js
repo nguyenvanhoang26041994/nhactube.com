@@ -3,10 +3,9 @@ import cn from 'classnames';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Image, Icon, Tag } from '../../../components/core';
-import CurrentSongLyric from './CurrentSongLyric';
-import { useGlobalPlayerSong } from '../../../hooks';
-import { releaseMapper } from '../../../utils';
+import { Icon } from '../../../components/core';
+import { SongDisk, SongKaraoke } from '../../../components/commons';
+import { useGlobalPlayerSong, useGlobalAudio } from '../../../hooks';
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,91 +17,71 @@ const Wrapper = styled.div`
   transition: all 0.5s;
   position: relative;
   color: #fff;
-`;
 
-const InforWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3rem 0;
-  box-sizing: border-box;
-`;
+  &.--is-my-king-dom {
+    flex-direction: row;
 
-const AvatarImage = styled(Image)`
-  width: 15em;
-  height: 15em;
-  border-radius: 999px;
-  transition: transform 0.2s cubic-bezier(0.5, 0.5, 1, 1), opacity 0.2s;
+    .__song-disk {
+      border-right: 1px solid rgba(255, 255, 255,.1);
+    }
 
-  &.--hidden {
-    opacity: 0;
+    .__song-disk,
+    .__song-karaoke {
+      width: 50%;
+      height: 100%;
+    }
   }
 `;
 
-const SongText = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: ${props => props.theme.fontSizes.lg};
+const SongDiskStyled = styled(SongDisk)`
 `;
 
 const ToggleSongPool = styled(Icon)`
   position: absolute;
   left: 1rem;
   top: 1rem;
+  z-index: 10;
 `;
 
-const CurrentSongLyricStyled = styled(CurrentSongLyric)`
+const CurrentSongLyricStyled = styled(SongKaraoke)`
+  height: 30rem;
   padding: 0 0 3rem 0;
   box-sizing: border-box;
+  width: 100%;
 `;
 
 const CurrentSong = ({ className, isSongPoolActive, isExpanded, onListIconClick }) => {
-  const [rotate, setRotate] = useState(0);
-  const { song, isHasLyric } = useGlobalPlayerSong();
+  const { song } = useGlobalPlayerSong();
+  const { currentTime, globalAudio } = useGlobalAudio();
 
-  useEffect(() => {
-    let timer;
-    if (song.isPlaying) {
-      timer = setInterval(() => setRotate(prev => prev + 2), 200);
+  const playOrPauseSong = useCallback(() => {
+    if (globalAudio.paused) {
+      return globalAudio.play();
     }
 
-    return () => clearInterval(timer);
-  }, [song.isPlaying, setRotate]);
+    return globalAudio.pause();
+  }, []);
 
   return (
-    <Wrapper className={className}>
+    <Wrapper className={cn(className, { '--is-my-king-dom': !isSongPoolActive })}>
       <ToggleSongPool
         name="list-music"
         color={isSongPoolActive ? 'yellow-500' : null }
         onClick={onListIconClick}
       />
-      <InforWrapper>
-        <AvatarImage
-          className={cn({ '--hidden': !isExpanded })}
-          src={song.avatarUrl}
-          style={{ transform: `rotate(${rotate}deg)` }}
-          alt={song.name}
-        />
-        <div className="flex items-center my-5">
-          {isHasLyric && (
-            <Icon
-              name="lyrics"
-              className="mx-2" size="lg"
-            />
-          )}
-          <Icon name="share" className="mx-2" size="lg" />
-          <Icon name="plus" className="mx-2" size="lg" />
-        </div>
-        <SongText className="flex items-center justify-center">
-          <span className="flex">
-            {song.name}
-            {releaseMapper[song.release] && `(${releaseMapper[song.release]})`}
-          </span>
-          <span className="mx-1">–</span>
-          <span>{song.artistsName}</span>
-        </SongText>
-      </InforWrapper>
-      <CurrentSongLyricStyled />
+      <SongDiskStyled
+        className="__song-disk"
+        isPlaying={song.isPlaying}
+        name={song.name}
+        playOrPauseSong={playOrPauseSong}
+        avatarUrl={song.avatarUrl}
+        artistsName={song.artistsName}
+      />
+      <CurrentSongLyricStyled
+        className={"__song-karaoke"}
+        lyric={song.lyric}
+        currentTime={currentTime}
+      />
     </Wrapper>
   );
 };

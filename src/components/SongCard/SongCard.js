@@ -18,9 +18,9 @@ const SVGStyled = styled(SVG)`
 `;
 
 const Wrapper = styled.div`
-  cursor: pointer;
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  /* background-color: rgba(255, 255, 255, 0.05); */
   max-width: 12rem;
   height: 12rem;
   width: 100%;
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   user-select: none;
 
   &.--is-active {
-    color: ${props => props.theme.colors['yellow-500']};
+    /* color: ${props => props.theme.colors['primary-400']}; */
   }
 `;
 
@@ -49,6 +49,10 @@ const Text = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
+
+  &.--bold {
+    font-weight: 600;
+  }
 `;
 
 const SongCard = ({ className, name, artists, isActive, isPlaying, isDownloaded, onClick }) => {
@@ -58,7 +62,7 @@ const SongCard = ({ className, name, artists, isActive, isPlaying, isDownloaded,
     <Wrapper className={cn({ '--is-active': isActive }, className)} onClick={onClick}>
       <SVGStyled />
       <InfoWrapper className="w-full flex flex-col justify-center mt-3">
-        <Text className="mb-2">{name}</Text>
+        <Text className="mb-2 --bold">{name}</Text>
         <Text style={{ whiteSpace: 'nowrap' }}>
           {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
           {artistsName}

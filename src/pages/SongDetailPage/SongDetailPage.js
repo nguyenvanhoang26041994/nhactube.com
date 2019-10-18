@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import SongDetail from './SongDetail';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: relative;
+`;
 
 const SongDetailPage = ({ className }) => {
   return (
