@@ -6,6 +6,7 @@ import Layout from './layout';
 
 const HomePage = loadable(() => import('./pages/HomePage'));
 const SearchPage = loadable(() => import('./pages/SearchPage'));
+const SongDetailPage = loadable(() => import('./pages/SongDetailPage'));
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/song/:id" component={SongDetailPage} />
           <Route path="" component={HomePage} />
         </Switch>
         <GlobalStyle />
