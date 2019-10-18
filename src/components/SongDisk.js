@@ -46,7 +46,7 @@ const PlayIcon = styled(CircleIcon)`
   transform: translate(-50%, -50%);
 `;
 
-const SongTab = ({ className, isPlaying, playOrPauseSong, url, artistsName, name, avatarUrl }) => {
+const SongDisk = ({ className, isPlaying, playOrPauseSong, url, artistsName, name, avatarUrl }) => {
   const [rotate, setRotate] = useState(0);
 
   useEffect(() => {
@@ -85,4 +85,4 @@ const SongTab = ({ className, isPlaying, playOrPauseSong, url, artistsName, name
   );
 };
 
-export default SongTab;
+export default SongDisk;

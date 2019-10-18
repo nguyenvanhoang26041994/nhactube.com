@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import cn from 'classnames';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-import { BlurBackground } from '../../components/commons';
-import LyricTab from './LyricTab';
-import SongTab from './SongTab';
+import { Song } from '../../components/commons';
 import { useSongDetail } from './hooks';
+import { useGlobalAudio, useGlobalPlayer } from '../../hooks';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,6 +21,22 @@ const Wrapper = styled.div`
 const SongDetail = ({ className }) => {
   const { id } = useParams();
   const { actions, song } = useSongDetail();
+  const { currentSong, changeSong } = useGlobalPlayer();
+  const { globalAudio } = useGlobalAudio();
+
+  const playSong = useCallback(() => changeSong(song), [changeSong, song]);
+
+  const playOrPauseSong = useCallback(() => {
+    if (currentSong.id !== song.id) {
+      return playSong();
+    }
+
+    if (globalAudio.paused) {
+      return globalAudio.play();
+    }
+
+    return globalAudio.pause();
+  }, [globalAudio, playSong, currentSong.id, song.id]);
 
   useEffect(() => {
     actions.fetchSong(id);
@@ -29,9 +44,12 @@ const SongDetail = ({ className }) => {
 
   return (
     <Wrapper className={cn('container mx-auto', className)}>
-      <BlurBackground src={song.avatarUrl} alt={song.name} />
-      <SongTab song={song} className="__disk w-1/2" />
-      <LyricTab lyric={song.lyric} className="__lyric w-1/2" />
+      <Song
+        className="w-full"
+        song={song}
+        isMyKingdom
+        playOrPauseSong={playOrPauseSong}
+      />
     </Wrapper>
   );
 };

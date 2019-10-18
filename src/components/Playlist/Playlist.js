@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalPlayer } from '../../../../hooks';
 
-import { Icon } from '../../../../components/core';
+import { Icon } from '../../components/core';
 import SongItem from './SongItem';
 
 const Wrapper = styled.div`
@@ -23,7 +22,6 @@ const Title = styled.div`
   color: #ffffff;
   padding: 1rem 1rem 1rem 1rem;
   cursor: pointer;
-  /* border-bottom: 1px solid rgba(255, 255, 255,.1); */
   white-space: nowrap;
 `;
 
@@ -33,11 +31,10 @@ const List = styled.ul`
   width: 100%;
   -webkit-overflow-scrolling: touch;
   height:100%;
-  /* mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0)); */
 
-  /* & li:nth-child(even) {
+  & li:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.01);
-  } */
+  }
 
   &::-webkit-scrollbar {
     width: 3px;
@@ -54,17 +51,16 @@ const List = styled.ul`
   }
 `;
 
-const CurrentPlaylist = ({ className, style }) => {
-  const { currentPlaylist } = useGlobalPlayer();
+const Playlist = ({ className, style, playlist }) => {
   return (
     <Wrapper className={className} style={style}>
       <OtherWrapper>
         <Title>
           <Icon name="list-music" className="mr-2" />
-          Danh sách phát ({currentPlaylist.songs.length})
+          Danh sách phát ({playlist.songs.length})
         </Title>
         <List>
-          {currentPlaylist.songs.map((song, idx) => (
+          {playlist.songs.map((song, idx) => (
             <li key={song.id}>
               <SongItem {...song} firstText={idx + 1}>{song.name}-{song.artistsName}</SongItem>
             </li>
@@ -75,4 +71,4 @@ const CurrentPlaylist = ({ className, style }) => {
   );
 };
 
-export default CurrentPlaylist;
+export default Playlist;

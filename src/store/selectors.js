@@ -27,6 +27,8 @@ export const globalPlayerPlaylistSelector = createSelector(
       url: song.id ? `${storageUri}/o/songs%2F${song.id}.mp3?alt=media` : '',
       avatarUrl: song.id ? `${storageUri}/o/images%2Fsongs%2F${song.id}?alt=media` : '',
       artistsName: song.artists.map(artist => artist.name).join(', '),
+      isPlaying: globalPlayer.song.isPlaying && globalPlayer.song.id === song.id,
+      isActive: globalPlayer.song.id === song.id,
       ...song,
     })),
   }),

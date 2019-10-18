@@ -13,6 +13,7 @@ export const songDetail = createSelector(
     avatarUrl: songDetailPageReducer.song.id ? `${storageUri}/o/images%2Fsongs%2F${songDetailPageReducer.song.id}?alt=media` : '',
     artistsName: songDetailPageReducer.song.artists.map(artist => artist.name).join(', '),
     isPlaying: globalPlayerSong.isPlaying && globalPlayerSong.id === songDetailPageReducer.song.id,
+    isActive: globalPlayerSong.id === songDetailPageReducer.song.id,
     ...songDetailPageReducer.song,
   }),
 );

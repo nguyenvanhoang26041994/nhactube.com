@@ -4,3 +4,5 @@ export { default as BlurBackground } from './BlurBackground';
 export { default as PlaylistCard } from './PlaylistCard';
 export { default as SongDisk } from './SongDisk';
 export { default as SongKaraoke } from './SongKaraoke';
+export { default as Playlist } from './Playlist';
+export { default as Song } from './Song';

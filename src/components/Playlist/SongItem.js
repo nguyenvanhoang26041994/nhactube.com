@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Icon, Tag } from '../../../../components/core';
+import { Icon } from '../../components/core';
 
-import { useGlobalPlayerSong } from '../../../../hooks';
-import { releaseMapper, storageCaches } from '../../../../utils';
+import { useGlobalPlayerSong } from '../../hooks';
+import { releaseMapper, storageCaches } from '../../utils';
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,18 +49,13 @@ const Wrapper = styled.div`
 `;
 
 const SongItem = ({ className, firstText, ...song }) => {
-  const { song: currentSong, actions: { changeSong }} = useGlobalPlayerSong();
+  const { actions: { changeSong }} = useGlobalPlayerSong();
 
   const onClick = useCallback(() => changeSong(song), [changeSong]);
 
   return (
     <Wrapper
-      className={cn(
-        {
-          '--is-active': currentSong.id === song.id,
-        },
-        className
-      )}
+      className={cn(className, { '--is-active': song.isActive, } )}
       onClick={onClick}
     >
       <div className="flex flex-col px-8 flex-1">
