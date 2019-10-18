@@ -1,0 +1,5 @@
+export const playlistConstants = Object.freeze({
+  'GET_PLAYLIST_DETAIL_REQUEST': 'pages.SongDetailPage.GET_PLAYLIST_DETAIL_REQUEST',
+  'GET_PLAYLIST_DETAIL_FAILURE': 'pages.SongDetailPage.GET_PLAYLIST_DETAIL_FAILURE',
+  'GET_PLAYLIST_DETAIL_SUCCESS': 'pages.SongDetailPage.GET_PLAYLIST_DETAIL_SUCCESS'
+});

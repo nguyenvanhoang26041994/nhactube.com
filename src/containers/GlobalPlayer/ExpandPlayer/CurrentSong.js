@@ -21,10 +21,6 @@ const Wrapper = styled.div`
   &.--is-my-king-dom {
     flex-direction: row;
 
-    .__song-disk {
-      border-right: 1px solid rgba(255, 255, 255,.1);
-    }
-
     .__song-disk,
     .__song-karaoke {
       width: 50%;
@@ -44,7 +40,7 @@ const ToggleSongPool = styled(Icon)`
 `;
 
 const CurrentSongLyricStyled = styled(SongKaraoke)`
-  height: 30rem;
+  height: 25rem;
   padding: 0 0 3rem 0;
   box-sizing: border-box;
   width: 100%;

@@ -14,10 +14,6 @@ const Wrapper = styled.div`
   height: calc(100vh - 8rem);
   color: #fff;
 
-  .__disk {
-    border-right: 1px solid rgba(255, 255, 255,.1);
-  }
-
   .__lyric {
     height: 100%;
   }
@@ -26,6 +22,7 @@ const Wrapper = styled.div`
 const SongDetail = ({ className }) => {
   const { id } = useParams();
   const { actions, song } = useSongDetail();
+
   useEffect(() => {
     actions.fetchSong(id);
   }, [id]);

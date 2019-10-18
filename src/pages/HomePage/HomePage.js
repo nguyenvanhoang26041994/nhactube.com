@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import CardSkeleton from '../../components/CardSkeleton';
-import { PlaylistCard } from '../../components/commons';
 import SongCard from '../../containers/SongCard';
+import PlaylistCard from '../../containers/PlaylistCard';
 import ShelfRenderer from './ShelfRenderer';
 import { useGlobalPlayer, useAsyncStatus } from '../../hooks';
 
@@ -21,18 +21,8 @@ const SongsWrapper = styled.div`
 const HomePage = () => {
   const [playlists, setPlaylists] = useState([]);
   const [songs, setSongs] = useState([]);
-  const { playPlaylist, changeSong } = useGlobalPlayer();
   const songsAsync = useAsyncStatus();
   const playlistsAsync = useAsyncStatus();
-
-  const _playPlaylist = useCallback((playlistId) => {
-    fetch(`https://www.nhactube.com/api/playlists/${playlistId}`)
-      .then(res => res.json())
-      .then(({ data }) => {
-        playPlaylist(data);
-      })
-      .catch(e => songsAsync.fetchFailure());
-  }, [playPlaylist]);
 
   useEffect(() => {
     playlistsAsync.fetchRequest();
@@ -62,10 +52,7 @@ const HomePage = () => {
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
             <div className="p-1 w-1/5" key={playlist.id}>
-              <PlaylistCard
-                onClick={() => _playPlaylist(playlist.id)}
-                {...playlist}
-              />
+              <PlaylistCard {...playlist} />
           </div>
           ))}
           {playlistsAsync.status.isLoading && [0,0,0,0,0,].map((v, idx) => (

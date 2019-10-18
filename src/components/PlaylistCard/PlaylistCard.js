@@ -39,7 +39,7 @@ const Text = styled.div`
   white-space: nowrap;
 `;
 
-const PlaylistCard = ({ className, name, artistsName, onClick }) => {
+const PlaylistCard = ({ className, name, onClick }) => {
   return (
     <Wrapper className={className} onClick={onClick}>
       <SVGStyled />

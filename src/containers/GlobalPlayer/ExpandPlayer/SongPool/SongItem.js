@@ -10,14 +10,9 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  color: #fff;
+  color: ${props => props.theme.colors['gray-400']};
   height: 3.5rem;
   cursor: pointer;
-
-  .__release-tag {
-    border-color: #fff;
-    margin: 0 0.5rem;
-  }
 
   .__name,
   .__artists-name {
@@ -29,7 +24,6 @@ const Wrapper = styled.div`
 
   .__artists-name {
     font-size: ${props => props.theme.fontSizes.sm};
-    color: ${props => props.theme.colors['gray-400']};
   }
 
   .__actions {
@@ -49,15 +43,8 @@ const Wrapper = styled.div`
   }
 
   &.--is-active {
-    color: ${props => props.theme.colors['yellow-500']};
-
-    .__artists-name {
-      color: ${props => props.theme.colors['yellow-500']};
-    }
-
-    .__release-tag {
-      border-color: ${props => props.theme.colors['yellow-500']};
-    }
+    font-weight: 900;
+    color: #fff;
   }
 `;
 
@@ -77,7 +64,7 @@ const SongItem = ({ className, firstText, ...song }) => {
       onClick={onClick}
     >
       <div className="flex flex-col px-8 flex-1">
-        <span className="mb-2">
+        <span className="__name mb-2">
           {song.name}
           {releaseMapper[song.release] && `(${releaseMapper[song.release]})`}
         </span>

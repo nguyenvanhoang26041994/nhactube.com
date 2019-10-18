@@ -26,7 +26,7 @@ const LyricWrapper = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  max-height: 30rem;
+  max-height: 40rem;
   height: 100%;
   width: 100%;
   mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));
@@ -44,14 +44,6 @@ const LyricWrapper = styled.ul`
     background: linear-gradient(to bottom, rgba(141, 141, 141, 0.35), rgba(141, 141, 141, 0.5), rgba(141, 141, 141, 0.35));
     border-radius: 999px;
   }
-`;
-
-const IconStyled = styled(Icon)`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin-right: 3rem;
-  margin-bottom: 3rem;
 `;
 
 const LyricTextStyled = styled.p`
@@ -115,7 +107,6 @@ const SongKaraoke = ({ className, lyric, currentTime }) => {
           <p style={{ height: '2rem' }} />
         </li>
       </LyricWrapper>
-      <IconStyled color="white" name="cog" />
     </Wrapper>
   );
 };
