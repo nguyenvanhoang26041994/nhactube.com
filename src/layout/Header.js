@@ -8,7 +8,7 @@ const Wrapper = styled.header`
   height: inherit;
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   overflow: hidden;
   color: #fff;
 `;
@@ -31,7 +31,7 @@ const Header = ({ className }) => {
         <Link to="/">
           <Logo src="/static/images/logo.png" />
         </Link>
-        {/* <Search className="flex-1 mx-2" /> */}
+        <Search className="flex-1 mx-2" />
       </SmallWrapper>
     </Wrapper>
   );

@@ -99,7 +99,13 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
                 {releaseMapper[currentSong.release] && `(${releaseMapper[currentSong.release]})`}
               </Link>
               <span className="mx-1">-</span>
-              <div>{currentSong.artistsName}</div>
+              <div>
+                {currentSong.artists.map(artist => (
+                  <Link key={artist.id} to={`/artist/${artist.id}`}>
+                    {artist.name}
+                  </Link>
+                ))}
+              </div>
             </SongText>
             <SongTiming>
               <span>{currentTimeFormat}</span>

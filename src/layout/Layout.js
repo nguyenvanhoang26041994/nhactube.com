@@ -17,12 +17,7 @@ const MainWrapper = styled.main`
   position: relative;
 `;
 
-const HeaderStyled = styled(Header)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-`;
+const HeaderStyled = styled(Header)``;
 
 const BlurBackgroundStyled = styled(BlurBackground)`
   position: fixed;
