@@ -7,38 +7,38 @@ export const changeMode = mode => ({
 });
 
 // LYRICS
-export const fetchLyricsRequest = () => ({
-  type: globalPlayer.GET_LYRICS_REQUEST,
+export const fetchLyricRequest = () => ({
+  type: globalPlayer.GET_LYRIC_REQUEST,
 });
 
-export const fetchLyricsFailure = () => ({
-  type: globalPlayer.GET_LYRICS_FAILURE,
+export const fetchLyricFailure = () => ({
+  type: globalPlayer.GET_LYRIC_FAILURE,
 });
 
-export const fetchLyricsSuccess = lyrics => ({
-  type: globalPlayer.GET_LYRICS_SUCCESS,
-  payload: lyrics,
+export const fetchLyricSuccess = lyric => ({
+  type: globalPlayer.GET_LYRIC_SUCCESS,
+  payload: lyric,
 });
 
-export const fetchLyrics = musicId => async (dispatch) => {
-  dispatch(fetchLyricsRequest());
+export const fetchLyric = songId => async (dispatch) => {
+  dispatch(fetchLyricRequest());
 
   try {
-    const data = await fetch(`https://www.nhactube.com/api/lyrics/${musicId}`).then(res => res.json());
-    dispatch(fetchLyricsSuccess(data.data));
+    const data = await fetch(`https://www.nhactube.com/api/lyrics/${songId}`).then(res => res.json());
+    dispatch(fetchLyricSuccess(data.data));
     return data.data;
   } catch(e) {
-    dispatch(fetchLyricsFailure());
+    dispatch(fetchLyricFailure());
   }
 }
 
-// MUSIC
-export const changeMusic = music => (dispatch) => {
+// SONG
+export const changeSong = song => (dispatch) => {
   dispatch({
-    type: globalPlayer.CHANGE_MUSIC,
-    payload: music,
+    type: globalPlayer.CHANGE_SONG,
+    payload: song,
   });
-  dispatch(fetchLyrics(music.id));
+  dispatch(fetchLyric(song.id));
 };
 
 export const changeIsPlaying = isPlaying => ({
@@ -46,33 +46,7 @@ export const changeIsPlaying = isPlaying => ({
   payload: isPlaying,
 });
 
-export const changeMusics = musics => ({
-  type: globalPlayer.CHANGE_MUSICS,
-  payload: musics,
+export const changePlaylist = playlist => ({
+  type: globalPlayer.CHANGE_PLAYLIST,
+  payload: playlist,
 });
-
-// MUSICS
-export const fetchMusicsRequest = () => ({
-  type: globalPlayer.GET_MUSICS_REQUEST,
-});
-
-export const fetchMusicsFailure = () => ({
-  type: globalPlayer.GET_MUSICS_FAILURE,
-});
-
-export const fetchMusicsSuccess = musics => ({
-  type: globalPlayer.GET_MUSICS_SUCCESS,
-  payload: musics,
-});
-
-export const fetchMusics = groupId => async (dispatch) => {
-  dispatch(fetchMusicsRequest());
-
-  try {
-    const data = await fetch(`https://www.nhactube.com/api/group-musics/${groupId}`).then(res => res.json());
-    dispatch(fetchMusicsSuccess(data.musics));
-    return data.musics;
-  } catch(e) {
-    dispatch(fetchMusicsFailure());
-  }
-}

@@ -16,14 +16,14 @@ const Rail = styled.div`
   position: absolute;
   width: 100%;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['gray-300']};
+  background-color: ${props => props.theme.colors['gray-500']};
   border-radius: 999px;
 `;
 
 const Track = styled.div`
   position: absolute;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['yellow-600']};
+  background-color: #fff;
   border-radius: 999px;
 `;
 

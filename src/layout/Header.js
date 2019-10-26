@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Icon, Image } from '../components/core';
+import { Link } from 'react-router-dom';
+import { Image } from '../components/core';
+import Search from '../components/Search';
 
 const Wrapper = styled.header`
-  height: 8rem;
+  height: inherit;
   display: flex;
   align-items: center;
-  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
   color: #fff;
 `;
 
@@ -17,8 +19,8 @@ const SmallWrapper = styled.div`
 `;
 
 const Logo = styled(Image)`
-  height: 1.75rem;
-  width: 1.75rem;
+  height: 2rem;
+  width: 2rem;
   cursor: pointer;
 `;
 
@@ -26,7 +28,10 @@ const Header = ({ className }) => {
   return (
     <Wrapper className={className}>
       <SmallWrapper className="container mx-auto">
-        {/* <Logo src="/static/images/logo.png" /> */}
+        <Link to="/">
+          <Logo src="/static/images/logo.png" />
+        </Link>
+        <Search className="flex-1 mx-2" />
       </SmallWrapper>
     </Wrapper>
   );

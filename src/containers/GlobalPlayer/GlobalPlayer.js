@@ -1,10 +1,10 @@
-import React, { useCallback, useState, useRef, useMemo } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { BlurBackground } from '../../components/commons';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
-import { useGlobalPlayerMusic, useOnClickOutside, useGlobalPlayer, useGlobalAudio } from '../../hooks';
+import { useGlobalPlayerSong, useOnClickOutside, useRippleEffect } from '../../hooks';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -30,12 +30,12 @@ const ExpandPlayerStyled = styled(ExpandPlayer)`
   z-index: -1;
 `;
 
-const GlobalPlayer = ({ className }) => {
+const GlobalPlayer = ({ className, onExpanded }) => {
   const [expanded, setExpanded] = useState(false);
   const expandPlayerRef = useRef();
   const miniPlayerRef = useRef();
 
-  const { music } = useGlobalPlayerMusic();
+  const { song } = useGlobalPlayerSong();
   const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [setExpanded]);
 
   const onClickExpandPlayerOutSide = useCallback(e => {
@@ -47,19 +47,23 @@ const GlobalPlayer = ({ className }) => {
 
   useOnClickOutside(expandPlayerRef, onClickExpandPlayerOutSide);
 
+  useEffect(() => {
+    onExpanded(expanded);
+  }, [expanded]);
+
   return (
     <Wrapper
       className={className}
       style={{
-        opacity: music.url ? '1' : '0',
-        height: music.url ? '4rem' : '0',
+        opacity: song.url ? '1' : '0',
+        height: song.url ? '4rem' : '0',
       }}
     >
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer
           isExpanded={expanded}
-          onMusicListIconClick={toggleExpanded}
+          onSongListIconClick={toggleExpanded}
           miniPlayerRef={miniPlayerRef}
         />
         <ExpandPlayerStyled
@@ -72,7 +76,7 @@ const GlobalPlayer = ({ className }) => {
           isExpanded={expanded}
         />
       </RelativeContainer>
-      <BlurBackground src={music.avatarUrl} alt={music.name} />
+      <BlurBackground src={song.avatarUrl} alt={song.name} />
     </Wrapper>
   );
 };

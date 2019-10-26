@@ -12,6 +12,10 @@ const keletonGlow = keyframes`
 `;
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 16px;
   }
@@ -29,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
     object-fit: cover;
   }
 
-  .container { width: 100%; max-width: 60rem; }
+  .container { width: 100%; max-width: 64rem; }
   .hidden { display: none !important; }
   .none-important {
     width: 0 !important;

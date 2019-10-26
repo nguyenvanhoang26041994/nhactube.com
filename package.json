@@ -1,22 +1,48 @@
 {
-  "name": "nhactube.com",
+  "name": "www.nhactube.com",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "src/desktop-app/index.js",
   "engines": {
     "node": ">=10.15.3",
     "yarn": ">=1.16.0"
   },
+  "build": {
+    "appId": "www.nhactube.com",
+    "productName": "NhacTube",
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "directories": {
+      "buildResources": "dist",
+      "output": "release"
+    }
+  },
   "scripts": {
+    "postinstall": "electron-builder install-app-deps package.json",
     "lint": "eslint ./src --",
     "clean-dist": "rimraf \"dist\"",
     "build": "yarn clean-dist && cross-env NODE_ENV=production webpack --config webpack/prod.config.js",
     "build-mobile": "yarn clean-dist && cross-env-shell APP_MODE=mobile NODE_ENV=production webpack --config webpack/prod.config.js",
     "build-desktop": "yarn clean-dist && cross-env-shell APP_MODE=desktop NODE_ENV=production webpack --config webpack/prod.config.js",
     "dev": "cross-env NODE_ENV=development node dev-server",
-    "start": "yarn build && serve dist -p 8080",
+    "start-web": "yarn build && serve dist -p 8080",
     "start-desktop": "electron ./src/desktop-app",
-    "deploy": "yarn build && firebase deploy --only hosting:nhactube"
+    "deploy": "yarn build && firebase deploy --only hosting:nhactube",
+    "start": "electron ./src/desktop-app",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "Hoang Nguyen",
   "license": "ISC",
@@ -49,6 +75,8 @@
     "copy-webpack-plugin": "^5.0.4",
     "cross-env": "^5.2.1",
     "electron": "^6.0.10",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.0.6",
     "eslint": "^6.5.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.15.1",

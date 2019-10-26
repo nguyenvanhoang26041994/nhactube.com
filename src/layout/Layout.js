@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
 import { BlurBackground } from '../components/commons';
 import GlobalPlayer from '../containers/GlobalPlayer';
 import Header from './Header';
-import { useGlobalPlayerMusic } from '../hooks';
+import { useGlobalPlayerSong } from '../hooks';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -17,16 +17,41 @@ const MainWrapper = styled.main`
   position: relative;
 `;
 
+const HeaderStyled = styled(Header)``;
+
+const BlurBackgroundStyled = styled(BlurBackground)`
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
 const Layout = ({ children }) => {
-  const { music: currentMusic } = useGlobalPlayerMusic();
+  const { song: currentSong } = useGlobalPlayerSong();
+  const [expanded, setExpanded] = useState(false);
+
+  const onExpanded = useCallback(value => setExpanded(value), [setExpanded]);
+  const bgSrc = useMemo(() => currentSong.avatarUrl);
+
   return (
     <Wrapper>
-      <Header />
-      <MainWrapper className="flex-1">
+      <div
+        style={{
+          height: '4rem',
+          display: expanded ? 'none' : null,
+        }}
+      >
+        <HeaderStyled />
+      </div>
+      <MainWrapper
+        className="flex-1"
+        style={{
+          display: expanded ? 'none' : null,
+        }}
+      >
         {children}
       </MainWrapper>
-      <BlurBackground src={currentMusic.avatarUrl} alt={currentMusic.name} />
-      <GlobalPlayer />
+      <BlurBackgroundStyled src={bgSrc} alt={currentSong.name} />
+      <GlobalPlayer onExpanded={onExpanded} />
     </Wrapper>
   );
 };

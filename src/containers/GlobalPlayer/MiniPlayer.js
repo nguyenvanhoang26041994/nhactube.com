@@ -34,7 +34,7 @@ const AvatarImage = styled(Image)`
   transition: all 0.5s;
 `;
 
-const MusicText = styled.div`
+const SongText = styled.div`
   display: flex;
   align-items: center;
   
@@ -43,7 +43,7 @@ const MusicText = styled.div`
   }
 `;
 
-const MusicTiming = styled.div`
+const SongTiming = styled.div`
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.fontSizes.sm};
@@ -65,10 +65,10 @@ const iconModes = Object.freeze({
   [modeConstants.SHUFFLE]: 'random',
 });
 
-const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded, style }) => {
+const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded, style }) => {
   const { globalAudio, duration, currentTime, changeCurrentTime, durationFormat, currentTimeFormat } = useGlobalAudio();
-  const { currentMusic, currentMode, goPrevMusic, goNextMusic, goNextMode } = useGlobalPlayer();
-  const playOrPauseMusic = useCallback(() => {
+  const { currentSong, currentMode, goPrevSong, goNextSong, goNextMode } = useGlobalPlayer();
+  const playOrPauseSong = useCallback(() => {
     if (globalAudio.paused) {
       return globalAudio.play();
     }
@@ -78,34 +78,40 @@ const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded
 
   const handleChangeCurrentTime = useCallback(percent => changeCurrentTime(percent * duration), [changeCurrentTime, duration]);
 
-  const iconPlay = useMemo(() => currentMusic.isPlaying ? 'pause' : 'play', [currentMusic.isPlaying]);
+  const iconPlay = useMemo(() => currentSong.isPlaying ? 'pause' : 'play', [currentSong.isPlaying]);
   const iconMode = useMemo(() => iconModes[currentMode], [currentMode]);
 
   return (
     <Wrapper className={className} ref={miniPlayerRef} style={style}>
       <ControlWrapper className="w-3/12">
-        <Icon name="step-backward" onClick={goPrevMusic} className="ml-2" />
-        <CircleIcon name={iconPlay} color="yellow-500" onClick={playOrPauseMusic} />
-        <Icon name="step-forward" onClick={goNextMusic} />
+        <Icon name="step-backward" onClick={goPrevSong} className="ml-2" />
+        <CircleIcon name={iconPlay} color="yellow-500" onClick={playOrPauseSong} />
+        <Icon name="step-forward" onClick={goNextSong} />
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
       <InforWrapper className="w-8/12 mx-10">
-        <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentMusic.avatarUrl} alt={currentMusic.name} />
+        <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentSong.avatarUrl} alt={currentSong.name} />
         <div className="flex flex-col justify-center grow-1">
           <div className="flex items-center justify-between">
-            <MusicText>
-              <Link to={`/music/${currentMusic.id}`}>
-                {currentMusic.name}
-                {releaseMapper[currentMusic.release] && <Tag className="ml-1">{releaseMapper[currentMusic.release]}</Tag>}
+            <SongText>
+              <Link to={`/song/${currentSong.id}`} className="flex">
+                {currentSong.name}
+                {releaseMapper[currentSong.release] && `(${releaseMapper[currentSong.release]})`}
               </Link>
               <span className="mx-1">-</span>
-              <div>{currentMusic.channel.name}</div>
-            </MusicText>
-            <MusicTiming>
+              <div>
+                {currentSong.artists.map(artist => (
+                  <Link key={artist.id} to={`/artist/${artist.id}`}>
+                    {artist.name}
+                  </Link>
+                ))}
+              </div>
+            </SongText>
+            <SongTiming>
               <span>{currentTimeFormat}</span>
               <span className="mx-1">/</span>
               <span className="__duration">{durationFormat}</span>
-            </MusicTiming>
+            </SongTiming>
           </div>
           <Slider value={currentTime / duration} className="w-full" handleChange={handleChangeCurrentTime} />
         </div>
@@ -116,7 +122,7 @@ const MiniPlayer = ({ className, onMusicListIconClick, miniPlayerRef, isExpanded
           name="list-music"
           className="mx-2"
           color={isExpanded ? 'yellow-500' : null}
-          onClick={onMusicListIconClick}
+          onClick={onSongListIconClick}
         />
       </OtherControlWrapper>
     </Wrapper>

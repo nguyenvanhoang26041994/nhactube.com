@@ -1,18 +1,16 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { Icon } from '../../../components/core';
-import { useGlobalPlayerMusic, useGlobalAudio } from '../../../hooks';
-import { getPageY } from '../../../utils';
+import { Icon } from '../components/core';
+import { getPageY } from '../utils';
 
 const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
   color: #fff;
-  width: 100%;
   font-size: 1.125rem;
   line-height: 1.25em;
   word-spacing: 0.125em;
@@ -20,7 +18,7 @@ const Wrapper = styled.div`
   transition: all 0.5s;
 `;
 
-const LyricsWrapper = styled.ul`
+const LyricWrapper = styled.ul`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -28,7 +26,9 @@ const LyricsWrapper = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  height:100%;
+  max-height: 40rem;
+  height: 100%;
+  width: 100%;
   mask-image: -webkit-linear-gradient(top,hsla(0,0%,100%,0),hsla(0,0%,100%,.6) 15%,#fff 25%,#fff 75%,hsla(0,0%,100%,.6) 85%,hsla(0,0%,100%,0));
 
   &::-webkit-scrollbar {
@@ -46,23 +46,17 @@ const LyricsWrapper = styled.ul`
   }
 `;
 
-const IconStyled = styled(Icon)`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin-right: 3rem;
-  margin-bottom: 3rem;
-`;
-
 const LyricTextStyled = styled.p`
   display: flex;
   justify-content: center;
   text-align: center;
   padding: 0 0.5rem;
   transition: all 0.2s;
+  color: ${props => props.theme.colors['gray-400']};
 
   &.--is-active {
-    color: ${props => props.theme.colors['yellow-500']};
+    font-weight: 900;
+    color: #fff;
   }
 `;
 
@@ -89,23 +83,22 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
   );
 }
 
-const CurrentMusicLyrics = ({ className, isActive }) => {
-  const lyricsWrapperRef = useRef();
-  const { currentTime } = useGlobalAudio();
-  const { music, isHasLyrics } = useGlobalPlayerMusic();
+const SongKaraoke = ({ className, lyric, currentTime }) => {
+  const lyricWrapperRef = useRef();
+  const isHasLyric = useMemo(() => !!lyric.length, [lyric.length]);
 
   return (
     <Wrapper className={className}>
-      <LyricsWrapper isActive={isActive} ref={lyricsWrapperRef}>
+      <LyricWrapper ref={lyricWrapperRef}>
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-        {music.lyrics && music.lyrics.map((lyric, idx) => (
+        {lyric.map((item, idx) => (
           <li key={idx}>
-            <LyricText parentRef={lyricsWrapperRef} isActive={lyric.timeStart <= currentTime && lyric.timeEnd >= currentTime}>{lyric.text}</LyricText>
+            <LyricText parentRef={lyricWrapperRef} isActive={item.timeStart <= currentTime && item.timeEnd >= currentTime}>{item.text}</LyricText>
           </li>
         ))}
-        {!isHasLyrics && (
+        {!isHasLyric && (
           <li>
             <LyricText>Lời bài hát đang được cập nhật</LyricText>
           </li>
@@ -113,10 +106,9 @@ const CurrentMusicLyrics = ({ className, isActive }) => {
         <li>
           <p style={{ height: '2rem' }} />
         </li>
-      </LyricsWrapper>
-      <IconStyled color="white" name="cog" />
+      </LyricWrapper>
     </Wrapper>
   );
 };
 
-export default CurrentMusicLyrics;
+export default SongKaraoke;
