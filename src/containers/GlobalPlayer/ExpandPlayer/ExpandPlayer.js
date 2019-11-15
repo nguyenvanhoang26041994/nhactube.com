@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import { Icon } from '../../../components/core';
-import { BlurBackground, Playlist, Song } from '../../../components/commons';
+import { Playlist, Song } from '../../../components/commons';
 import { useGlobalPlayerSong, useGlobalPlayerPlaylist, useGlobalAudio } from '../../../hooks';
 
 const Wrapper = styled.div`
@@ -86,7 +86,6 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
           />
         </div>
       )}
-      <BlurBackground src={currentSong.avatarUrl} alt={currentSong.name} />
     </Wrapper>
   );
 };

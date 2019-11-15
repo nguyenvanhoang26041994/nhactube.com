@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { BlurBackground } from '../../components/commons';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
@@ -14,7 +13,6 @@ const Wrapper = styled.div`
   width: 100vw;
   z-index: 50;
   transition: all 0.5s;
-  background-color: ${props => props.theme.colors.lizard};
 `;
 
 const RelativeContainer = styled.div`
@@ -76,7 +74,6 @@ const GlobalPlayer = ({ className, onExpanded }) => {
           isExpanded={expanded}
         />
       </RelativeContainer>
-      <BlurBackground src={song.avatarUrl} alt={song.name} />
     </Wrapper>
   );
 };

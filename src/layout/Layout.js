@@ -50,7 +50,9 @@ const Layout = ({ children }) => {
       >
         {children}
       </MainWrapper>
-      <BlurBackgroundStyled src={bgSrc} alt={currentSong.name} />
+      <div style={{ width: '100vw', height: '100vw', position: 'fixed', top: 0, left: 0, zIndex: -1 }}>
+        <BlurBackgroundStyled src={bgSrc} alt={currentSong.name} />
+      </div>
       <GlobalPlayer onExpanded={onExpanded} />
     </Wrapper>
   );

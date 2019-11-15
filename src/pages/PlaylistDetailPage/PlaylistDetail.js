@@ -45,7 +45,6 @@ const PlaylistDetail = ({ className }) => {
 
   return (
     <Wrapper className={cn('container mx-auto', className)}>
-      <BlurBackground src={currentSong.avatarUrl} alt={currentSong.name} />
       <Playlist
         className="__playlist w-1/2"
         playlist={playlist}

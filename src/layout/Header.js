@@ -8,7 +8,6 @@ const Wrapper = styled.header`
   height: inherit;
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
   overflow: hidden;
   color: #fff;
 `;
