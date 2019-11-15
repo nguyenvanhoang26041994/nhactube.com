@@ -90,7 +90,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
       <InforWrapper className="w-8/12 mx-10">
-        <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentSong.avatarUrl} alt={currentSong.name} />
+        {/* <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentSong.avatarUrl} alt={currentSong.name} /> */}
         <div className="flex flex-col justify-center grow-1">
           <div className="flex items-center justify-between">
             <SongText>
