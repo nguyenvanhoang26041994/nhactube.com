@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../components/core';
-import Search from '../components/Search';
+import { BlurBackground } from '../components/commons';
 
 const Wrapper = styled.header`
   height: inherit;
@@ -10,6 +10,7 @@ const Wrapper = styled.header`
   align-items: center;
   overflow: hidden;
   color: #fff;
+  z-index: 1;
 `;
 
 const SmallWrapper = styled.div`
@@ -26,11 +27,11 @@ const Logo = styled(Image)`
 const Header = ({ className }) => {
   return (
     <Wrapper className={className}>
+      <BlurBackground />
       <SmallWrapper className="container mx-auto">
         <Link to="/">
           <Logo src="/static/images/logo.png" />
         </Link>
-        <Search className="flex-1 mx-2" />
       </SmallWrapper>
     </Wrapper>
   );

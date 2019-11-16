@@ -62,7 +62,7 @@ const GlobalPlayer = ({ className, onExpanded }) => {
         height: song.url ? '4rem' : '0',
       }}
     >
-      <BlurBackground src={song.avatarUrl} />
+      <BlurBackground />
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer

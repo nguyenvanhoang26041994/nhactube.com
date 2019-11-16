@@ -17,7 +17,10 @@ const MainWrapper = styled.main`
   position: relative;
 `;
 
-const HeaderStyled = styled(Header)``;
+const HeaderStyled = styled(Header)`
+  position: fixed;
+  width: 100%;
+`;
 
 const BlurBackgroundStyled = styled(BlurBackground)`
   position: fixed;
@@ -50,7 +53,7 @@ const Layout = ({ children }) => {
       >
         {children}
       </MainWrapper>
-      <BlurBackgroundStyled src={bgSrc} alt={currentSong.name} />
+      <BlurBackgroundStyled />
       <GlobalPlayer onExpanded={onExpanded} />
     </Wrapper>
   );
