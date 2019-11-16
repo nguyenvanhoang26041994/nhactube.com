@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { Icon, Image, Slider, Tag } from '../../components/core';
+import { Icon, Image, Slider } from '../../components/core';
 import { CircleIcon } from '../../components/commons';
 import { mode as modeConstants } from '../../store/constants';
 import { useGlobalPlayer, useGlobalAudio } from '../../hooks';
@@ -26,12 +26,6 @@ const ControlWrapper = styled.div`
 
 const InforWrapper = styled.div`
   display: flex;
-`;
-
-const AvatarImage = styled(Image)`
-  height: 2.5rem;
-  width: 4rem;
-  transition: all 0.5s;
 `;
 
 const SongText = styled.div`
@@ -90,7 +84,6 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
       <InforWrapper className="w-8/12 mx-10">
-        {/* <AvatarImage className={cn('mr-3', { 'none-important': isExpanded })} src={currentSong.avatarUrl} alt={currentSong.name} /> */}
         <div className="flex flex-col justify-center grow-1">
           <div className="flex items-center justify-between">
             <SongText>
@@ -100,9 +93,10 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
               </Link>
               <span className="mx-1">-</span>
               <div>
-                {currentSong.artists.map(artist => (
+                {currentSong.artists.map((artist, idx) => (
                   <Link key={artist.id} to={`/artist/${artist.id}`}>
                     {artist.name}
+                    {idx + 1 !== currentSong.artists.length && <span>, </span>}
                   </Link>
                 ))}
               </div>

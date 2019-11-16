@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
-import { useGlobalPlayerSong, useOnClickOutside, useRippleEffect } from '../../hooks';
+import { BlurBackground } from '../../components/commons';
+import { useGlobalPlayerSong, useOnClickOutside } from '../../hooks';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -13,6 +14,10 @@ const Wrapper = styled.div`
   width: 100vw;
   z-index: 50;
   transition: all 0.5s;
+
+  .inner__blur {
+    bottom: calc(-100% - 4rem);
+  }
 `;
 
 const RelativeContainer = styled.div`
@@ -57,6 +62,7 @@ const GlobalPlayer = ({ className, onExpanded }) => {
         height: song.url ? '4rem' : '0',
       }}
     >
+      <BlurBackground src={song.avatarUrl} />
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer
