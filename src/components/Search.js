@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Input from '../components/Input';
+import Icon from '../components/Icon';
 import Button from '../components/Button';
 
 const Wrapper = styled.div`
@@ -11,7 +12,19 @@ const Wrapper = styled.div`
 const Search = (otherProps) => {
   return (
    <Wrapper {...otherProps}>
-      <Input type="search" className="flex-1" />
+      <Button style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }} >
+        <Icon name="search" />
+      </Button>
+      <Input
+        type="search"
+        className="flex-1"
+        style={{
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
+          paddingLeft: 0,
+        }}
+        placeholder="Nhập tên bài hát hoặc ca sĩ..."
+      />
    </Wrapper>
   );
 };

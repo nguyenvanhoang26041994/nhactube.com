@@ -22,6 +22,15 @@ const Wrapper = styled.div`
   border-radius: 0.25em;
   user-select: none;
   color: #fff;
+
+  &:hover,
+  &.--hover {
+    color: ${props => props.theme.colors['yellow-500']};
+
+    .__logo {
+      fill: ${props => props.theme.colors['yellow-500']};
+    }
+  }
 `;
 
 const SVGStyled = styled(SVG)`
@@ -42,7 +51,7 @@ const Text = styled.div`
 const PlaylistCard = ({ className, name, onClick }) => {
   return (
     <Wrapper className={className} onClick={onClick}>
-      <SVGStyled />
+      <SVGStyled className="__logo" />
       <Text className="my-1">{name}</Text>
     </Wrapper>
   );

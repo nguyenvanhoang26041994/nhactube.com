@@ -6,3 +6,5 @@ export { default as SongDisk } from './SongDisk';
 export { default as SongKaraoke } from './SongKaraoke';
 export { default as Playlist } from './Playlist';
 export { default as Song } from './Song';
+export { default as Search } from './Search';
+export { default as SlickSlider } from './SlickSlider';

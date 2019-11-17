@@ -5,8 +5,7 @@ const Wrapper = styled.div`
   color: #fff;
 `;
 const Title = styled.div`
-  font-size: ${props => props.theme.fontSizes.xl};
-  font-weight: 600;
+  font-weight: 900;
 `;
 const RestWrapper = styled.div``;
 

@@ -17,11 +17,6 @@ const MainWrapper = styled.main`
   position: relative;
 `;
 
-const HeaderStyled = styled(Header)`
-  position: fixed;
-  width: 100%;
-`;
-
 const BlurBackgroundStyled = styled(BlurBackground)`
   position: fixed;
   top: 0;
@@ -29,22 +24,12 @@ const BlurBackgroundStyled = styled(BlurBackground)`
 `;
 
 const Layout = ({ children }) => {
-  const { song: currentSong } = useGlobalPlayerSong();
   const [expanded, setExpanded] = useState(false);
-
   const onExpanded = useCallback(value => setExpanded(value), [setExpanded]);
-  const bgSrc = useMemo(() => currentSong.avatarUrl);
 
   return (
     <Wrapper>
-      <div
-        style={{
-          height: '4rem',
-          display: expanded ? 'none' : null,
-        }}
-      >
-        <HeaderStyled />
-      </div>
+      <Header style={{ display: expanded ? 'none' : null }} />
       <MainWrapper
         className="flex-1"
         style={{

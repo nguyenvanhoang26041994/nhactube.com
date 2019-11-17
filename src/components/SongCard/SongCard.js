@@ -20,7 +20,6 @@ const SVGStyled = styled(SVG)`
 const Wrapper = styled.div`
   color: #fff;
   cursor: pointer;
-  /* background-color: rgba(255, 255, 255, 0.05); */
   max-width: 12rem;
   height: 12rem;
   width: 100%;
@@ -32,8 +31,13 @@ const Wrapper = styled.div`
   border-radius: 0.25em;
   user-select: none;
 
-  &.--is-active {
-    /* color: ${props => props.theme.colors['primary-400']}; */
+  &:hover,
+  &.--hover {
+    color: ${props => props.theme.colors['yellow-500']};
+
+    .__logo {
+      fill: ${props => props.theme.colors['yellow-500']};
+    }
   }
 `;
 
@@ -60,7 +64,7 @@ const SongCard = ({ className, name, artists, isActive, isPlaying, isDownloaded,
 
   return (
     <Wrapper className={cn({ '--is-active': isActive }, className)} onClick={onClick}>
-      <SVGStyled />
+      <SVGStyled className="__logo" />
       <InfoWrapper className="w-full flex flex-col justify-center mt-3">
         <Text className="mb-2 --bold">{name}</Text>
         <Text style={{ whiteSpace: 'nowrap' }}>

@@ -4,15 +4,20 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  height: 2em;
-  outline: 0;
   display: flex;
-  cursor: pointer;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 0;
+  outline: 0;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  height: 2em;
   font-size: ${props => props.theme.fontSizes[props.size]};
-  background-color: ${props => props.theme.colors[props.color]};
-  color: ${props => props.theme.colors[props.textColor]};
+  font-family: inherit;
+  border-radius: 0.25em;
+  cursor: pointer;
   user-select: none;
 
   &:disabled {
@@ -39,7 +44,7 @@ Button.propTypes = {
 };
 Button.defaultProps = {
   size: 'base',
-  color: 'primary-500',
+  color: '',
 };
 
 export default Button;

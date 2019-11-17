@@ -1,16 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Image } from '../components/core';
-import { BlurBackground } from '../components/commons';
+import { Image, Icon } from '../components/core';
+import { BlurBackground, Search } from '../components/commons';
+
+const Container = styled.div`
+  height: 4rem;
+`;
 
 const Wrapper = styled.header`
+  position: fixed;
+  width: 100%;
   height: inherit;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   color: #fff;
   z-index: 1;
+
+  a {
+    color: inherit;
+  }
 `;
 
 const SmallWrapper = styled.div`
@@ -18,22 +29,54 @@ const SmallWrapper = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Image)`
-  height: 2rem;
-  width: 2rem;
-  cursor: pointer;
+const ListMenuWrapper = styled.ul`
+  display: flex;
+
+  > li {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+  }
+
+  > li:nth-child(1) {
+    padding: 0 0.75rem 0 0;
+  }
+
+  .__link {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+
+    &:hover,
+    &.--hover,
+    &.--active {
+      color: ${props => props.theme.colors['yellow-500']};
+    }
+  }
 `;
 
-const Header = ({ className }) => {
+const Header = (props) => {
   return (
-    <Wrapper className={className}>
-      <BlurBackground />
-      <SmallWrapper className="container mx-auto">
-        <Link to="/">
-          <Logo src="/static/images/logo.png" />
-        </Link>
-      </SmallWrapper>
-    </Wrapper>
+    <Container {...props}>
+      <Wrapper>
+        <BlurBackground />
+        <SmallWrapper className="container mx-auto">
+          <ListMenuWrapper>
+            <li>
+              <Link to="/" className="__link">
+                NHẠC ONLINE
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="__link">
+                NHẠC CỦA TÔI
+              </Link>
+            </li>
+          </ListMenuWrapper>
+          <Search className="pl-3" style={{ width: '15rem', flex: 1 }}/>
+        </SmallWrapper>
+      </Wrapper>
+    </Container>
   );
 };
 

@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import CardSkeleton from '../../components/CardSkeleton';
 import SongCard from '../../containers/SongCard';
 import PlaylistCard from '../../containers/PlaylistCard';
+import { SlickSlider } from '../../components/commons';
 import ShelfRenderer from './ShelfRenderer';
-import { useGlobalPlayer, useAsyncStatus } from '../../hooks';
+import { useAsyncStatus } from '../../hooks';
 
 const Wrapper = styled.div``;
 
@@ -48,7 +49,14 @@ const HomePage = () => {
 
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <ShelfRenderer title="Playlist ngầu hôm nay">
+      {/* <SlickSlider
+        list={[
+          {
+
+          }
+        ]}
+      /> */}
+      <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
             <div className="p-1 w-1/5" key={playlist.id}>
@@ -62,7 +70,7 @@ const HomePage = () => {
           ))}
         </PlaylistsWrapper>
       </ShelfRenderer>
-      <ShelfRenderer title="Bài hát dành riêng cho bạn" wrapperClassName="mt-5">
+      <ShelfRenderer title="BÀI HÁT MỚI">
         <SongsWrapper className="w-full">
           {songs.map(song => (
             <div className="p-1 w-1/5"  key={song.id}>

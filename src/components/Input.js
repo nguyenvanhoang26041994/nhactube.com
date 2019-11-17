@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Input = styled.input`
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   border: 0;
   outline: 0;
@@ -13,6 +13,10 @@ const Input = styled.input`
   font-size: ${props => props.theme.fontSizes[props.size]};
   font-family: inherit;
   border-radius: 0.25em;
+
+  &::placeholder {
+    color: #fff;
+  }
 `;
 
 Input.displayName = 'Input';
