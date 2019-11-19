@@ -9,6 +9,7 @@ const SearchPage = loadable(() => import('./pages/SearchPage'));
 const SongDetailPage = loadable(() => import('./pages/SongDetailPage'));
 const ArtistDetailPage = loadable(() => import('./pages/ArtistDetailPage'));
 const PlaylistDetailPage = loadable(() => import('./pages/PlaylistDetailPage'));
+const ChartMusicPage = loadable(() => import('./pages/ChartMusicPage'));
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path="/song/:id" component={SongDetailPage} />
           <Route exact path="/artist/:id" component={ArtistDetailPage} />
           <Route exact path="/playlist/:id" component={PlaylistDetailPage} />
+          <Route exact path="/bxh" component={ChartMusicPage} />
           <Route path="" component={HomePage} />
         </Switch>
         <GlobalStyle />

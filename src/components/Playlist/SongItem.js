@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  color: ${props => props.theme.colors['gray-400']};
   height: 3.5rem;
   cursor: pointer;
 
@@ -24,6 +23,7 @@ const Wrapper = styled.div`
 
   .__name {
     font-weight: 400;
+    color: #fff;
   }
 
   .__artists-name {
@@ -48,7 +48,9 @@ const Wrapper = styled.div`
   }
 
   &.--is-active {
-    color: ${props => props.theme.colors['yellow-400']};
+    .__name {
+      color: ${props => props.theme.colors['yellow-400']};
+    }
   }
 `;
 

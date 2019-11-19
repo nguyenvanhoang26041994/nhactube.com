@@ -5,7 +5,9 @@ import SongCard from '../../containers/SongCard';
 import PlaylistCard from '../../containers/PlaylistCard';
 import { SlickSlider } from '../../components/commons';
 import ShelfRenderer from './ShelfRenderer';
+import ChartMusic from '../../containers/ChartMusic';
 import { useAsyncStatus } from '../../hooks';
+import { songSelector } from '../../store/selectors';
 
 const Wrapper = styled.div`
 `;
@@ -14,12 +16,6 @@ const PlaylistsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-
-const SongsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const HomePage = () => {
   const [playlists, setPlaylists] = useState([]);
   const [songs, setSongs] = useState([]);
@@ -42,7 +38,7 @@ const HomePage = () => {
     fetch('https://www.nhactube.com/api/songs/new')
       .then(res => res.json())
       .then(({ data }) => {
-        setSongs(data);
+        setSongs(data.map(i => songSelector(i)));
         songsAsync.fetchSuccess();
       })
       .catch(() => songsAsync.fetchFailure());
@@ -50,7 +46,8 @@ const HomePage = () => {
 
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <SlickSlider />
+      <SlickSlider className="mb-5" />
+      <ChartMusic className="mb-5" list={songs} />
       <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE" wrapperClassName="mt-5">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
@@ -58,26 +55,7 @@ const HomePage = () => {
               <PlaylistCard {...playlist} />
           </div>
           ))}
-          {playlistsAsync.status.isLoading && [0,0,0,0,0,].map((v, idx) => (
-            <div className="p-1 w-1/5" key={idx}>
-              <CardSkeleton />
-            </div>
-          ))}
         </PlaylistsWrapper>
-      </ShelfRenderer>
-      <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
-        <SongsWrapper className="w-full">
-          {songs.map(song => (
-            <div className="p-2 w-1/5"  key={song.id}>
-            <SongCard {...song} />
-          </div>
-          ))}
-          {songsAsync.status.isLoading && [0,0,0,0,0,0,0,0,0,0].map((v, idx) => (
-            <div className="p-2 w-1/5" key={idx}>
-              <CardSkeleton />
-            </div>
-          ))}
-        </SongsWrapper>
       </ShelfRenderer>
       <div style={{ height: '5rem' }} />
     </Wrapper>
