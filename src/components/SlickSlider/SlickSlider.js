@@ -8,7 +8,9 @@ const Wrapper = styled.div`
   width: 100%;
   overflow: hidden;
 `;
-const SliderMember = styled(Image)``;
+const SliderMember = styled(Image)`
+  width: 100%;
+`;
 
 const SliderMembers = styled.div`
   display: flex;

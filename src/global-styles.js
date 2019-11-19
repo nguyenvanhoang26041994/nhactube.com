@@ -28,13 +28,14 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 
   img {
     object-fit: cover;
   }
 
-  .container { width: 100%; max-width: 64rem; }
+  .container { width: 100%; max-width: 70rem; }
   .hidden { display: none !important; }
   .none-important {
     width: 0 !important;

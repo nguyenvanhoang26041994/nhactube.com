@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Icon } from '../../components/core';
-import SongItem from './SongItem';
+import SongBar from '../../containers/SongBar';
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const List = styled.ul`
   }
 
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 4px;
   }
 
   &::-webkit-scrollbar-track {
@@ -62,7 +62,7 @@ const Playlist = ({ className, style, playlist }) => {
         <List>
           {playlist.songs.map((song, idx) => (
             <li key={song.id}>
-              <SongItem {...song} firstText={idx + 1}>{song.name}-{song.artistsName}</SongItem>
+              <SongBar {...song} />
             </li>
           ))}
         </List>

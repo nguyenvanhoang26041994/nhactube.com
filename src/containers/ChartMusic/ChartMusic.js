@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Image, Icon, Button } from '../../components/core';
-import { calcTime } from '../../utils';
+import SongBar from '../../containers/SongBar';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,64 +16,23 @@ const Avatar = styled(Image)``;
 const List = styled.ul`
   max-height: 50rem;
   height: 100vh;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    display: none;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, rgba(141, 141, 141, 0.35), rgba(141, 141, 141, 0.5), rgba(141, 141, 141, 0.35));
+    border-radius: 999px;
   }
 `;
-
-const SongItemWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${props => props.theme.colors['gray-400']};
-  cursor: pointer;
-  padding: 0.75em;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-
-    .__avatar {
-      img {
-        filter: blur(2px);
-        transform: scale(1.2);
-      }
-    }
-  }
-
-  .__avatar {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 0.15em;
-  }
-
-  .__name {
-    font-weight: 400;
-    color: #fff;
-  }
-
-  .__name,
-  .__duration{
-    font-size: ${props => props.theme.fontSizes.sm};
-  }
-`;
-
-const SongItem = ({ className, avatarUrl, name, artistsName }) => {
-  return (
-    <SongItemWrapper className={className}>
-      <div className="flex flex-1">
-        <Image src={avatarUrl} className="__avatar" />
-        <div className="flex flex-col ml-1">
-          <div className="__name p-1">{name}</div>
-          <div className="__artists-name p-1">{artistsName}</div>
-        </div>
-      </div>
-      <div className="w-5 flex justify-end">
-        <Icon name="ellipsis-h" />
-      </div>
-    </SongItemWrapper>
-  );
-};
 
 const ChartMusic = ({ className, list }) => {
   return (
@@ -88,7 +47,7 @@ const ChartMusic = ({ className, list }) => {
       <List className="w-2/3 ml-2">
         {list.map((song, idx) => (
           <li key={idx}>
-            <SongItem {...song} />
+            <SongBar {...song} />
           </li>
         ))}
       </List>

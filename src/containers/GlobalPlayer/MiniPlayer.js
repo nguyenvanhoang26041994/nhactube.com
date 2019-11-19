@@ -90,7 +90,6 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
             <SongText>
               <Link to={`/song/${currentSong.id}`} className="flex">
                 {currentSong.name}
-                {releaseMapper[currentSong.release] && `(${releaseMapper[currentSong.release]})`}
               </Link>
               <span className="mx-1">-</span>
               <div>
