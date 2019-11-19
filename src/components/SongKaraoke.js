@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Icon } from '../components/core';
 import { getPageY } from '../utils';
 
 const Wrapper = styled.div`
@@ -10,12 +9,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  color: #fff;
   font-size: 1.125rem;
+  color: #fff;
   line-height: 1.25em;
   word-spacing: 0.125em;
   overflow: hidden;
-  transition: all 0.5s;
 `;
 
 const LyricWrapper = styled.ul`
@@ -51,12 +49,10 @@ const LyricTextStyled = styled.p`
   justify-content: center;
   text-align: center;
   padding: 0 0.5rem;
-  transition: all 0.2s;
-  color: ${props => props.theme.colors['gray-400']};
+  color: #fff;
 
   &.--is-active {
-    font-weight: 900;
-    color: #fff;
+    color: ${props => props.theme.colors['yellow-400']};
   }
 `;
 

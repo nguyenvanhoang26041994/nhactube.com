@@ -12,6 +12,7 @@ const Input = styled.input`
   height: 2em;
   font-size: ${props => props.theme.fontSizes[props.size]};
   font-family: inherit;
+  font-weight: inherit;
   border-radius: 0.25em;
 
   &::placeholder {

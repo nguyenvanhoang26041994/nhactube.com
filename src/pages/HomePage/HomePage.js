@@ -7,7 +7,8 @@ import { SlickSlider } from '../../components/commons';
 import ShelfRenderer from './ShelfRenderer';
 import { useAsyncStatus } from '../../hooks';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+`;
 
 const PlaylistsWrapper = styled.div`
   display: flex;
@@ -49,14 +50,8 @@ const HomePage = () => {
 
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      {/* <SlickSlider
-        list={[
-          {
-
-          }
-        ]}
-      /> */}
-      <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE">
+      <SlickSlider />
+      <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE" wrapperClassName="mt-5">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
             <div className="p-1 w-1/5" key={playlist.id}>
@@ -70,15 +65,15 @@ const HomePage = () => {
           ))}
         </PlaylistsWrapper>
       </ShelfRenderer>
-      <ShelfRenderer title="BÀI HÁT MỚI">
+      <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
         <SongsWrapper className="w-full">
           {songs.map(song => (
-            <div className="p-1 w-1/5"  key={song.id}>
+            <div className="p-2 w-1/5"  key={song.id}>
             <SongCard {...song} />
           </div>
           ))}
           {songsAsync.status.isLoading && [0,0,0,0,0,0,0,0,0,0].map((v, idx) => (
-            <div className="p-1 w-1/5" key={idx}>
+            <div className="p-2 w-1/5" key={idx}>
               <CardSkeleton />
             </div>
           ))}

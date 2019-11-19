@@ -10,7 +10,6 @@ const SVG = (props) => (
 
 const Wrapper = styled.div`
   cursor: pointer;
-  /* background-color: rgba(255, 255, 255, 0.05); */
   max-width: 12rem;
   height: 12rem;
   width: 100%;
@@ -37,7 +36,7 @@ const SVGStyled = styled(SVG)`
   width: 3.5rem;
   height: 3.5rem;
   margin: 0 auto;
-  fill: rgba(255, 255, 255, 0.7);
+  fill: #fff;
 `;
 
 const Text = styled.div`
@@ -46,6 +45,7 @@ const Text = styled.div`
   text-overflow: ellipsis;
   text-align: center;
   white-space: nowrap;
+  font-weight: 400;
 `;
 
 const PlaylistCard = ({ className, name, onClick }) => {

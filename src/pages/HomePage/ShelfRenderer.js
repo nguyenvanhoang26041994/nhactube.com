@@ -12,7 +12,7 @@ const RestWrapper = styled.div``;
 const ShelfRenderer = ({ className, children, title, wrapperClassName }) => {
   return (
     <Wrapper className={wrapperClassName}>
-      <Title className="mx-1 my-2">{title}</Title>
+      <Title className="mx-2 my-2">{title}</Title>
       <RestWrapper className={className}>
         {children}
       </RestWrapper>

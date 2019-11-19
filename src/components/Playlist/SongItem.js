@@ -22,8 +22,13 @@ const Wrapper = styled.div`
     text-overflow: ellipsis;
   }
 
+  .__name {
+    font-weight: 400;
+  }
+
   .__artists-name {
     font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors['gray-400']};
   }
 
   .__actions {
@@ -43,8 +48,7 @@ const Wrapper = styled.div`
   }
 
   &.--is-active {
-    font-weight: 900;
-    color: #fff;
+    color: ${props => props.theme.colors['yellow-400']};
   }
 `;
 

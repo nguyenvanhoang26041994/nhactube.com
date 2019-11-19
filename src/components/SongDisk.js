@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Image, Icon } from '../components/core';
 import { CircleIcon } from '../components/commons';
-import { useGlobalPlayer, useGlobalAudio } from '../hooks';
 import storageCaches from '../utils/storageCaches';
 
 const Wrapper = styled.div`
@@ -15,10 +14,6 @@ const Wrapper = styled.div`
   padding: 1.5rem;
   user-select: none;
   overflow: hidden;
-
-  .__name {
-    font-weight: 600;
-  }
 `;
 
 const AvatarImage = styled(Image)`
@@ -33,6 +28,10 @@ const RestInfo = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  .__name {
+    font-weight: 400;
+  }
 `;
 
 const Disk = styled.div`

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Image, Icon } from '../components/core';
 import { BlurBackground, Search } from '../components/commons';
 
@@ -45,7 +45,7 @@ const ListMenuWrapper = styled.ul`
   .__link {
     display: flex;
     align-items: center;
-    font-weight: 700;
+    font-weight: 400;
 
     &:hover,
     &.--hover,
@@ -56,6 +56,11 @@ const ListMenuWrapper = styled.ul`
 `;
 
 const Header = (props) => {
+  const history = useHistory();
+  const onSearchClick = useCallback((text) => {
+    history.push(`/search?q=${text}`);
+  }, [history]);
+
   return (
     <Container {...props}>
       <Wrapper>
@@ -73,7 +78,7 @@ const Header = (props) => {
               </Link>
             </li>
           </ListMenuWrapper>
-          <Search className="pl-3" style={{ width: '15rem', flex: 1 }}/>
+          <Search className="pl-3" style={{ width: '15rem', flex: 1 }} onSearchClick={onSearchClick} />
         </SmallWrapper>
       </Wrapper>
     </Container>

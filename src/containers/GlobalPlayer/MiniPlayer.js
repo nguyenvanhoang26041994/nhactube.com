@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   transition: all 0.5s;
   overflow: hidden;
   color: #fff;
+  font-weight: 300;
 `;
 
 const ControlWrapper = styled.div`

@@ -18,11 +18,12 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 16px;
+    font-weight: 300;
+    font-family: 'Josefin Sans', sans-serif;
   }
 
   body {
-    /* font-family: 'Cormorant Infant', serif; */
-    font-family: 'Josefin Sans', sans-serif;
+    
   }
 
   a {
