@@ -10,6 +10,11 @@ export const songSelector = song => ({
   ...song
 });
 
+export const playlistSelector = playlist => ({
+  avatarUrl: playlist.id ? `${storageUri}/o/images%2Fplaylist%2F${playlist.id}?alt=media` : '',
+  ...playlist
+});
+
 export const globalPlayerModeSelector = createSelector(
   globalPlayerSelector,
   globalPlayer => globalPlayer.mode,
