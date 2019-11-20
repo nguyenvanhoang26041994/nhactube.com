@@ -54,6 +54,12 @@ const OtherControlWrapper = styled.div`
   justify-content: flex-end;
 `;
 
+const Avatar = styled(Image)`
+  height: 2.7em;
+  width: 2.7em;
+  border-radius: 0.15em;
+`;
+
 const iconModes = Object.freeze({
   [modeConstants.REPEAT]: 'repeat-1',
   [modeConstants.LOOP]: 'repeat',
@@ -85,7 +91,8 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
       <InforWrapper className="w-8/12 mx-10">
-        <div className="flex flex-col justify-center grow-1">
+        <Avatar src={currentSong.avatarUrl} className="__avatar" />
+        <div className="flex flex-col justify-center grow-1 ml-4">
           <div className="flex items-center justify-between">
             <SongText>
               <Link to={`/song/${currentSong.id}`} className="flex">

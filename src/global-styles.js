@@ -22,10 +22,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Josefin Sans', sans-serif;
   }
 
-  body {
-    
-  }
-
   a {
     text-decoration: none;
     color: inherit;
@@ -35,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     object-fit: cover;
   }
 
-  .container { width: 100%; max-width: 70rem; }
+  .container { width: 100%; max-width: 67rem; }
   .hidden { display: none !important; }
   .none-important {
     width: 0 !important;

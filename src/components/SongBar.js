@@ -10,12 +10,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.colors['gray-400']};
+  color: ${props => props.theme.colors['gray-300']};
   padding: 0.5em 0.75em;
 
   .__avatar {
-    height: 3rem;
-    width: 3rem;
+    height: 2.7rem;
+    width: 2.7rem;
     border-radius: 0.15em;
 
     img {

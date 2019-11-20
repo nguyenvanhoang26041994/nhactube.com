@@ -49,10 +49,11 @@ const LyricTextStyled = styled.p`
   justify-content: center;
   text-align: center;
   padding: 0 0.5rem;
-  color: #fff;
+  color: ${props => props.theme.colors['gray-300']};
 
-  &.--is-active {
+  &.--active {
     color: ${props => props.theme.colors['yellow-400']};
+    font-weight: 400;
   }
 `;
 
@@ -73,7 +74,7 @@ const LyricText = ({ className, isActive, parentRef, children }) => {
   }, [isActive]);
 
   return (
-    <LyricTextStyled className={cn({ '--is-active': isActive}, className)} ref={ref}>
+    <LyricTextStyled className={cn({ '--active': isActive }, className)} ref={ref}>
       {children}
     </LyricTextStyled>
   );

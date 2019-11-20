@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   height: 100%;
   z-index: -1;
   overflow: hidden;
+  background-color: #000;
 
   .inner {
     position: relative;
@@ -28,7 +29,7 @@ const BlurImage = styled(Image)`
   height: 100vh;
 
   img {
-    filter: blur(35px) brightness(0.5) grayscale(0.6);
+    filter: blur(60px) brightness(0.3) grayscale(0.6);
     transform: scale(1.5);
   }
 `;

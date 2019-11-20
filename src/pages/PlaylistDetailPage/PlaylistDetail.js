@@ -46,7 +46,7 @@ const PlaylistDetail = ({ className }) => {
   return (
     <Wrapper className={cn('container mx-auto', className)}>
       <Playlist
-        className="__playlist w-7/12"
+        className="__playlist w-8/12"
         playlist={playlist}
       />
       {currentSong.id && (
