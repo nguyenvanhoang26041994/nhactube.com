@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CardSkeleton from '../../components/CardSkeleton';
-import SongCard from '../../containers/SongCard';
 import PlaylistCard from '../../containers/PlaylistCard';
 import { SlickSlider } from '../../components/commons';
 import ShelfRenderer from './ShelfRenderer';
 import ChartMusic from '../../containers/ChartMusic';
+import NewSongs from '../../containers/NewSongs';
 import { useAsyncStatus } from '../../hooks';
-import { songSelector } from '../../store/selectors';
 
 const Wrapper = styled.div`
 `;
@@ -18,8 +16,6 @@ const PlaylistsWrapper = styled.div`
 `;
 const HomePage = () => {
   const [playlists, setPlaylists] = useState([]);
-  const [songs, setSongs] = useState([]);
-  const songsAsync = useAsyncStatus();
   const playlistsAsync = useAsyncStatus();
 
   useEffect(() => {
@@ -33,21 +29,12 @@ const HomePage = () => {
       .catch(() => playlistsAsync.fetchFailure());
   }, []);
 
-  useEffect(() => {
-    songsAsync.fetchRequest();
-    fetch('https://www.nhactube.com/api/songs/new')
-      .then(res => res.json())
-      .then(({ data }) => {
-        setSongs(data.map(i => songSelector(i)));
-        songsAsync.fetchSuccess();
-      })
-      .catch(() => songsAsync.fetchFailure());
-  }, []);
-
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <SlickSlider className="mb-5" />
-      <ChartMusic className="mb-5" list={songs} />
+      <SlickSlider className="mb-3" />
+      <ShelfRenderer title="BẢNG XẾP HẠNG" wrapperClassName="mb-5">
+        <ChartMusic />
+      </ShelfRenderer>
       <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE" wrapperClassName="mt-5">
         <PlaylistsWrapper className="w-full">
           {playlists.map(playlist => (
@@ -56,6 +43,9 @@ const HomePage = () => {
           </div>
           ))}
         </PlaylistsWrapper>
+      </ShelfRenderer>
+      <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
+        <NewSongs />
       </ShelfRenderer>
       <div style={{ height: '5rem' }} />
     </Wrapper>

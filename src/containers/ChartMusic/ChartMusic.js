@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -6,16 +6,20 @@ import styled from 'styled-components';
 import { Image, Icon, Button } from '../../components/core';
 import SongBar from '../../containers/SongBar';
 
+import { useBXHPlaylist } from './hooks';
+import { _take } from '../../utils';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
 `;
 const Handler = styled.div``;
+
 const Avatar = styled(Image)``;
+
 const List = styled.ul`
-  max-height: 50rem;
-  height: 100vh;
+  max-height: 70rem;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -34,18 +38,25 @@ const List = styled.ul`
   }
 `;
 
-const ChartMusic = ({ className, list }) => {
+const ChartMusic = ({ className }) => {
+  const { playlist, actions } = useBXHPlaylist();
+
+  useEffect(() => {
+    actions.fetchBXH();
+  }, []);
+
+  const first15Music = useMemo(() => _take(playlist.songs, 15), [playlist.songs]);
   return (
     <Wrapper className={className}>
       <Handler className="w-1/3">
-        <Avatar src="https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/1/e/9/5/1e95661a09af33bf404de2a941467f49.jpg" />
+        <Avatar src={playlist.avatarUrl} />
         <Button className="my-2">
           <Icon name="play" size="sm" className="mr-2" />
           Phát tất cả
         </Button>
       </Handler>
       <List className="w-2/3 ml-2">
-        {list.map((song, idx) => (
+        {first15Music.map((song, idx) => (
           <li key={idx}>
             <SongBar {...song} />
           </li>

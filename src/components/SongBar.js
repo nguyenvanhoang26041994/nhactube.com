@@ -55,34 +55,33 @@ const Wrapper = styled.div`
   }
 `;
 
-const SongBar = ({ className, isActive, isDownloaded, avatarUrl, name, duration, artists, onClick }) => {
+const SongBar = ({ className, isActive, isDownloaded, avatarUrl, name, duration, artistsName, onClick, hiddenDuration, hiddenActions }) => {
   const durationFormated = useMemo(() => calcTime(duration), [duration]);
 
   return (
     <Wrapper className={cn({ '--active': isActive }, className)} onClick={onClick}>
       <div className="flex flex-1">
         <Image src={avatarUrl} className="__avatar" />
-        <div className="flex flex-col ml-1">
+        <div className="flex flex-col ml-2">
           <div className="__name p-1">
             {name}
           </div>
           <div className="__artists-name flex items-center p-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
-            {artists.map((artist, idx) => (
-              <span key={artist.id} to={`/artist/${artist.id}`}>
-                {artist.name}
-                {idx + 1 !== artists.length && <span>, </span>}
-              </span>
-            ))}
+            <span>{artistsName}</span>
           </div>
         </div>
       </div>
-      <div className="__duration">
-        {durationFormated}
-      </div>
-      <div className="__actions flex justify-end">
-        <Icon name="ellipsis-h" />
-      </div>
+      {!hiddenDuration && (
+        <div className="__duration">
+          {durationFormated}
+        </div>
+      )}
+      {!hiddenActions && (
+        <div className="__actions flex justify-end">
+          <Icon name="ellipsis-h" />
+        </div>
+      )}
     </Wrapper>
   );
 };

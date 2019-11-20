@@ -32,10 +32,6 @@ const List = styled.ul`
   -webkit-overflow-scrolling: touch;
   height:100%;
 
-  & li:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.01);
-  }
-
   &::-webkit-scrollbar {
     width: 4px;
   }

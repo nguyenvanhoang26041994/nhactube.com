@@ -72,7 +72,7 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
       {isExpanded && (
         <div className="flex w-full">
           <PlaylistStyled
-            className={cn('__playlist w-7/12', { 'none-important': !isSongPoolActive })}
+            className={cn('__playlist w-1/2', { 'none-important': !isSongPoolActive })}
             isActive={isSongPoolActive}
             playlist={currentPlaylist}
           />
