@@ -30,7 +30,7 @@ const PlaylistSuggest = ({ className }) => {
     <Wrapper className={className}>
       <List>
         {first5Playlist.map(playlist => (
-          <li key={playlist.id} className="w-1/5">
+          <li key={playlist.id} className="w-1/5 p-2">
             <PlaylistCard {...playlist} />
           </li>
         ))}

@@ -23,6 +23,12 @@ const HomePage = () => {
       <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
         <NewSongs />
       </ShelfRenderer>
+      <ShelfRenderer title="BÀI HÁT THEO CA SĨ" wrapperClassName="mt-5">
+        
+      </ShelfRenderer>
+      <ShelfRenderer title="CHỦ ĐỀ HOT" wrapperClassName="mt-5">
+        
+      </ShelfRenderer>
       <div style={{ height: '5rem' }} />
     </Wrapper>
   );

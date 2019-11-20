@@ -11,7 +11,7 @@ export const songSelector = song => ({
 });
 
 export const playlistSelector = playlist => ({
-  avatarUrl: playlist.id ? `${storageUri}/o/images%2Fplaylist%2F${playlist.id}?alt=media` : '',
+  avatarUrl: playlist.id ? `${storageUri}/o/images%2Fplaylists%2F${playlist.id}.jpg?alt=media` : '',
   ...playlist
 });
 
