@@ -10,14 +10,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
   user-select: none;
   overflow: hidden;
 `;
 
 const AvatarImage = styled(Image)`
-  width: 16em;
-  height: 16em;
+  width: 18em;
+  height: 18em;
   border-radius: 999px;
   margin: 0 auto;
   transition: transform 0.2s cubic-bezier(0.5, 0.5, 1, 1), opacity 0.2s;
@@ -48,7 +47,7 @@ const Disk = styled.div`
   position: relative;
 `;
 
-const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl }) => {
+const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl, hiddenInfo }) => {
   const [rotate, setRotate] = useState(0);
 
   useEffect(() => {
@@ -71,18 +70,19 @@ const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl }) =
           style={{ transform: `rotate(${rotate}deg)` }}
         />
       </Disk>
-
-      <div className="flex flex-col my-5 justify-between">
-        <RestInfo>
-          <div className="__artists my-1">
-            {artistsName}
-          </div>
-          <div className="__name my-1">
-            {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
-            {name}
-          </div>
-        </RestInfo>
-      </div>
+      {!hiddenInfo && (
+        <div className="flex flex-col my-5 justify-between">
+          <RestInfo>
+            <div className="__artists my-1">
+              {artistsName}
+            </div>
+            <div className="__name my-1">
+              {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
+              {name}
+            </div>
+          </RestInfo>
+        </div>
+      )}
     </Wrapper>
   );
 };

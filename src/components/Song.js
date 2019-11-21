@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import { SongDisk, SongKaraoke } from '../components/commons';
+import SongBar from '../components/SongBar';
 import { useGlobalAudio } from '../hooks';
 
 const Wrapper = styled.div`
@@ -15,35 +16,29 @@ const Wrapper = styled.div`
   transition: all 0.5s;
   position: relative;
   color: #fff;
-
-  &.--is-my-king-dom {
-    flex-direction: row;
-
-    .__disk,
-    .__karaoke {
-      width: 50%;
-      height: 100%;
-    }
-  }
 `;
 
 const SongDiskStyled = styled(SongDisk)`
+  height: 40em;
+  width: 100%;
 `;
 
 const CurrentSongLyricStyled = styled(SongKaraoke)`
-  height: 25rem;
+  flex-grow: 1;
   padding: 0 0 3rem 0;
   box-sizing: border-box;
   width: 100%;
 `;
 
-const Song = ({ className, song, playOrPauseSong, isMyKingdom }) => {
+const Song = ({ className, song, playOrPauseSong }) => {
   const { currentTime } = useGlobalAudio();
 
   return (
-    <Wrapper className={cn(className, { '--is-my-king-dom': isMyKingdom })}>
+    <Wrapper className={className}>
+      <SongBar isActive {...song} className="w-full" />
       <SongDiskStyled
         {...song}
+        hiddenInfo
         playOrPauseSong={playOrPauseSong}
         className="__disk"
       />

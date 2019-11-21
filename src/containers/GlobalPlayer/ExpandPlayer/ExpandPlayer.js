@@ -23,28 +23,15 @@ const PlaylistStyled = styled(Playlist)`
 
 const SongEnhancerWrapper = styled.div`
   position: relative;
-  width: 100%;
 
   .--haft {
     width: 50%;
   }
 `;
 
-const ToggleSongPool = styled(Icon)`
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 10;
-`;
-
 const SongEnhancer = ({ wrapperClass, onListIconClick, isSongPoolActive, ...otherProps }) => {
   return (
     <SongEnhancerWrapper className={wrapperClass}>
-      <ToggleSongPool
-        name="list-music"
-        color={isSongPoolActive ? 'yellow-500' : null }
-        onClick={onListIconClick}
-      />
       <Song {...otherProps} />
     </SongEnhancerWrapper>
   );
@@ -72,14 +59,13 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
       {isExpanded && (
         <div className="flex w-full">
           <PlaylistStyled
-            className={cn('__playlist w-1/2', { 'none-important': !isSongPoolActive })}
+            className="__playlist flex-1"
             isActive={isSongPoolActive}
             playlist={currentPlaylist}
           />
           <SongEnhancer
-            wrapperClass="__song-enhancer flex-1"
+            wrapperClass="__song-enhancer w-5/12"
             song={currentSong}
-            isMyKingdom={!isSongPoolActive}
             isSongPoolActive={isSongPoolActive}
             playOrPauseSong={playOrPauseSong}
             onListIconClick={onListIconClick}

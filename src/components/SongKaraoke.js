@@ -48,7 +48,8 @@ const LyricTextStyled = styled.p`
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 0 0.5rem;
+  padding: 0 0.5em;
+  line-height: 1.5em;
   color: ${props => props.theme.colors['gray-300']};
 
   &.--active {

@@ -28,13 +28,11 @@ const Wrapper = styled.div`
     color: #fff;
   }
 
-  .__duration,
   .__actions {
     width: 4em;
   }
 
-  .__artists-name,
-  .__duration{
+  .__artists-name {
     font-size: ${props => props.theme.fontSizes.sm};
   }
 
@@ -55,11 +53,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const SongBar = ({ className, isActive, isDownloaded, avatarUrl, name, duration, artistsName, onClick, hiddenDuration, hiddenActions }) => {
-  const durationFormated = useMemo(() => calcTime(duration), [duration]);
-
+const SongBar = ({
+  className,
+  isActive,
+  isPlaying,
+  isDownloaded,
+  avatarUrl,
+  name,
+  artistsName,
+  onClick,
+  hiddenActions,
+}) => {
   return (
-    <Wrapper className={cn({ '--active': isActive }, className)} onClick={onClick}>
+    <Wrapper className={cn({ '--active': isActive || isPlaying }, className)} onClick={onClick}>
       <div className="flex flex-1">
         <Image src={avatarUrl} className="__avatar" />
         <div className="flex flex-col ml-2">
@@ -73,11 +79,6 @@ const SongBar = ({ className, isActive, isDownloaded, avatarUrl, name, duration,
           </div>
         </div>
       </div>
-      {!hiddenDuration && (
-        <div className="__duration">
-          {durationFormated}
-        </div>
-      )}
       {!hiddenActions && (
         <div className="__actions flex justify-end">
           <Icon name="ellipsis-h" />

@@ -44,7 +44,6 @@ const InforWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  width: 23em;
 `;
 
 const MainInfo = styled.div`
@@ -113,9 +112,9 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
         <Slider value={currentTime / duration} className="flex-1 mx-2" handleChange={handleChangeCurrentTime} />
         <div className="__duration">{durationFormat}</div>
       </TimeWrapper>
-      <InforWrapper>
+      <InforWrapper className="w-5/12 px-2">
         <Avatar src={currentSong.avatarUrl} className="__avatar" />
-        <MainInfo className="ml-2">
+        <MainInfo className="ml-2 flex-1">
           <div className="__artists">
             {currentSong.artists.map((artist, idx) => (
               <Link key={artist.id} to={`/artist/${artist.id}`} className="__artist">
@@ -128,13 +127,13 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
             {currentSong.name}
           </Link>
         </MainInfo>
+        <Icon
+          name="list-music"
+          className="mx-3"
+          color={isExpanded ? 'yellow-500' : null}
+          onClick={onSongListIconClick}
+        />
       </InforWrapper>
-      <Icon
-        name="list-music"
-        className="mx-3"
-        color={isExpanded ? 'yellow-500' : null}
-        onClick={onSongListIconClick}
-      />
     </Wrapper>
   );
 };
