@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Icon, Image, Slider } from '../../components/core';
-import { CircleIcon } from '../../components/commons';
 import { mode as modeConstants } from '../../store/constants';
 import { useGlobalPlayer, useGlobalAudio } from '../../hooks';
-import { releaseMapper } from '../../utils';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -23,35 +21,55 @@ const ControlWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 12em;
 `;
 
-const InforWrapper = styled.div`
-  display: flex;
-`;
-
-const SongText = styled.div`
-  display: flex;
-  align-items: center;
-  
-  a {
-    color: inherit;
-  }
-`;
-
-const SongTiming = styled.div`
+const TimeWrapper = styled.div`
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.fontSizes.sm};
 
+  .__current-time,
   .__duration {
-    color: ${props => props.theme.colors['gray-400']};
+    width: 3em;
+  }
+
+  .__current-time {
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
-const OtherControlWrapper = styled.div`
+const InforWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  flex-wrap: nowrap;
+  width: 23em;
+`;
+
+const MainInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .__name {
+    font-weight: 400;
+    padding: 0.25em;
+    color: ${props => props.theme.colors['yellow-400']};
+  }
+
+  .__artists {
+    font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors['gray-300']};
+    padding: 0.25em;
+  }
+
+  .__name,
+  .__artists {
+    width: 20em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const Avatar = styled(Image)`
@@ -84,48 +102,39 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
 
   return (
     <Wrapper className={className} ref={miniPlayerRef} style={style}>
-      <ControlWrapper className="w-3/12">
+      <ControlWrapper>
         <Icon name="step-backward" onClick={goPrevSong} className="ml-2" />
-        <CircleIcon name={iconPlay} color="yellow-500" onClick={playOrPauseSong} />
+        <Icon name={iconPlay} onClick={playOrPauseSong} />
         <Icon name="step-forward" onClick={goNextSong} />
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
       </ControlWrapper>
-      <InforWrapper className="w-8/12 mx-10">
+      <TimeWrapper className="flex-1 mx-8">
+        <div className="__current-time">{currentTimeFormat}</div>
+        <Slider value={currentTime / duration} className="flex-1 mx-2" handleChange={handleChangeCurrentTime} />
+        <div className="__duration">{durationFormat}</div>
+      </TimeWrapper>
+      <InforWrapper>
         <Avatar src={currentSong.avatarUrl} className="__avatar" />
-        <div className="flex flex-col justify-center grow-1 ml-4">
-          <div className="flex items-center justify-between">
-            <SongText>
-              <Link to={`/song/${currentSong.id}`} className="flex">
-                {currentSong.name}
+        <MainInfo className="ml-2">
+          <div className="__artists">
+            {currentSong.artists.map((artist, idx) => (
+              <Link key={artist.id} to={`/artist/${artist.id}`} className="__artist">
+                {artist.name}
+                {idx + 1 !== currentSong.artists.length && <span>, </span>}
               </Link>
-              <span className="mx-1">-</span>
-              <div>
-                {currentSong.artists.map((artist, idx) => (
-                  <Link key={artist.id} to={`/artist/${artist.id}`}>
-                    {artist.name}
-                    {idx + 1 !== currentSong.artists.length && <span>, </span>}
-                  </Link>
-                ))}
-              </div>
-            </SongText>
-            <SongTiming>
-              <span>{currentTimeFormat}</span>
-              <span className="mx-1">/</span>
-              <span className="__duration">{durationFormat}</span>
-            </SongTiming>
+            ))}
           </div>
-          <Slider value={currentTime / duration} className="w-full" handleChange={handleChangeCurrentTime} />
-        </div>
+          <Link to={`/song/${currentSong.id}`} className="__name">
+            {currentSong.name}
+          </Link>
+        </MainInfo>
       </InforWrapper>
-      <OtherControlWrapper className="w-1/12">
-        <CircleIcon
-          transparent={!isExpanded}
-          name="list-music"
-          className="mx-2"
-          color={isExpanded ? 'yellow-500' : null}
-          onClick={onSongListIconClick}
-        />
-      </OtherControlWrapper>
+      <Icon
+        name="list-music"
+        className="mx-3"
+        color={isExpanded ? 'yellow-500' : null}
+        onClick={onSongListIconClick}
+      />
     </Wrapper>
   );
 };

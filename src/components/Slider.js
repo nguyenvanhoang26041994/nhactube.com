@@ -10,24 +10,31 @@ const SliderWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+
+  &:hover {
+    .__handler {
+      opacity: 1;
+    }
+  }
 `;
 
 const Rail = styled.div`
   position: absolute;
   width: 100%;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['gray-500']};
+  background-color: ${props => props.theme.colors['gray-400']};
   border-radius: 999px;
 `;
 
 const Track = styled.div`
   position: absolute;
   height: 0.125rem;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors['yellow-500']};
   border-radius: 999px;
 `;
 
 const Handler = styled.div`
+  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -83,8 +90,8 @@ const Slider = ({ className, value, handleChange, ...otherProps }) => {
       {...otherProps}
     >
       <Rail />
-      <Track style={{ width: `${finishValue * 100}%` }} />
-      <Handler style={{ left: `${finishValue * 100}%` }} />
+      <Track className="__track" style={{ width: `${finishValue * 100}%` }} />
+      <Handler className="__handler" style={{ left: `${finishValue * 100}%` }} />
     </SliderWrapper>
   );
 };
