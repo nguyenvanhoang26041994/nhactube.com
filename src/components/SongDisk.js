@@ -74,12 +74,12 @@ const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl }) =
 
       <div className="flex flex-col my-5 justify-between">
         <RestInfo>
+          <div className="__artists my-1">
+            {artistsName}
+          </div>
           <div className="__name my-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
             {name}
-          </div>
-          <div className="__artists my-1">
-            {artistsName}
           </div>
         </RestInfo>
       </div>
