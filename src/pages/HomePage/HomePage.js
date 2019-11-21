@@ -6,6 +6,7 @@ import ShelfRenderer from './ShelfRenderer';
 import ChartMusic from '../../containers/ChartMusic';
 import NewSongs from '../../containers/NewSongs';
 import PlaylistSuggest from '../../containers/PlaylistSuggest';
+import TopicMusic from '../../containers/TopicMusic';
 
 const Wrapper = styled.div`
 `;
@@ -23,13 +24,12 @@ const HomePage = () => {
       <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
         <NewSongs />
       </ShelfRenderer>
+      <ShelfRenderer title="CHỦ ĐỀ HOT" wrapperClassName="mt-5">
+        <TopicMusic />
+      </ShelfRenderer>
       <ShelfRenderer title="BÀI HÁT THEO CA SĨ" wrapperClassName="mt-5">
         
       </ShelfRenderer>
-      <ShelfRenderer title="CHỦ ĐỀ HOT" wrapperClassName="mt-5">
-        
-      </ShelfRenderer>
-      <div style={{ height: '5rem' }} />
     </Wrapper>
   );
 };

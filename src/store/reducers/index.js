@@ -7,6 +7,7 @@ import artistDetailPageReducer from '../../pages/ArtistDetailPage/reducer';
 import newSongsReducer from '../../containers/NewSongs/reducer';
 import chartMusicReducer from '../../containers/ChartMusic/reducer';
 import playlistSuggestReducer from '../../containers/PlaylistSuggest/reducer';
+import topicMusicReducer from '../../containers/TopicMusic/reducer';
 
 export default combineReducers({
   globalPlayer,
@@ -16,4 +17,5 @@ export default combineReducers({
   newSongsReducer,
   chartMusicReducer,
   playlistSuggestReducer,
+  topicMusicReducer,
 });

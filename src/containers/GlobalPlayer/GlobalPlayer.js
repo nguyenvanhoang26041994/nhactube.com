@@ -33,7 +33,7 @@ const ExpandPlayerStyled = styled(ExpandPlayer)`
   z-index: -1;
 `;
 
-const GlobalPlayer = ({ className, onExpanded }) => {
+const GlobalPlayer = ({ className, style, onExpanded }) => {
   const [expanded, setExpanded] = useState(false);
   const expandPlayerRef = useRef();
   const miniPlayerRef = useRef();
@@ -60,6 +60,7 @@ const GlobalPlayer = ({ className, onExpanded }) => {
       style={{
         opacity: song.url ? '1' : '0',
         height: song.url ? '4rem' : '0',
+        ...style,
       }}
     >
       <BlurBackground />

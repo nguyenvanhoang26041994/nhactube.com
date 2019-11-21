@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Icon } from '../../components/core';
-import SongBar from '../../containers/SongBar';
+import { Icon } from '../components/core';
+import SongBar from '../containers/SongBar';
 
 const Wrapper = styled.div`
   display: flex;

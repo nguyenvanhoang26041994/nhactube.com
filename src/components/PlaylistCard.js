@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image } from '../../components/core';
+import { Image } from '../components/core';
 
 const Avatar = styled(Image)`
   width: 100%;

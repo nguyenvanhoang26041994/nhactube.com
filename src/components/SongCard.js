@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { Icon, Image } from '../../components/core';
+import { Icon, Image } from '../components/core';
 
 const MusicAvatar = styled(Image)`
   width: 100%;

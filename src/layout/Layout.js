@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BlurBackground } from '../components/commons';
 import GlobalPlayer from '../containers/GlobalPlayer';
 import Header from './Header';
-import { useGlobalPlayerSong } from '../hooks';
+import Footer from './Footer';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -39,7 +39,8 @@ const Layout = ({ children }) => {
         {children}
       </MainWrapper>
       <BlurBackgroundStyled />
-      <GlobalPlayer onExpanded={onExpanded} />
+      <GlobalPlayer onExpanded={onExpanded} style={{ zIndex: 100 }}/>
+      <Footer style={{ marginBottom: '4rem', display: expanded ? 'none' : null }} />
     </Wrapper>
   );
 };
