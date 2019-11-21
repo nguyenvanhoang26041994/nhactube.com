@@ -65,7 +65,7 @@ const MainInfo = styled.div`
 
   .__name,
   .__artists {
-    width: 20em;
+    max-width: 20em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

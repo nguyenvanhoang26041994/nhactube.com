@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Image, Icon } from '../components/core';
-import { CircleIcon } from '../components/commons';
 import storageCaches from '../utils/storageCaches';
 
 const Wrapper = styled.div`
@@ -31,6 +30,17 @@ const RestInfo = styled.div`
 
   .__name {
     font-weight: 400;
+    color: ${props => props.theme.colors['yellow-400']};
+  }
+
+  .__artists {
+    color: ${props => props.theme.colors['gray-400']};
+  }
+
+  .__name,
+  .__artists {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -64,9 +74,11 @@ const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl }) =
 
       <div className="flex flex-col my-5 justify-between">
         <RestInfo>
-          <div className="__name my-1">{name}</div>
-          <div className="__artists my-1">
+          <div className="__name my-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
+            {name}
+          </div>
+          <div className="__artists my-1">
             {artistsName}
           </div>
         </RestInfo>

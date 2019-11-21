@@ -63,12 +63,13 @@ const SongBar = ({ className, isActive, isDownloaded, avatarUrl, name, duration,
       <div className="flex flex-1">
         <Image src={avatarUrl} className="__avatar" />
         <div className="flex flex-col ml-2">
-          <div className="__name p-1">
-            {name}
-          </div>
-          <div className="__artists-name flex items-center p-1">
-            {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
+          <div className="__artists-name p-1">
+           
             <span>{artistsName}</span>
+          </div>
+          <div className="__name flex items-base p-1">
+            {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
+            {name}
           </div>
         </div>
       </div>
