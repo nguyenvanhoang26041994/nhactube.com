@@ -4,7 +4,7 @@ import { Image } from '../components/core';
 
 const Avatar = styled(Image)`
   width: 100%;
-  height: 12em;
+  height: 14em;
 `;
 
 const Wrapper = styled.div`
