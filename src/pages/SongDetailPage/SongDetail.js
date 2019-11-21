@@ -45,9 +45,8 @@ const SongDetail = ({ className }) => {
   return (
     <Wrapper className={cn('container mx-auto', className)}>
       <Song
-        className="w-full"
+        className="w-1/2"
         song={song}
-        isMyKingdom
         playOrPauseSong={playOrPauseSong}
       />
     </Wrapper>

@@ -15,10 +15,10 @@ const SmallWrapper = styled.div`
 const Footer = ({ className, style }) => {
   return (
     <Wrapper className={className} style={style}>
-      <SmallWrapper className="container mx-auto">
+      {/* <SmallWrapper className="container mx-auto">
         <p>Đây là một sản phẩm với mục đích nghiên cứu và giải trí, không thương mại hoá.</p>
         <p>Người phát triển: <a href="https://facebook.com/nvh26041994">Nguyễn Văn Hoàng</a></p>
-      </SmallWrapper>
+      </SmallWrapper> */}
     </Wrapper>
   );
 };

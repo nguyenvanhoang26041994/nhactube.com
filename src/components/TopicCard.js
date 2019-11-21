@@ -37,7 +37,7 @@ const Text = styled.div`
   text-align: center;
 `;
 
-const PlaylistCard = ({ className, name, avatarUrl,onClick }) => {
+const PlaylistCard = ({ className, name, avatarUrl, onClick }) => {
   return (
     <Wrapper className={className} onClick={onClick}>
       <Avatar className="__avatar" src={avatarUrl} />
