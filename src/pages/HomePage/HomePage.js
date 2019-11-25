@@ -29,7 +29,7 @@ const HomePage = () => {
         <TopicMusic />
       </ShelfRenderer>
       <ShelfRenderer title="BÀI HÁT THEO CA SĨ" wrapperClassName="mt-5">
-        <ArtistMusicCollection />
+        {/* <ArtistMusicCollection /> */}
       </ShelfRenderer>
     </Wrapper>
   );

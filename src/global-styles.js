@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     object-fit: cover;
   }
 
-  .container { width: 100%; max-width: 76rem; }
+  .container { width: 100%; max-width: 70rem; }
   .hidden { display: none !important; }
   .none-important {
     width: 0 !important;

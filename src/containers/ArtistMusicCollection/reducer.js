@@ -34,25 +34,7 @@ export default (state = initialState, action) => {
         isError: false,
         isSuccess: true,
         isFetched: true,
-        playlists: action.payload.map(playlist => ({
-          ...playlist,
-          songs: playlist.songs || [],
-        })),
-      };
-
-    // FETCH SONG FOR PLAYLIST
-    case artistMusicCollectionConstants.GET_MUSIC_FOR_ARTIST_SUCCESS:
-      return {
-        ...state,
-        playlists: state.playlists.map((playlist) => {
-          if (action.payload.id === playlist.id) {
-            return {
-              ...playlist,
-              songs: action.payload.songs,
-            };
-          }
-          return playlist;
-        }),
+        playlists: action.payload,
       };
 
     default:

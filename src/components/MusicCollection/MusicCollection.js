@@ -16,7 +16,7 @@ const Avatar = styled(Image)``;
 const List = styled.ul``;
 
 const MusicCollection = ({ avatarUrl, name, id, songs, className }) => {
-  const [first, second] = useMemo(() => _chunk(songs, 5), [songs]);
+  const [first, second] = useMemo(() => songs ? _chunk(songs, 5) : [], [songs]);
   return (
     <Wrapper className={className}>
       <MainInfoWrapper className="w-1/4">
