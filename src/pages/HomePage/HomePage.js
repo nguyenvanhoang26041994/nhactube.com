@@ -7,6 +7,7 @@ import ChartMusic from '../../containers/ChartMusic';
 import NewSongs from '../../containers/NewSongs';
 import PlaylistSuggest from '../../containers/PlaylistSuggest';
 import TopicMusic from '../../containers/TopicMusic';
+import ArtistMusicCollection from '../../containers/ArtistMusicCollection';
 
 const Wrapper = styled.div`
 `;
@@ -28,7 +29,7 @@ const HomePage = () => {
         <TopicMusic />
       </ShelfRenderer>
       <ShelfRenderer title="BÀI HÁT THEO CA SĨ" wrapperClassName="mt-5">
-        
+        <ArtistMusicCollection />
       </ShelfRenderer>
     </Wrapper>
   );
