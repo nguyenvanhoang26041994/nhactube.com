@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   transition: all 0.5s;
 
   .inner__blur {
-    bottom: calc(-100% - 4rem);
+    bottom: calc(-100% - 5rem);
   }
 `;
 
@@ -59,7 +59,7 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
       className={className}
       style={{
         opacity: song.url ? '1' : '0',
-        height: song.url ? '4rem' : '0',
+        height: song.url ? '5rem' : '0',
         ...style,
       }}
     >
@@ -73,7 +73,7 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
         />
         <ExpandPlayerStyled
           style={{
-            height: 'calc(100vh - 4rem)',
+            height: 'calc(100vh - 5rem)',
             transform: expanded ? null : 'translateY(100vh)',
             opacity: expanded ? '1' : '0',
           }}

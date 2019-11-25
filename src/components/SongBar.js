@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     height: 2.7rem;
     width: 2.7rem;
     border-radius: 0.15em;
+    transition: border-radius 0.3s;
 
     img {
       transform: scale(1.3);
@@ -46,9 +47,15 @@ const Wrapper = styled.div`
     }
   }
 
-  &.--active {
+  &:hover,
+  &.--active,
+  &.--playing {
     .__name {
       color: ${props => props.theme.colors['yellow-400']};
+    }
+
+    .__avatar {
+      border-radius: 999px;
     }
   }
 `;
@@ -65,17 +72,16 @@ const SongBar = ({
   hiddenActions,
 }) => {
   return (
-    <Wrapper className={cn({ '--active': isActive || isPlaying }, className)} onClick={onClick}>
+    <Wrapper className={cn({ '--active': isActive, '--playing': isPlaying }, className)} onClick={onClick}>
       <div className="flex flex-1">
         <Image src={avatarUrl} className="__avatar" />
         <div className="flex flex-col ml-2">
-          <div className="__artists-name p-1">
-           
-            <span>{artistsName}</span>
-          </div>
           <div className="__name flex items-base p-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
             {name}
+          </div>
+          <div className="__artists-name p-1">
+            <span>{artistsName}</span>
           </div>
         </div>
       </div>

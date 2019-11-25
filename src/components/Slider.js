@@ -22,7 +22,7 @@ const Rail = styled.div`
   position: absolute;
   width: 100%;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['gray-400']};
+  background-color: ${props => props.theme.colors['gray-300']};
   border-radius: 999px;
 `;
 
@@ -35,6 +35,7 @@ const Track = styled.div`
 
 const Handler = styled.div`
   opacity: 0;
+  transition: opacity 0.3s;
   position: absolute;
   top: 0;
   left: 0;
@@ -45,7 +46,7 @@ const Handler = styled.div`
   transform: translate(-50%, 0.375rem);
 `;
 
-const Slider = ({ className, value, handleChange, ...otherProps }) => {
+const Slider = ({ className, value, handleChange, style, ...otherProps }) => {
   const [isDraged, setIsDraged] = useState(false);
   const [localValue, setLocalValue] = useState(0);
   const finishValue = useMemo(() => {
@@ -81,6 +82,7 @@ const Slider = ({ className, value, handleChange, ...otherProps }) => {
   return (
     <SliderWrapper
       className={className}
+      style={style}
       onClick={onClick}
       ref={sliderRef}
       onMouseDown={onDragStart}

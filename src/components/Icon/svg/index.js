@@ -21,6 +21,7 @@ const icons = {
   'volume-mute': require('./player/volume-mute').default,
   'globe': require('./globe').default,
   'search': require('./search').default,
+  'heart': require('./heart').default,
 };
 
 export default icons;

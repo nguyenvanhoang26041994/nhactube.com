@@ -1,7 +1,7 @@
 import { mode, globalPlayer } from '../constants';
 
 const initialState = {
-  mode: mode.REPEAT,
+  mode: mode.SHUFFLE,
 
   isLyricFetching: false,
   isLyricError: false,

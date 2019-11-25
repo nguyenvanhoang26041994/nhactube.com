@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Icon, Image, Slider } from '../../components/core';
+import Volume from './Volume';
 import { mode as modeConstants } from '../../store/constants';
 import { useGlobalPlayer, useGlobalAudio } from '../../hooks';
 
@@ -19,19 +20,25 @@ const Wrapper = styled.div`
 
 const ControlWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+`;
+
+const PlayWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 12em;
+  height: 2.125em;
 `;
 
 const TimeWrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${props => props.theme.fontSizes.sm};
+  font-size: ${props => props.theme.fontSizes.xs};
 
   .__current-time,
   .__duration {
     width: 3em;
+    color: ${props => props.theme.colors['gray-300']};
   }
 
   .__current-time {
@@ -74,7 +81,12 @@ const MainInfo = styled.div`
 const Avatar = styled(Image)`
   height: 2.7em;
   width: 2.7em;
-  border-radius: 0.15em;
+  border-radius: 999px;
+`;
+
+const RestWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const iconModes = Object.freeze({
@@ -101,20 +113,12 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
 
   return (
     <Wrapper className={className} ref={miniPlayerRef} style={style}>
-      <ControlWrapper>
-        <Icon name="step-backward" onClick={goPrevSong} className="ml-2" />
-        <Icon name={iconPlay} onClick={playOrPauseSong} />
-        <Icon name="step-forward" onClick={goNextSong} />
-        <Icon name={iconMode} size="lg" onClick={goNextMode} className="mr-2" />
-      </ControlWrapper>
-      <TimeWrapper className="flex-1 mx-8">
-        <div className="__current-time">{currentTimeFormat}</div>
-        <Slider value={currentTime / duration} className="flex-1 mx-2" handleChange={handleChangeCurrentTime} />
-        <div className="__duration">{durationFormat}</div>
-      </TimeWrapper>
-      <InforWrapper className="w-5/12 px-2">
+      <InforWrapper className="w-1/3 px-2">
         <Avatar src={currentSong.avatarUrl} className="__avatar" />
         <MainInfo className="ml-2 flex-1">
+          <Link to={`/song/${currentSong.id}`} className="__name">
+            {currentSong.name}
+          </Link>
           <div className="__artists">
             {currentSong.artists.map((artist, idx) => (
               <Link key={artist.id} to={`/artist/${artist.id}`} className="__artist">
@@ -123,17 +127,32 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
               </Link>
             ))}
           </div>
-          <Link to={`/song/${currentSong.id}`} className="__name">
-            {currentSong.name}
-          </Link>
         </MainInfo>
+      </InforWrapper>
+      <ControlWrapper className="w-1/3 mx-5">
+        <PlayWrapper>
+          <Icon name="step-backward" onClick={goPrevSong} className="mx-5" />
+          <Icon name={iconPlay} size="lg" onClick={playOrPauseSong} className="mx-5" />
+          <Icon name="step-forward" onClick={goNextSong} className="mx-5" />
+        </PlayWrapper>
+        <TimeWrapper>
+          <div className="__current-time">{currentTimeFormat}</div>
+          <Slider value={currentTime / duration} className="flex-1 mx-2" handleChange={handleChangeCurrentTime} />
+          <div className="__duration">{durationFormat}</div>
+        </TimeWrapper>
+      </ControlWrapper>
+      <RestWrapper className="w-1/3">
+        <Icon name={iconMode} size="lg" onClick={goNextMode} className="mx-3" />
+        <Icon name="heart" className="mx-3" />
         <Icon
           name="list-music"
           className="mx-3"
           color={isExpanded ? 'yellow-500' : null}
           onClick={onSongListIconClick}
         />
-      </InforWrapper>
+        <Icon name="ellipsis-h" className="mx-3" />
+        <Volume className="mx-3 flex-1" />
+      </RestWrapper>
     </Wrapper>
   );
 };
