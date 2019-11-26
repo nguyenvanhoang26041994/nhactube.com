@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -23,61 +23,61 @@ const SliderMembers = styled.div`
 const FirstSliderMember = styled(SliderMember)`
   z-index: 1;
   width: 80%;
-  height: 80%;
+  height: calc(100% - 6rem);
   left: 0;
 `;
 const SecondSliderMember = styled(SliderMember)`
   z-index: 2;
   left: 0;
   width: 60%;
-  height: 90%;
-  left: 3.5em;
+  height: calc(100% - 3rem);
+  left: 3em;
 `;
 
 const FourthSliderMember = styled(SliderMember)`
   width: 60%;
-  height: 90%;
+  height: calc(100% - 3rem);
   z-index: 2;
-  right: 3.5em;
+  right: 3em;
 `;
 
 const FivethSliderMember = styled(SliderMember)`
   z-index: 1;
   width: 80%;
-  height: 80%;
+  height: calc(100% - 6rem);
   right: 0;
 `;
 
 const list = [
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/7/a/6/0/7a60dfcffcc9f274c7a331fc44dd6acb.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542607604573_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542614642169_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542616462691_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542608998169_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542615547976_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/7/a/6/0/7a60dfcffcc9f274c7a331fc44dd6acb.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2019/11/26/0/e/2/0/1574756518914_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/12/07/d/c/2/a/1544179045624_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542614212933_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/12/06/9/d/e/b/1544092104047_org.jpg'
   },
   {
-    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542610797625_org.jpg'
   }
 ];
 
@@ -96,22 +96,59 @@ const SlickSlider = ({ className, style }) => {
         return 0;
       }
       return prev + 1;
-    }), 5000);
+    }), 10000);
     return () => clearInterval(timer);
   }, [list.length]);
+
+  const firstIdx = useMemo(() => {
+    const _idx = idx - 2;
+    if (_idx < 0) {
+      return list.length + _idx;
+    }
+    return _idx;
+  }, [idx, list.length]);
+
+  const secondIdx = useMemo(() => {
+    const _idx = idx - 1;
+    if (_idx < 0) {
+      return list.length + _idx;
+    }
+    return _idx;
+  }, [idx, list.length]);
+
+  const thirdIdx = useMemo(() => {
+    const _idx = idx + 1;
+    if (_idx >= list.length) {
+      return _idx - list.length;
+    }
+    return _idx;
+  }, [idx, list.length]);
+
+  const fourthIdx = useMemo(() => {
+    const _idx = idx + 2;
+    if (_idx >= list.length) {
+      return _idx - list.length;
+    }
+    return _idx;
+  }, [idx, list.length]);
+
+  const onDotClick = useCallback((idx) => {
+    setIdx(idx);
+  }, [setIdx]);
 
   return (
     <Wrapper className={className} style={style} ref={wrapperRef}>
       <SliderMembers>
-        <FirstSliderMember src={list[2].img} />
-        <SecondSliderMember src={list[1].img} />
+        <FirstSliderMember src={list[firstIdx].img} onClick={() => setIdx(firstIdx)} />
+        <SecondSliderMember src={list[secondIdx].img} onClick={() => setIdx(secondIdx)} />
         <MainSliderMember
           src={list[idx].img}
           index={idx}
           length={list.length}
+          onDotClick={onDotClick}
         />
-        <FourthSliderMember src={list[3].img} />
-        <FivethSliderMember src={list[4].img} />
+        <FourthSliderMember src={list[thirdIdx].img} onClick={() => setIdx(thirdIdx)} />
+        <FivethSliderMember src={list[fourthIdx].img} onClick={() => setIdx(fourthIdx)} />
       </SliderMembers>
     </Wrapper>
   );

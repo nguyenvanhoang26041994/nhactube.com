@@ -18,9 +18,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const Dot = ({ className, active }) => {
+const Dot = ({ className, onClick, active }) => {
   return (
-    <Wrapper className={cn({ '--active': active }, className)} />
+    <Wrapper className={cn({ '--active': active }, className)} onClick={onClick} />
   );
 }
 
