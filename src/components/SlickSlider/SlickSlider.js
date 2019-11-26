@@ -2,26 +2,76 @@ import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-import Image from '../Image';
+import SliderMember from './SliderMember';
+import MainSliderMember from './MainSliderMember';
 
 const Wrapper = styled.div`
   width: 100%;
-  overflow: hidden;
-`;
-const SliderMember = styled(Image)`
-  width: 100%;
+  height: 100%;
 `;
 
 const SliderMembers = styled.div`
   display: flex;
-  width: ${props => props.fullWidth}px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
   transition: 0.5s;
+  position: relative;
+`;
+
+const FirstSliderMember = styled(SliderMember)`
+  z-index: 1;
+  width: 80%;
+  height: 80%;
+  left: 0;
+`;
+const SecondSliderMember = styled(SliderMember)`
+  z-index: 2;
+  left: 0;
+  width: 60%;
+  height: 90%;
+  left: 3.5em;
+`;
+
+const FourthSliderMember = styled(SliderMember)`
+  width: 60%;
+  height: 90%;
+  z-index: 2;
+  right: 3.5em;
+`;
+
+const FivethSliderMember = styled(SliderMember)`
+  z-index: 1;
+  width: 80%;
+  height: 80%;
+  right: 0;
 `;
 
 const list = [
   {
     img: 'https://photo-zmp3.zadn.vn/banner/7/a/6/0/7a60dfcffcc9f274c7a331fc44dd6acb.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/7/a/6/0/7a60dfcffcc9f274c7a331fc44dd6acb.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
+  },
+  {
+    img: 'https://photo-zmp3.zadn.vn/banner/1/2/e/c/12eca092236955ee00273488013297c6.jpg'
   },
   {
     img: 'https://photo-zmp3.zadn.vn/banner/6/0/6/b/606b12de807c6df0379ed0fb67da4b1d.jpg'
@@ -52,18 +102,16 @@ const SlickSlider = ({ className, style }) => {
 
   return (
     <Wrapper className={className} style={style} ref={wrapperRef}>
-      <SliderMembers
-        fullWidth={w * list.length}
-        style={{
-          transform: `translateX(-${idx * w}px)`,
-        }}
-      >
-        {list.map((item, idx) => (
-          <SliderMember
-            key={idx}
-            src={item.img}
-          />
-        ))}
+      <SliderMembers>
+        <FirstSliderMember src={list[2].img} />
+        <SecondSliderMember src={list[1].img} />
+        <MainSliderMember
+          src={list[idx].img}
+          index={idx}
+          length={list.length}
+        />
+        <FourthSliderMember src={list[3].img} />
+        <FivethSliderMember src={list[4].img} />
       </SliderMembers>
     </Wrapper>
   );

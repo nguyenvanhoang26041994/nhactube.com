@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const HomePage = () => {
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <SlickSlider className="mb-3" />
+      <SlickSlider className="mb-10" style={{ height: '25rem' }} />
       <ShelfRenderer title="BẢNG XẾP HẠNG" wrapperClassName="mb-5">
         <ChartMusic />
       </ShelfRenderer>

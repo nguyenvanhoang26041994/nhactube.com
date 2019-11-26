@@ -16,6 +16,10 @@ const Wrapper = styled.div`
   .__lyric {
     height: 100%;
   }
+
+  .__player {
+    border-right: 1px solid rgba(255, 255, 255,.1);
+  }
 `;
 
 const SongDetail = ({ className }) => {
@@ -45,7 +49,7 @@ const SongDetail = ({ className }) => {
   return (
     <Wrapper className={cn('container mx-auto', className)}>
       <Song
-        className="w-1/2"
+        className="__player w-5/12"
         song={song}
         playOrPauseSong={playOrPauseSong}
       />

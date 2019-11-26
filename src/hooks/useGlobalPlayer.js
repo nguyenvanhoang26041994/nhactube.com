@@ -37,7 +37,7 @@ export default () => {
       if (idxOfCurrentSong === maxIdxOfCurrentPlaylistSongs) {
         return changeSong(currentPlaylist.songs[0]);
       }
-      
+
       return changeSong(currentPlaylist.songs[idxOfCurrentSong + 1]);
     }
   }, [currentMode, currentSong, currentPlaylist.songs, isShouldNotAutoChangeSong, changeSong]);
@@ -58,7 +58,7 @@ export default () => {
       if (idxOfCurrentSong === maxIdxOfCurrentPlaylistSongs) {
         return changeSong(currentPlaylist.songs[0]);
       }
-      
+
       return changeSong(currentPlaylist.songs[idxOfCurrentSong + 1]);
     }
   }, [currentMode, currentSong, currentPlaylist.songs, isShouldNotChangeSong, changeSong]);
@@ -79,7 +79,7 @@ export default () => {
       if (idxOfCurrentSong === 0) {
         return changeSong(currentPlaylist.songs[maxIdxOfCurrentPlaylistSongs]);
       }
-      
+
       return changeSong(currentPlaylist.songs[idxOfCurrentSong - 1]);
     }
   }, [currentMode, currentPlaylist.songs, currentSong, isShouldNotChangeSong]);

@@ -6,6 +6,7 @@ import { BlurBackground, Search } from '../components/commons';
 
 const Container = styled.div`
   height: 4rem;
+  z-index: 100;
 `;
 
 const Wrapper = styled.header`
