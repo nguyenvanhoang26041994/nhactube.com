@@ -8,6 +8,7 @@ import NewSongs from '../../containers/NewSongs';
 import PlaylistSuggest from '../../containers/PlaylistSuggest';
 import TopicMusic from '../../containers/TopicMusic';
 import ArtistMusicCollection from '../../containers/ArtistMusicCollection';
+import MassiveHeaderCarousel from '../../containers/MassiveHeaderCarousel';
 
 const Wrapper = styled.div`
 `;
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
 const HomePage = () => {
   return (
     <Wrapper className="container mx-auto flex flex-col flex-wrap">
-      <SlickSlider className="mb-10" style={{ height: '26rem' }} />
+      <MassiveHeaderCarousel className="mb-10" style={{ height: '26rem' }} />
       <ShelfRenderer title="BẢNG XẾP HẠNG" wrapperClassName="mb-5">
         <ChartMusic />
       </ShelfRenderer>

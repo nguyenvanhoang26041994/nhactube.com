@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from '../Image';
 
-const SliderMember = styled(Image)`
+const Item = styled(Image)`
   width: 100%;
   position: absolute;
   cursor: pointer;
@@ -67,4 +67,4 @@ const SliderMember = styled(Image)`
   }
 `;
 
-export default SliderMember;
+export default Item;
