@@ -7,10 +7,10 @@ const SliderMember = styled(Image)`
   position: absolute;
   cursor: pointer;
   display: none;
-  transition: transform 0.3s;
+  transition: 0.3s;
 
   img {
-    transition: filter 0.5s;
+    transition: 0.5s;
   }
 
   &.--first,
