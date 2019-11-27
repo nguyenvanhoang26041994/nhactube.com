@@ -139,16 +139,16 @@ const SlickSlider = ({ className, style }) => {
   return (
     <Wrapper className={className} style={style} ref={wrapperRef}>
       <SliderMembers>
-        <FirstSliderMember src={list[firstIdx].img} onClick={() => setIdx(firstIdx)} />
-        <SecondSliderMember src={list[secondIdx].img} onClick={() => setIdx(secondIdx)} />
+        <FirstSliderMember className="heavy-box-shadow" src={list[firstIdx].img} onClick={() => setIdx(firstIdx)} />
+        <SecondSliderMember className="heavy-box-shadow" src={list[secondIdx].img} onClick={() => setIdx(secondIdx)} />
         <MainSliderMember
           src={list[idx].img}
           index={idx}
           length={list.length}
           onDotClick={onDotClick}
         />
-        <FourthSliderMember src={list[thirdIdx].img} onClick={() => setIdx(thirdIdx)} />
-        <FivethSliderMember src={list[fourthIdx].img} onClick={() => setIdx(fourthIdx)} />
+        <FourthSliderMember className="heavy-box-shadow" src={list[thirdIdx].img} onClick={() => setIdx(thirdIdx)} />
+        <FivethSliderMember className="heavy-box-shadow" src={list[fourthIdx].img} onClick={() => setIdx(fourthIdx)} />
       </SliderMembers>
     </Wrapper>
   );

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import cn from 'classnames';
 import SliderMember from './SliderMember';
 import Dot from './Dot';
 
@@ -8,10 +9,8 @@ const Wrapper = styled.div`
   position: relative;
   width: calc(100% - 12rem);
   height: 100%;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   overflow: hidden;
   background-color: #fff;
-  /* border-radius: 0.5rem; */
 `;
 
 const StyledSliderMember = styled(SliderMember)`
@@ -48,7 +47,7 @@ const _times = (times) => {
 const MainSliderMember = ({ wrapperClassName, length, index, onDotClick, ...otherProps }) => {
   const dotNumber = useMemo(() => _times(length), [length]);
   return (
-    <Wrapper className={wrapperClassName}>
+    <Wrapper className={cn('heavy-box-shadow', wrapperClassName)}>
       <StyledSliderMember {...otherProps} className={`fadeIn --animation-for-${index}`}/>
       <Dots>
         {dotNumber.map((number, idx) => (
