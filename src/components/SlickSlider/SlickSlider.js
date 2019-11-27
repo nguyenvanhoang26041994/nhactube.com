@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import SliderMember from './SliderMember';
-import MainSliderMember from './MainSliderMember';
+import Dot from './Dot';
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 const SliderMembers = styled.div`
@@ -20,32 +21,15 @@ const SliderMembers = styled.div`
   position: relative;
 `;
 
-const FirstSliderMember = styled(SliderMember)`
-  z-index: 1;
-  width: 80%;
-  height: calc(100% - 6rem);
-  left: 0;
-`;
-const SecondSliderMember = styled(SliderMember)`
-  z-index: 2;
-  left: 0;
-  width: 60%;
-  height: calc(100% - 3rem);
-  left: 3em;
-`;
-
-const FourthSliderMember = styled(SliderMember)`
-  width: 60%;
-  height: calc(100% - 3rem);
-  z-index: 2;
-  right: 3em;
-`;
-
-const FivethSliderMember = styled(SliderMember)`
-  z-index: 1;
-  width: 80%;
-  height: calc(100% - 6rem);
-  right: 0;
+const Dots = styled.div`
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2em;
 `;
 
 const list = [
@@ -82,13 +66,7 @@ const list = [
 ];
 
 const SlickSlider = ({ className, style }) => {
-  const [w, setWidth] = useState(0);
   const [idx, setIdx] = useState(0);
-  const wrapperRef = useRef();
-
-  useEffect(() => {
-    setWidth(wrapperRef.current.offsetWidth);
-  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setIdx(prev => {
@@ -96,7 +74,7 @@ const SlickSlider = ({ className, style }) => {
         return 0;
       }
       return prev + 1;
-    }), 10000);
+    }), 2000);
     return () => clearInterval(timer);
   }, [list.length]);
 
@@ -116,7 +94,7 @@ const SlickSlider = ({ className, style }) => {
     return _idx;
   }, [idx, list.length]);
 
-  const thirdIdx = useMemo(() => {
+  const fourthIdx = useMemo(() => {
     const _idx = idx + 1;
     if (_idx >= list.length) {
       return _idx - list.length;
@@ -124,7 +102,7 @@ const SlickSlider = ({ className, style }) => {
     return _idx;
   }, [idx, list.length]);
 
-  const fourthIdx = useMemo(() => {
+  const fivethIdx = useMemo(() => {
     const _idx = idx + 2;
     if (_idx >= list.length) {
       return _idx - list.length;
@@ -132,24 +110,27 @@ const SlickSlider = ({ className, style }) => {
     return _idx;
   }, [idx, list.length]);
 
-  const onDotClick = useCallback((idx) => {
-    setIdx(idx);
-  }, [setIdx]);
-
   return (
-    <Wrapper className={className} style={style} ref={wrapperRef}>
+    <Wrapper className={className} style={style}>
       <SliderMembers>
-        <FirstSliderMember className="heavy-box-shadow" src={list[firstIdx].img} onClick={() => setIdx(firstIdx)} />
-        <SecondSliderMember className="heavy-box-shadow" src={list[secondIdx].img} onClick={() => setIdx(secondIdx)} />
-        <MainSliderMember
-          src={list[idx].img}
-          index={idx}
-          length={list.length}
-          onDotClick={onDotClick}
-        />
-        <FourthSliderMember className="heavy-box-shadow" src={list[thirdIdx].img} onClick={() => setIdx(thirdIdx)} />
-        <FivethSliderMember className="heavy-box-shadow" src={list[fourthIdx].img} onClick={() => setIdx(fourthIdx)} />
+        {list.map((item, i) => (
+          <SliderMember
+            src={item.img}
+            className={cn('heavy-box-shadow', {
+              '--first': firstIdx === i,
+              '--second': secondIdx === i,
+              '--main': idx === i,
+              '--fourth': fourthIdx === i,
+              '--fiveth': fivethIdx === i,
+            })}
+          />
+        ))}
       </SliderMembers>
+      <Dots>
+        {list.map((item, i) => (
+          <Dot key={i} active={i === idx} onClick={() => setIdx(i)} />
+        ))}
+      </Dots>
     </Wrapper>
   );
 };
