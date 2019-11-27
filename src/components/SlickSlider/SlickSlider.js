@@ -46,9 +46,6 @@ const list = [
     img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542608998169_org.jpg'
   },
   {
-    img: 'https://avatar-nct.nixcdn.com/topic/mobile/2018/11/19/c/0/6/c/1542615547976_org.jpg'
-  },
-  {
     img: 'https://avatar-nct.nixcdn.com/topic/mobile/2019/11/26/0/e/2/0/1574756518914_org.jpg'
   },
   {
@@ -65,6 +62,24 @@ const list = [
   }
 ];
 
+const getNextIdx = (currentIdx, length, gap) => {
+  const nextIdx = currentIdx + gap;
+  if (nextIdx >= length) {
+    return nextIdx - length;
+  }
+  return nextIdx;
+}
+
+const getPrevIdx = (currentIdx, length, gap) => {
+  const prevIdx = currentIdx - gap;
+
+  if (prevIdx < 0) {
+    return length + prevIdx;
+  }
+
+  return prevIdx;
+}
+
 const SlickSlider = ({ className, style }) => {
   const [idx, setIdx] = useState(0);
 
@@ -78,37 +93,10 @@ const SlickSlider = ({ className, style }) => {
     return () => clearInterval(timer);
   }, [list.length]);
 
-  const firstIdx = useMemo(() => {
-    const _idx = idx - 2;
-    if (_idx < 0) {
-      return list.length + _idx;
-    }
-    return _idx;
-  }, [idx, list.length]);
-
-  const secondIdx = useMemo(() => {
-    const _idx = idx - 1;
-    if (_idx < 0) {
-      return list.length + _idx;
-    }
-    return _idx;
-  }, [idx, list.length]);
-
-  const fourthIdx = useMemo(() => {
-    const _idx = idx + 1;
-    if (_idx >= list.length) {
-      return _idx - list.length;
-    }
-    return _idx;
-  }, [idx, list.length]);
-
-  const fivethIdx = useMemo(() => {
-    const _idx = idx + 2;
-    if (_idx >= list.length) {
-      return _idx - list.length;
-    }
-    return _idx;
-  }, [idx, list.length]);
+  const firstIdx = useMemo(() => getPrevIdx(idx, list.length, 2), [idx, list.length]);
+  const secondIdx = useMemo(() => getPrevIdx(idx, list.length, 1), [idx, list.length]);
+  const fourthIdx = useMemo(() => getNextIdx(idx, list.length, 1), [idx, list.length]);
+  const fivethIdx = useMemo(() => getNextIdx(idx, list.length, 2), [idx, list.length]);
 
   return (
     <Wrapper className={className} style={style}>
@@ -123,6 +111,7 @@ const SlickSlider = ({ className, style }) => {
               '--fourth': fourthIdx === i,
               '--fiveth': fivethIdx === i,
             })}
+            onClick={() => setIdx(i)}
           />
         ))}
       </SliderMembers>

@@ -7,6 +7,11 @@ const SliderMember = styled(Image)`
   position: absolute;
   cursor: pointer;
   display: none;
+  transition: transform 0.3s;
+
+  img {
+    transition: filter 0.5s;
+  }
 
   &.--first,
   &.--second,
@@ -14,6 +19,15 @@ const SliderMember = styled(Image)`
   &.--fourth,
   &.--fiveth {
     display: flex;
+  }
+
+  &.--first,
+  &.--second,
+  &.--fourth,
+  &.--fiveth {
+    img {
+      filter: grayscale(1);
+    }
   }
 
   &.--first,
