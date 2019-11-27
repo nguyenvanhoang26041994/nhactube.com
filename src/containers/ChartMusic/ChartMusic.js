@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { Image, Icon, Button, Tabs } from '../../components/core';
 import SongBar from '../../containers/SongBar';
+import Album from '../../components/Album';
 
 import { useBXHPlaylist } from './hooks';
 import { useGlobalPlayer } from '../../hooks';
@@ -64,11 +65,7 @@ const ChartMusic = ({ className }) => {
       <Tabs className="flex-1">
         <Tabs.Tab className="flex flex-1" key="bxh_vietnam">
           <Handler className="w-1/3">
-            <Avatar src={playlist.avatarUrl} className={cn({ '--playing': isPlaying })} />
-            <Button className="my-2" onClick={handlePlayXBH}>
-              <Icon name="play" size="sm" className="mr-2" />
-              Phát tất cả
-            </Button>
+            <Album list={first15Music} />
           </Handler>
           <List className="w-2/3 ml-2">
             {first15Music.map((song, idx) => (

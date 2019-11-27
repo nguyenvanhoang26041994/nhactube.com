@@ -18,14 +18,15 @@ const Wrapper = styled.div``;
 const W = styled.div`
   display: flex;
   width: 100%;
+  justify-content: flex-end;
 `;
 
 const Tabs = ({ className, children }) => {
   return (
     <Wrapper className={className}>
       <W className="mb-5">
-        <RoundedButton className="">Việt Nam</RoundedButton>
         <RoundedButton  className=" transparent">Âu Mỹ</RoundedButton>
+        <RoundedButton className="">Việt Nam</RoundedButton>
       </W>
       {children}
     </Wrapper>

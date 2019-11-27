@@ -104,10 +104,10 @@ const SlickSlider = ({ className, style }) => {
         {list.map((item, i) => (
           <SliderMember
             src={item.img}
-            className={cn('heavy-box-shadow', {
+            className={cn({
               '--first': firstIdx === i,
               '--second': secondIdx === i,
-              '--main': idx === i,
+              '--main heavy-box-shadow': idx === i,
               '--fourth': fourthIdx === i,
               '--fiveth': fivethIdx === i,
             })}
