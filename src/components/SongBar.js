@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Image, Icon } from '../components/core';
-import { calcTime } from '../utils';
+import { spin } from '../global-styles';
 
 const Wrapper = styled.div`
   display: flex;
@@ -56,6 +56,12 @@ const Wrapper = styled.div`
 
     .__avatar {
       border-radius: 999px;
+    }
+  }
+
+  &.--playing {
+    .__avatar {
+      animation: ${spin} 10s linear infinite;
     }
   }
 `;

@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Icon, Image, Slider } from '../../components/core';
 import Volume from './Volume';
 import { mode as modeConstants } from '../../store/constants';
 import { useGlobalPlayer, useGlobalAudio } from '../../hooks';
+import{ spin } from '../../global-styles';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -82,6 +83,10 @@ const Avatar = styled(Image)`
   height: 2.7em;
   width: 2.7em;
   border-radius: 999px;
+
+  &.--spin {
+    animation: ${spin} 10s linear infinite;
+  }
 `;
 
 const RestWrapper = styled.div`
@@ -114,7 +119,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
   return (
     <Wrapper className={className} ref={miniPlayerRef} style={style}>
       <InforWrapper className="w-1/3 px-2">
-        <Avatar src={currentSong.avatarUrl} className="__avatar" />
+        <Avatar src={currentSong.avatarUrl} className={cn('__avatar', { '--spin': currentSong.isPlaying })} />
         <MainInfo className="ml-2 flex-1">
           <Link to={`/song/${currentSong.id}`} className="__name">
             {currentSong.name}
