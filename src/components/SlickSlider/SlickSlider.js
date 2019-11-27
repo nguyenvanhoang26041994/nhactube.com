@@ -89,7 +89,7 @@ const SlickSlider = ({ className, style }) => {
         return 0;
       }
       return prev + 1;
-    }), 2000);
+    }), 7000);
     return () => clearInterval(timer);
   }, [list.length]);
 
