@@ -14,13 +14,9 @@ const Wrapper = styled.div`
   color: ${props => props.theme.colors['gray-300']};
   padding: 0.5em 0.75em;
 
-  .__label,
-  .__avatar {
+  .__label {
     height: 2.7rem;
     width: 2.7rem;
-  }
-
-  .__label {
     display: none;
     justify-content: center;
     align-items: center;
@@ -28,6 +24,8 @@ const Wrapper = styled.div`
   }
 
   .__avatar {
+    height: 2.7rem;
+    width: 2.7rem;
     border-radius: 0.15em;
     transition: border-radius 0.3s;
   }
@@ -35,6 +33,16 @@ const Wrapper = styled.div`
   .__name {
     font-weight: 400;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .__artists-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: ${props => props.theme.fontSizes.sm};
   }
 
   .__actions {
@@ -46,20 +54,28 @@ const Wrapper = styled.div`
     width: 4em;
   }
 
-  .__artists-name {
-    font-size: ${props => props.theme.fontSizes.sm};
-  }
-
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
 
+    .__name {
+      color: ${props => props.theme.colors['yellow-400']};
+    }
+
     .__avatar {
+      display: flex;
+      border-radius: 999px;
+
       img {
         filter: blur(2px) brightness(0.5) grayscale(0.6);
         transform: scale(1.1);
       }
     }
+
+    .__label {
+      display: none;
+    }
   }
+
 
   &.--label {
     .__label {
@@ -71,9 +87,8 @@ const Wrapper = styled.div`
     }
   }
 
-  &:hover,
-  &.--active,
-  &.--playing {
+
+  &.--active {
     .__name {
       color: ${props => props.theme.colors['yellow-400']};
     }
@@ -88,8 +103,19 @@ const Wrapper = styled.div`
     }
   }
 
+
   &.--playing {
+    .__name {
+      color: ${props => props.theme.colors['yellow-400']};
+    }
+
+    .__label {
+      display: none;
+    }
+
     .__avatar {
+      display: flex;
+      border-radius: 999px;
       animation: ${spin} 10s linear infinite;
     }
   }
@@ -118,7 +144,7 @@ const SongBar = ({
             {name}
           </div>
           <div className="__artists-name p-1">
-            <span>{artistsName}</span>
+            {artistsName}
           </div>
         </div>
       </div>
