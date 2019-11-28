@@ -10,3 +10,11 @@ export const toggleTheme = () => (dispatch, getState) => {
 
   return dispatch({ type: themesMode.LIGHT });
 };
+
+export const changeToDark = () => ({
+  type: themesMode.DARK
+});
+
+export const changeToLight = () => ({
+  type: themesMode.LIGHT
+});

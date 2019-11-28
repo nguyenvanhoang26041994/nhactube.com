@@ -6,6 +6,8 @@ import GlobalPlayer from '../containers/GlobalPlayer';
 import Header from './Header';
 import Footer from './Footer';
 
+import { useTheme } from '../hooks';
+
 const Wrapper = styled.div`
   min-height: 100vh;
   display: flex;
@@ -24,6 +26,7 @@ const BlurBackgroundStyled = styled(BlurBackground)`
 `;
 
 const Layout = ({ children }) => {
+  const { isDark } = useTheme();
   const [expanded, setExpanded] = useState(false);
   const onExpanded = useCallback(value => setExpanded(value), [setExpanded]);
 
@@ -38,7 +41,7 @@ const Layout = ({ children }) => {
       >
         {children}
       </MainWrapper>
-      <BlurBackgroundStyled />
+      {isDark && <BlurBackgroundStyled />} 
       <GlobalPlayer onExpanded={onExpanded} style={{ zIndex: 100 }}/>
       <Footer style={{ marginBottom: '4rem', display: expanded ? 'none' : null }} />
     </Wrapper>

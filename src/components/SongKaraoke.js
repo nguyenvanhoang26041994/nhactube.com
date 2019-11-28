@@ -50,10 +50,10 @@ const LyricTextStyled = styled.p`
   text-align: center;
   padding: 0 0.5em;
   line-height: 1.5em;
-  color: ${props => props.theme.colors['gray-300']};
+  color: ${props => props.theme.colors.text};
 
   &.--active {
-    color: ${props => props.theme.colors['yellow-400']};
+    color: ${props => props.theme.colors['primary-400']};
     font-weight: 400;
   }
 `;

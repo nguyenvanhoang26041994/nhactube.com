@@ -29,7 +29,7 @@ const RestInfo = styled.div`
 
   .__name {
     font-weight: 400;
-    color: ${props => props.theme.colors['yellow-400']};
+    color: ${props => props.theme.colors['primary-400']};
   }
 
   .__artists {

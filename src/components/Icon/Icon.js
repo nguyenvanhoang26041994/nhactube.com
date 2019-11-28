@@ -44,6 +44,8 @@ Icon.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
 };
-Icon.defaultProps = {};
+Icon.defaultProps = {
+  color: 'text',
+};
 
 export default Icon;

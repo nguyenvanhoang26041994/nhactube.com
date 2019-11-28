@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import { Image, Icon, Switch } from '../components/core';
 import { BlurBackground, Search } from '../components/commons';
+import { useTheme } from '../hooks';
 
 const Container = styled.div`
   height: 4rem;
@@ -17,7 +18,7 @@ const Wrapper = styled.header`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  color: #fff;
+  background-color: #fff;
   z-index: 1;
 
   a {
@@ -47,25 +48,34 @@ const ListMenuWrapper = styled.ul`
     display: flex;
     align-items: center;
     font-weight: 400;
+    color: ${props => props.theme.colors.text};
 
     &:hover,
     &.--hover,
     &.--active {
-      color: ${props => props.theme.colors['yellow-500']};
+      color: ${props => props.theme.colors['primary-500']};
     }
   }
 `;
 
 const Header = (props) => {
+  const { actions, theme, isDark } = useTheme();
   const history = useHistory();
   const onSearchClick = useCallback((text) => {
     history.push(`/search?q=${text}`);
   }, [history]);
 
+  const onThemeSwitchChange = useCallback((e) => {
+    if (e.target.checked) {
+      return actions.changeToDark();
+    }
+    return actions.changeToLight();
+  }, [actions.changeToDark, actions.changeToLight]);
+
   return (
     <Container {...props}>
       <Wrapper>
-        <BlurBackground />
+        {isDark && <BlurBackground />}
         <SmallWrapper className="container mx-auto">
           <ListMenuWrapper>
             <li>
@@ -80,7 +90,7 @@ const Header = (props) => {
             </li>
           </ListMenuWrapper>
           <Search className="pl-3" style={{ width: '15rem', flex: 1 }} onSearchClick={onSearchClick} />
-          <Switch className="ml-3" />
+          <Switch className="ml-3" onChange={onThemeSwitchChange} checked={isDark} />
         </SmallWrapper>
       </Wrapper>
     </Container>

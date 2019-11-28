@@ -4,7 +4,7 @@ import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
 import { BlurBackground } from '../../components/commons';
-import { useGlobalPlayerSong, useOnClickOutside } from '../../hooks';
+import { useGlobalPlayerSong, useOnClickOutside, useTheme } from '../../hooks';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   width: 100vw;
   z-index: 50;
   transition: all 0.5s;
+  background-color: ${props => props.theme.colors['gray-200']};
 
   .inner__blur {
     bottom: calc(-100% - 5rem);
@@ -34,6 +35,7 @@ const ExpandPlayerStyled = styled(ExpandPlayer)`
 `;
 
 const GlobalPlayer = ({ className, style, onExpanded }) => {
+  const { isDark } = useTheme();
   const [expanded, setExpanded] = useState(false);
   const expandPlayerRef = useRef();
   const miniPlayerRef = useRef();
@@ -63,7 +65,7 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
         ...style,
       }}
     >
-      <BlurBackground />
+      {isDark && <BlurBackground />}
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer

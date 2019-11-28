@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.colors['gray-300']};
+  color: ${props => props.theme.colors.textWeak};
   padding: 0.5em 0.75em;
 
   .__label {
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 
   .__name {
     font-weight: 400;
-    color: #fff;
+    color: ${props => props.theme.colors.text};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -43,6 +43,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors.textWeak};
   }
 
   .__actions {
@@ -55,24 +56,15 @@ const Wrapper = styled.div`
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
+    background-color: rgba(0, 0, 0, 0.1);
 
     .__avatar {
-      display: flex;
       border-radius: 999px;
 
       img {
         filter: blur(2px) brightness(0.5) grayscale(0.6);
         transform: scale(1.1);
       }
-    }
-
-    .__label {
-      display: none;
     }
   }
 
@@ -88,11 +80,8 @@ const Wrapper = styled.div`
   }
 
 
+  &.--playing,
   &.--active {
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
-
     .__label {
       display: none;
     }
@@ -105,17 +94,7 @@ const Wrapper = styled.div`
 
 
   &.--playing {
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
-
-    .__label {
-      display: none;
-    }
-
     .__avatar {
-      display: flex;
-      border-radius: 999px;
       animation: ${spin} 10s linear infinite;
     }
   }

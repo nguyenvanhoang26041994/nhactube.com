@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image } from '../components/core';
+import cn from 'classnames';
 
+import { Image } from '../components/core';
 import { useGlobalPlayerSong } from '../hooks';
 
 const Wrapper = styled.div`
@@ -12,7 +13,6 @@ const Wrapper = styled.div`
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background-color: #000;
 
   .inner {
     position: relative;
@@ -34,13 +34,13 @@ const BlurImage = styled(Image)`
   }
 `;
 
-export default (props) => {
+export default ({ dark, ...otherProps }) => {
   const { song } = useGlobalPlayerSong();
 
   return (
     <Wrapper>
       <InnerWrapper className="inner">
-        <BlurImage className="inner__blur" src={song.avatarUrl || '/static/images/blur.jpg'} alt={song.name} {...props} />
+        <BlurImage className="inner__blur" src={song.avatarUrl || '/static/images/blur.jpg'} alt={song.name} {...otherProps} />
       </InnerWrapper>
     </Wrapper>
   );

@@ -38,11 +38,7 @@ export default {
   colors: {
     'lizard': '#304352',
     'transparent': 'transparent',
-    'primary-300': '#a3bffa',
-    'primary-400': '#7f9cf5',
-    'primary-500': '#667eea',
-    'primary-600': '#5a67d8',
-    'primary-700': '#4c51bf',
+    'gray-200': '#f3f3f3',
     'gray-300': '#dadde0',
     'gray-400': '#cbd5e0',
     'gray-500': '#a0aec0',

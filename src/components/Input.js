@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: ${props => props.theme.colors[props.color]};
   border: 0;
   outline: 0;
   padding-left: 0.75em;
@@ -16,7 +16,7 @@ const Input = styled.input`
   border-radius: 0.25em;
 
   &::placeholder {
-    color: #fff;
+    color: ${props => props.theme.colors.textWeak};
   }
 `;
 
@@ -26,6 +26,7 @@ Input.propTypes = {
 };
 Input.defaultProps = {
   size: 'base',
+  color: 'text',
 };
 
 export default Input;

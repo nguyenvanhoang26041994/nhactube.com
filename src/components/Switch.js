@@ -10,6 +10,7 @@ const Wrapper = styled.label`
   font-size: ${props => props.theme.fontSizes[props.size]};
   position: relative;
   display: inline-block;
+  cursor: pointer;
 
   .__switch {
     box-sizing: border-box;
@@ -27,7 +28,7 @@ const Wrapper = styled.label`
       content: "";
       height: ${baseSize}em;
       width: ${baseSize}em;
-      background-color: white;
+      background-color: #fff;
       border-radius: 10em;
       transition: 0.3s;
     }
@@ -39,7 +40,6 @@ const Wrapper = styled.label`
     height: 0;
 
     &:checked + .__switch {
-      /* background-color: rgba(0, 0, 0, 0.1); */
       &:before {
         transform: translateX(100%);
       }

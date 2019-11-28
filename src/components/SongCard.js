@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
   &:hover,
   &.--hover {
-    color: ${props => props.theme.colors['yellow-600']};
+    color: ${props => props.theme.colors['primary-600']};
   }
 `;
 

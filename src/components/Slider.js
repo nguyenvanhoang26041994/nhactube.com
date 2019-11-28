@@ -29,7 +29,7 @@ const Rail = styled.div`
 const Track = styled.div`
   position: absolute;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['yellow-500']};
+  background-color: ${props => props.theme.colors['primary-500']};
   border-radius: 999px;
 `;
 

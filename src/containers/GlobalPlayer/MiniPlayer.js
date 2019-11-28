@@ -39,7 +39,7 @@ const TimeWrapper = styled.div`
   .__current-time,
   .__duration {
     width: 3em;
-    color: ${props => props.theme.colors['gray-300']};
+    color: ${props => props.theme.colors.textWeak};
   }
 
   .__current-time {
@@ -61,12 +61,12 @@ const MainInfo = styled.div`
   .__name {
     font-weight: 400;
     padding: 0.25em;
-    color: ${props => props.theme.colors['yellow-400']};
+    color: ${props => props.theme.colors.text};
   }
 
   .__artists {
     font-size: ${props => props.theme.fontSizes.sm};
-    color: ${props => props.theme.colors['gray-300']};
+    color: ${props => props.theme.colors.textWeak};
     padding: 0.25em;
   }
 
@@ -152,7 +152,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
         <Icon
           name="list-music"
           className="mx-3"
-          color={isExpanded ? 'yellow-500' : null}
+          color={isExpanded ? 'primary-500' : 'text'}
           onClick={onSongListIconClick}
         />
         <Icon name="ellipsis-h" className="mx-3" />

@@ -10,12 +10,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.colors['gray-300']};
+  color: ${props => props.theme.colors.textWeak};
   padding: 0.75em;
 
   .__name {
     font-weight: 400;
-    color: #fff;
+    color: ${props => props.theme.colors.text};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: ${props => props.theme.fontSizes.sm};
+    
   }
 
   .__avatar {
@@ -35,18 +36,12 @@ const Wrapper = styled.div`
     transition: border-radius 0.3s;
   }
 
-
-
   .__actions {
     width: 4em;
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
+    background-color: rgba(0, 0, 0, 0.1);
 
     .__avatar {
       border-radius: 999px;
@@ -59,20 +54,12 @@ const Wrapper = styled.div`
   }
 
   &.--active {
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
-
     .__avatar {
       border-radius: 999px;
     }
   }
 
   &.--playing {
-    .__name {
-      color: ${props => props.theme.colors['yellow-400']};
-    }
-
     .__avatar {
       border-radius: 999px;
       animation: ${spin} 10s linear infinite;

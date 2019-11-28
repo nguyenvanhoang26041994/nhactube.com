@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: ${props => props.theme.colors[props.color]};
   border: 0;
   outline: 0;
   padding-left: 0.75em;
@@ -44,7 +44,7 @@ Button.propTypes = {
 };
 Button.defaultProps = {
   size: 'base',
-  color: '',
+  color: 'text',
 };
 
 export default Button;
