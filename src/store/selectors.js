@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 const storageUri = 'https://firebasestorage.googleapis.com/v0/b/nhactube.appspot.com';
 
+export const themeSelector = state => state.theme;
 export const globalPlayerSelector = state => state.globalPlayer;
 export const artistSelector = artist => ({
   ...artist,

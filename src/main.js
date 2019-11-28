@@ -1,26 +1,36 @@
 import { Workbox } from 'workbox-window';
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { loadable, isMobile } from './utils';
 import { register } from './utils/storageCaches';
-import theme from './variables/theme';
+// import theme from './variables/theme';
+import { useTheme } from './hooks';
+import App from './App';
 
 register();
 
-const App = isMobile
-  ? loadable(() => import('./App.mobile'))
-  : loadable(() => import('./App'));
+// const App = isMobile
+//   ? loadable(() => import('./App.mobile'))
+//   : loadable(() => import('./App'));
 
 import store from './store';
+
+const AppWithTheme = () => {
+  const { theme } = useTheme();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  );
+};
 
 const NhacTubeApp = () => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <AppWithTheme />
     </Provider>
   );
 };

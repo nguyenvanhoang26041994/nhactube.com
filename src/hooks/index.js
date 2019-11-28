@@ -6,3 +6,4 @@ export { default as useGlobalAudio } from './useGlobalAudio';
 export { default as useOnClickOutside } from './useOnClickOutside';
 export { default as useAsyncStatus } from './useAsyncStatus';
 export { default as useQuery } from './useQuery';
+export { default as useTheme } from './useTheme';

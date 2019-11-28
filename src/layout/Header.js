@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
-import { Image, Icon } from '../components/core';
+import { Image, Icon, Switch } from '../components/core';
 import { BlurBackground, Search } from '../components/commons';
 
 const Container = styled.div`
@@ -80,6 +80,7 @@ const Header = (props) => {
             </li>
           </ListMenuWrapper>
           <Search className="pl-3" style={{ width: '15rem', flex: 1 }} onSearchClick={onSearchClick} />
+          <Switch className="ml-3" />
         </SmallWrapper>
       </Wrapper>
     </Container>

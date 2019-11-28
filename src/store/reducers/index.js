@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import theme from './theme';
 import globalPlayer from './globalPlayer';
 import songDetailPageReducer from '../../pages/SongDetailPage/reducer';
 import playlistDetailPageReducer from '../../pages/PlaylistDetailPage/reducer';
@@ -12,6 +13,7 @@ import artistMusicCollectionReducer from '../../containers/ArtistMusicCollection
 import massiveHeaderCarouselReducer from '../../containers/MassiveHeaderCarousel/reducer';
 
 export default combineReducers({
+  theme,
   globalPlayer,
   songDetailPageReducer,
   playlistDetailPageReducer,

@@ -4,6 +4,11 @@ export const mode = Object.freeze({
   SHUFFLE: 'SHUFFLE',
 });
 
+export const themesMode = Object.freeze({
+  LIGHT: 'LIGHT',
+  DARK: 'DARK',
+});
+
 export const globalPlayer = Object.freeze({
   CHANGE_MODE: 'CHANGE_MODE',
   CHANGE_IS_PLAYING: 'CHANGE_IS_PLAYING',
