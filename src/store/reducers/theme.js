@@ -1,6 +1,6 @@
 import { themesMode } from '../constants';
 
-export default (state = themesMode.DARK, action) => {
+export default (state = themesMode.LIGHT, action) => {
   switch (action.type) {
     case themesMode.LIGHT:
       return themesMode.LIGHT;

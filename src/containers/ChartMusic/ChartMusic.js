@@ -66,10 +66,10 @@ const ChartMusic = ({ className }) => {
           </Handler>
           <List className="w-2/3 ml-2">
             {first15Music.map((song, idx) => {
-              if (idx === 0) {
+              if (idx <= 2) {
                return (
                 <li key={song.id}>
-                  <SongBarAlpha {...first15Music[0]} hiddenActions label="1" />
+                  <SongBarAlpha {...first15Music[idx]} hiddenActions label={idx + 1} />
                 </li>
                );
               }

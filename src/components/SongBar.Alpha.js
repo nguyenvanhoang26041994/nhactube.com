@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   align-items: center;
   cursor: pointer;
   color: ${props => props.theme.colors.textWeak};
-  padding: 0.75em;
+  padding: 0.5em 0.75em;
 
   .__name {
     font-weight: 400;
@@ -81,7 +81,7 @@ const SongBar = ({
   return (
     <Wrapper className={cn({ '--active': isActive, '--playing': isPlaying }, className)} onClick={onClick}>
       <div className="flex flex-1">
-        <Image src={avatarUrl} className="__avatar" />
+        <Image src={avatarUrl} className="__avatar standard-box-shadow" />
         <div className="flex flex-col ml-2">
           <div className="__name flex items-base p-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}

@@ -25,14 +25,16 @@ const getNextIdx = (currentIdx, length, gap) => {
 const Wrapper = styled.div`
   display: flex;
   position: relative;
+  width: 21rem;
+  height: 19rem;
 `;
 
 const List = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 22rem;
-  height: 20rem;
+  width: 100%;
+  height: 100%;
 `;
 
 const Album = ({ className, list }) => {
