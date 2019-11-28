@@ -6,9 +6,6 @@ const initialState = {
   isFetched: false,
 
   playlist: {
-    id: 'bxh',
-    name: 'Bảng Xếp Hạng',
-    avatarUrl: 'https://photo-resize-zmp3.zadn.vn/w480_r1x1_jpeg/cover/1/e/9/5/1e95661a09af33bf404de2a941467f49.jpg',
     songs: [],
   },
 };
@@ -40,8 +37,8 @@ export default (state = initialState, action) => {
         isSuccess: true,
         isFetched: true,
         playlist: {
-          ...state.playlist,
-          songs: action.payload,
+          ...action.payload,
+          songs: action.payload.songs || [],
         },
       };
 

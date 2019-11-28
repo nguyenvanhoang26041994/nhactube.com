@@ -68,13 +68,13 @@ const ChartMusic = ({ className }) => {
             {first15Music.map((song, idx) => {
               if (idx === 0) {
                return (
-                <li key={idx}>
+                <li key={song.id}>
                   <SongBarAlpha {...first15Music[0]} hiddenActions label="1" />
                 </li>
                );
               }
               return (
-                <li key={idx}>
+                <li key={song.id}>
                   <SongBar {...song} hiddenActions label={`${idx + 1}`} />
                 </li>
               );
