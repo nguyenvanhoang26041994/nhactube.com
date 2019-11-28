@@ -7,27 +7,15 @@ import { Image, Icon } from '../components/core';
 import { spin } from '../global-styles';
 
 const Wrapper = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
   color: ${props => props.theme.colors['gray-300']};
-  padding: 0.5em 0.75em;
-
-  .__label,
-  .__avatar {
-    height: 2.7rem;
-    width: 2.7rem;
-  }
-
-  .__label {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-weight: 400;
-  }
+  padding: 0.75em;
 
   .__avatar {
+    height: 5.4rem;
+    width: 5.4rem;
     border-radius: 0.15em;
     transition: border-radius 0.3s;
   }
@@ -38,11 +26,6 @@ const Wrapper = styled.div`
   }
 
   .__actions {
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    right: 0;
     width: 4em;
   }
 
@@ -61,16 +44,6 @@ const Wrapper = styled.div`
     }
   }
 
-  &.--label {
-    .__label {
-      display: flex;
-    }
-
-    .__avatar {
-      display: none;
-    }
-  }
-
   &:hover,
   &.--active,
   &.--playing {
@@ -78,12 +51,7 @@ const Wrapper = styled.div`
       color: ${props => props.theme.colors['yellow-400']};
     }
 
-    .__label {
-      display: none;
-    }
-
     .__avatar {
-      display: flex;
       border-radius: 999px;
     }
   }
@@ -96,7 +64,6 @@ const Wrapper = styled.div`
 `;
 
 const SongBar = ({
-  label,
   className,
   isActive,
   isPlaying,
@@ -108,10 +75,9 @@ const SongBar = ({
   hiddenActions,
 }) => {
   return (
-    <Wrapper className={cn({ '--active': isActive, '--playing': isPlaying, '--label': label }, className)} onClick={onClick}>
+    <Wrapper className={cn({ '--active': isActive, '--playing': isPlaying }, className)} onClick={onClick}>
       <div className="flex flex-1">
-      <span className="__label">{label}</span>
-      <Image src={avatarUrl} className="__avatar" />
+        <Image src={avatarUrl} className="__avatar" />
         <div className="flex flex-col ml-2">
           <div className="__name flex items-base p-1">
             {isDownloaded && <Icon name="check" className="mr-1" size="xs" />}
@@ -123,7 +89,7 @@ const SongBar = ({
         </div>
       </div>
       {!hiddenActions && (
-        <div className="__actions mx-3">
+        <div className="__actions flex justify-end">
           <Icon name="ellipsis-h" />
         </div>
       )}

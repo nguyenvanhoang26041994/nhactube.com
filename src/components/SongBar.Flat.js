@@ -11,12 +11,14 @@ const Wrapper = styled.div`
   padding: 0.5em 0.75em;
 `;
 
-const SongBarBasic = ({
+const SongBar = ({
   className,
   isActive,
   isPlaying,
   isDownloaded,
+  avatarUrl,
   name,
+  artistsName,
   onClick,
   hiddenActions,
 }) => {
@@ -29,4 +31,4 @@ const SongBarBasic = ({
   );
 };
 
-export default SongBarBasic;
+export default SongBar;

@@ -26,21 +26,21 @@ const NewSongs = ({ className }) => {
       <PlaylistWrapper className="w-1/3">
         {first && first.map(song => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} />
+            <SongBar hiddenDuration {...song} hiddenActions />
           </li>
         ))}
       </PlaylistWrapper>
       <PlaylistWrapper className="w-1/3">
         {second && second.map(song => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} />
+            <SongBar hiddenDuration {...song} hiddenActions />
           </li>
         ))}
       </PlaylistWrapper>
       <PlaylistWrapper className="w-1/3">
         {third && third.map(song => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} />
+            <SongBar hiddenDuration {...song} hiddenActions />
           </li>
         ))}
       </PlaylistWrapper>

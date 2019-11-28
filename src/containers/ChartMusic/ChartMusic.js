@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { Image, Icon, Button, Tabs } from '../../components/core';
 import SongBar from '../../containers/SongBar';
+import SongBarAlpha from '../../containers/SongBar.Alpha';
 import Album from '../../components/Album';
 
 import { useBXHPlaylist } from './hooks';
@@ -17,10 +18,6 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const Handler = styled.div``;
-
-const Avatar = styled(Image)`
-  transition: border-radius 0.3s;
-`;
 
 const List = styled.ul`
   max-height: 70rem;
@@ -68,11 +65,20 @@ const ChartMusic = ({ className }) => {
             <Album list={first15Music} />
           </Handler>
           <List className="w-2/3 ml-2">
-            {first15Music.map((song, idx) => (
-              <li key={idx}>
-                <SongBar {...song} />
-              </li>
-            ))}
+            {first15Music.map((song, idx) => {
+              if (idx === 0) {
+               return (
+                <li key={idx}>
+                  <SongBarAlpha {...first15Music[0]} hiddenActions label="1" />
+                </li>
+               );
+              }
+              return (
+                <li key={idx}>
+                  <SongBar {...song} hiddenActions label={`${idx + 1}`} />
+                </li>
+              );
+            })}
           </List>
         </Tabs.Tab>
       </Tabs>
