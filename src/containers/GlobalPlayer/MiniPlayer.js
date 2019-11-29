@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
   transition: all 0.5s;
   overflow: hidden;
-  color: #fff;
+  color: ${props => props.theme.colors.text};
   font-weight: 300;
 `;
 

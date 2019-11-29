@@ -12,8 +12,8 @@ const StyledButton = styled.button`
   color: #fff;
   border: 0;
   outline: 0;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
+  padding-left: 1.75em;
+  padding-right: 1.75em;
   height: 2em;
   font-size: ${props => props.theme.fontSizes[props.size]};
   font-family: inherit;
@@ -33,6 +33,10 @@ const StyledButton = styled.button`
     color: inherit;
   }
 
+  &.--rounded {
+     border-radius: 999px;
+  }
+
   &:disabled {
     cursor: not-allowed;
   }
@@ -40,7 +44,7 @@ const StyledButton = styled.button`
 
 const Button = ({ className, size, color, textColor, rounded, buttonRef, transparent, ...otherProps }) => (
   <StyledButton
-    className={cn(`px-2`, { '--transparent': transparent }, className)}
+    className={cn(`px-2`, { '--transparent': transparent, '--rounded': rounded }, className)}
     size={size}
     color={color}
     textColor={textColor}

@@ -6,14 +6,9 @@ import cn from 'classnames';
 import Tab from './Tab';
 import Button from '../Button';
 
-const RoundedButton = styled(Button)`
-  border-radius: 999px;
+const TabButton = styled(Button)`
   padding-left: 1.75em;
   padding-right: 1.75em;
-
-  &.--active {
-
-  }
 `;
 
 const Wrapper = styled.div``;
@@ -24,56 +19,79 @@ const SwitchWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const Tabs = ({ className, children, defaultActiveTab, onChange }) => {
-  const [flagTabs, _setFlagTabs] = useState({});
-  const [activeTab, setActiveTab] = useState(defaultActiveTab);
-  const setFlagTabs = useCallback((key, val) => _setFlagTabs(prev => ({ ...prev, [key]: val })), [_setFlagTabs]);
+class Tabs extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: props.defaultActiveTab,
+    };
+    this.flagTabs = {};
+  }
 
-  useEffect(() => {
-    onChange(activeTab);
-  }, [activeTab]);
+  componentDidMount() {
+    this.props.onChange(this.state.activeTab);
+  }
 
-  return (
-    <Wrapper className={className}>
-      <SwitchWrapper className="mb-5">
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeTab !== this.state.activeTab) {
+      this.props.onChange(this.state.activeTab);
+    }
+  }
+
+  render() {
+    const { className, children } = this.props;
+    const { activeTab } = this.state;
+
+    return (
+      <Wrapper className={className}>
+        <SwitchWrapper className="mb-5">
+          {Children.map(children, (elm) => {
+            if (!isValidElement(elm)) {
+              return null;
+            }
+
+            return (
+              <TabButton
+                rounded
+                className={
+                  cn('__tab-button', {
+                    '--active': elm.props.tab === activeTab,
+                    '--disable': elm.props.disabled,
+                  })
+                }
+                transparent={elm.props.tab !== activeTab}
+                disabled={elm.props.disabled}
+                onClick={() => this.setState({ activeTab: elm.props.tab })}
+              >
+                {elm.props.title}
+              </TabButton>
+            );
+          })}
+        </SwitchWrapper>
         {Children.map(children, (elm) => {
           if (!isValidElement(elm)) {
             return null;
           }
 
-          return (
-            <RoundedButton
-              className={
-                cn('__tab-button', {
-                  '--active': elm.props.tab === activeTab,
-                  '--disable': elm.props.disabled,
-                })
-              }
-              transparent={elm.props.tab !== activeTab}
-              disabled={elm.props.disabled}
-              onClick={() => setActiveTab(elm.props.tab)}
-            >
-              {elm.props.title}
-            </RoundedButton>
-          );
-        })}
-      </SwitchWrapper>
-      {Children.map(children, (elm) => {
-        if (!isValidElement(elm)) {
+          if (activeTab !== elm.props.tab) {
+            return this.flagTabs[elm.props.tab] && !elm.props.refresh
+              ? elm
+              : null;
+          }
+
+          if (activeTab === elm.props.tab) {
+            this.flagTabs[elm.props.tab] = true;
+            return React.cloneElement(elm, {
+              active: true,
+            });
+          }
+
           return null;
-        }
-
-        if (activeTab === elm.props.tab) {
-          return React.cloneElement(elm, {
-            active: true,
-          });
-        }
-
-        return null;
-      })}
-    </Wrapper>
-  );
-};
+        })}
+      </Wrapper>
+    );
+  }
+}
 
 Tabs.Tab = Tab;
 

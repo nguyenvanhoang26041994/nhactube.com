@@ -11,9 +11,8 @@ const IconWrapper = styled.span`
   display: inline-block;
   cursor: pointer;
   user-select: none;
-  color: ${props => props.theme.colors[props.color]};
+  color: ${props => props.theme.colors[props.color] || 'inherit'};
   font-size: ${props => props.theme.fontSizes[props.size]};
-  transition: all 0.3s;
 
   > svg.__svg {
     fill: currentColor;
@@ -42,10 +41,9 @@ Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.oneOf(Object.keys(icons)).isRequired,
   size: PropTypes.string,
-  color: PropTypes.string,
 };
 Icon.defaultProps = {
-  color: 'text',
+  color: '',
 };
 
 export default Icon;

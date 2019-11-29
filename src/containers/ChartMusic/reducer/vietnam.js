@@ -1,0 +1,48 @@
+import { chartMusicConstants } from '../constants'
+const initialState = {
+  isFetching: false,
+  isError: false,
+  isSuccess: false,
+  isFetched: false,
+
+  playlist: {
+    songs: [],
+  },
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    // BXH
+    case chartMusicConstants.GET_BXH_VIETNAM_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        isError: false,
+        isSuccess: false,
+      };
+
+    case chartMusicConstants.GET_BXH_VIETNAM_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        isError: true,
+        isSuccess: false,
+      };
+
+    case chartMusicConstants.GET_BXH_VIETNAM_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        isError: false,
+        isSuccess: true,
+        isFetched: true,
+        playlist: {
+          ...action.payload,
+          songs: action.payload.songs || [],
+        },
+      };
+
+    default:
+      return state;
+  }
+};

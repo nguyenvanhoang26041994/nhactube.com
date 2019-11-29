@@ -1,4 +1,4 @@
-import { chartMusicConstants } from './constants'
+import { chartMusicConstants } from '../constants'
 const initialState = {
   isFetching: false,
   isError: false,
@@ -13,7 +13,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     // BXH
-    case chartMusicConstants.GET_BXH_REQUEST:
+    case chartMusicConstants.GET_BXH_USUK_REQUEST:
       return {
         ...state,
         isFetching: true,
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
         isSuccess: false,
       };
 
-    case chartMusicConstants.GET_BXH_FAILURE:
+    case chartMusicConstants.GET_BXH_USUK_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         isSuccess: false,
       };
 
-    case chartMusicConstants.GET_BXH_SUCCESS:
+    case chartMusicConstants.GET_BXH_USUK_SUCCESS:
       return {
         ...state,
         isFetching: false,
