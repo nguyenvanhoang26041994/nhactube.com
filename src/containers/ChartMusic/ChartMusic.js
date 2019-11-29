@@ -59,8 +59,29 @@ const ChartMusic = ({ className }) => {
 
   return (
     <Wrapper className={className}>
-      <Tabs className="flex-1">
-        <Tabs.Tab className="flex flex-1" key="bxh_vietnam">
+      <Tabs className="flex-1" defaultActiveTab="bxh_vietnam">
+        <Tabs.Tab className="flex flex-1" tab="bxh_usuk" title="ÂU MỸ">
+          <Handler className="w-1/3">
+            <Album list={first15Music} />
+          </Handler>
+          <List className="w-2/3 ml-2">
+            {first15Music.map((song, idx) => {
+              if (idx <= 2) {
+               return (
+                <li key={song.id}>
+                  <SongBarAlpha {...first15Music[idx]} hiddenActions label={idx + 1} />
+                </li>
+               );
+              }
+              return (
+                <li key={song.id}>
+                  <SongBar {...song} hiddenActions label={`${idx + 1}`} />
+                </li>
+              );
+            })}
+          </List>
+        </Tabs.Tab>
+        <Tabs.Tab className="flex flex-1" tab="bxh_vietnam" title="VIỆT NAM">
           <Handler className="w-1/3">
             <Album list={first15Music} />
           </Handler>

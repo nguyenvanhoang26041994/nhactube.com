@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   user-select: none;
-  color: ${props => props.theme.colors.text};
 `;
 
 const Text = styled.div`
@@ -22,6 +21,7 @@ const Text = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 400;
+  color: ${props => props.theme.colors.text};
 `;
 
 const PlaylistCard = ({ className, name, avatarUrl,onClick }) => {

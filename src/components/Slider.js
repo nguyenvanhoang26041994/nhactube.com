@@ -12,8 +12,8 @@ const SliderWrapper = styled.div`
   align-items: center;
 
   &:hover {
-    .__handler {
-      opacity: 1;
+    .__track {
+      background-position: right center;
     }
   }
 `;
@@ -29,12 +29,13 @@ const Rail = styled.div`
 const Track = styled.div`
   position: absolute;
   height: 0.125rem;
-  background-color: ${props => props.theme.colors['primary-500']};
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
   border-radius: 999px;
+  transition: 0.5s;
 `;
 
 const Handler = styled.div`
-  opacity: 0;
   transition: opacity 0.3s;
   position: absolute;
   top: 0;

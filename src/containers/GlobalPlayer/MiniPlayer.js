@@ -52,6 +52,7 @@ const InforWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  width: 23em;
 `;
 
 const MainInfo = styled.div`
@@ -62,6 +63,10 @@ const MainInfo = styled.div`
     font-weight: 400;
     padding: 0.25em;
     color: ${props => props.theme.colors.text};
+
+    &:hover {
+      color: ${props => props.theme.colors.link};
+    }
   }
 
   .__artists {
@@ -94,6 +99,10 @@ const RestWrapper = styled.div`
   align-items: center;
 `;
 
+const VolumeStyled = styled(Volume)`
+  width: 8em;
+`;
+
 const iconModes = Object.freeze({
   [modeConstants.REPEAT]: 'repeat-1',
   [modeConstants.LOOP]: 'repeat',
@@ -118,7 +127,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
 
   return (
     <Wrapper className={className} ref={miniPlayerRef} style={style}>
-      <InforWrapper className="w-1/3 px-2">
+      <InforWrapper className="px-2">
         <Avatar src={currentSong.avatarUrl} className={cn('__avatar', { '--spin': currentSong.isPlaying })} />
         <MainInfo className="ml-2 flex-1">
           <Link to={`/song/${currentSong.id}`} className="__name">
@@ -134,7 +143,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
           </div>
         </MainInfo>
       </InforWrapper>
-      <ControlWrapper className="w-1/3 mx-5">
+      <ControlWrapper className="flex-1 mx-5">
         <PlayWrapper>
           <Icon name="step-backward" onClick={goPrevSong} className="mx-5" />
           <Icon name={iconPlay} size="lg" onClick={playOrPauseSong} className="mx-5" />
@@ -146,7 +155,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
           <div className="__duration">{durationFormat}</div>
         </TimeWrapper>
       </ControlWrapper>
-      <RestWrapper className="w-1/3">
+      <RestWrapper>
         <Icon name={iconMode} size="lg" onClick={goNextMode} className="mx-3" />
         <Icon name="heart" className="mx-3" />
         <Icon
@@ -156,7 +165,7 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
           onClick={onSongListIconClick}
         />
         <Icon name="ellipsis-h" className="mx-3" />
-        <Volume className="mx-3 flex-1" />
+        <VolumeStyled className="mx-3" />
       </RestWrapper>
     </Wrapper>
   );

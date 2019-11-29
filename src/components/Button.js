@@ -7,8 +7,9 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: ${props => props.theme.colors[props.color]};
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+  color: #fff;
   border: 0;
   outline: 0;
   padding-left: 0.75em;
@@ -19,15 +20,27 @@ const StyledButton = styled.button`
   border-radius: 0.25em;
   cursor: pointer;
   user-select: none;
+  transition: 0.5s;
+
+  &:hover {
+    background-position: right center;
+  }
+
+  &.--transparent {
+    background-color: transparent;
+    background-image: none;
+    box-shadow:  none;
+    color: inherit;
+  }
 
   &:disabled {
     cursor: not-allowed;
   }
 `;
 
-const Button = ({ className, size, color, textColor, rounded, buttonRef, ...otherProps }) => (
+const Button = ({ className, size, color, textColor, rounded, buttonRef, transparent, ...otherProps }) => (
   <StyledButton
-    className={cn(`px-2`, className)}
+    className={cn(`px-2`, { '--transparent': transparent }, className)}
     size={size}
     color={color}
     textColor={textColor}
