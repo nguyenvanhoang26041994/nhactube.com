@@ -90,7 +90,13 @@ const Header = (props) => {
             </li>
           </ListMenuWrapper>
           <Search className="pl-3" style={{ width: '15rem', flex: 1 }} onSearchClick={onSearchClick} />
-          <Switch className="ml-3" onChange={onThemeSwitchChange} checked={isDark} />
+          <Switch
+            className="ml-3"
+            onChange={onThemeSwitchChange}
+            checked={isDark}
+            trueable={<Icon name="moon-stars" />}
+            falseable={<Icon name="sun" />}
+          />
         </SmallWrapper>
       </Wrapper>
     </Container>

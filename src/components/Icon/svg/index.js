@@ -22,6 +22,8 @@ const icons = {
   'globe': require('./globe').default,
   'search': require('./search').default,
   'heart': require('./heart').default,
+  'moon-stars': require('./moon-stars').default,
+  'sun': require('./sun').default,
 };
 
 export default icons;

@@ -9,15 +9,20 @@ const Wrapper = styled.label`
   width:${2 * baseSize}em;
   font-size: ${props => props.theme.fontSizes[props.size]};
   position: relative;
-  display: inline-block;
+  display: flex;
   cursor: pointer;
 
   .__switch {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     box-sizing: border-box;
+    color: #fff;
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-size: 200% auto;
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
     border-radius: 10em;
     transition: 0.3s;
 
@@ -32,6 +37,17 @@ const Wrapper = styled.label`
       border-radius: 10em;
       transition: 0.3s;
     }
+
+    &:hover {
+      background-position: right center;
+    }
+  }
+
+  .__falseable,
+  .__trueable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .__input-checkbox {
@@ -51,7 +67,7 @@ const Wrapper = styled.label`
   }
 `;
 
-const Switch = ({ className, size, color, inputRef, ...otherProps }) => {
+const Switch = ({ className, size, color, inputRef, trueable, falseable, ...otherProps }) => {
   return (
     <Wrapper
       className={className}
@@ -64,7 +80,10 @@ const Switch = ({ className, size, color, inputRef, ...otherProps }) => {
         className="__input-checkbox"
         type="checkbox"
       />
-      <span className="__switch" />
+      <div className="__switch">
+        <span className="__falseable">{falseable}</span>
+        <span className="__trueable">{trueable}</span>
+      </div>
     </Wrapper>
   );
 };
