@@ -17,8 +17,8 @@ export const fetchTopicMusicSuccess = (topics) => ({
 export const fetchTopicMusic = () => async (dispatch) => {
   dispatch(fetchTopicMusicRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/playlists/new').then(res => res.json());
-    dispatch(fetchTopicMusicSuccess(data));
+    const { data } = await fetch('https://www.nhactube.com/api/stuff/hot-topic').then(res => res.json());
+    dispatch(fetchTopicMusicSuccess(data.chain));
     return data;
   } catch(e) {
     dispatch(fetchTopicMusicFailure());

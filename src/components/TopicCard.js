@@ -5,10 +5,6 @@ import { Image } from '../components/core';
 const Avatar = styled(Image)`
   width: 100%;
   height: 7em;
-
-  img {
-    filter: brightness(0.4);
-  }
 `;
 
 const Wrapper = styled.div`
@@ -41,7 +37,6 @@ const PlaylistCard = ({ className, name, avatarUrl, onClick }) => {
   return (
     <Wrapper className={className} onClick={onClick}>
       <Avatar className="__avatar" src={avatarUrl} />
-      <Text className="my-3">{name}</Text>
     </Wrapper>
   );
 };

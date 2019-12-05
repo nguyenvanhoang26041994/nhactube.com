@@ -9,6 +9,13 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const InputStyled = styled(Input)`
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid #12D8FA;
+  border-left: none;
+`;
+
 const Search = ({ onSearchClick, ...otherProps }) => {
   const inputRef = useRef();
   const onClick = useCallback(() => {
@@ -20,15 +27,10 @@ const Search = ({ onSearchClick, ...otherProps }) => {
       <Button onClick={onClick} style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
         <Icon name="search" />
       </Button>
-      <Input
+      <InputStyled
         ref={inputRef}
         type="search"
         className="flex-1"
-        style={{
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-          paddingLeft: 0,
-        }}
         placeholder="Nhập tên bài hát hoặc ca sĩ..."
       />
    </Wrapper>

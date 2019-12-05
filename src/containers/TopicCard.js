@@ -5,7 +5,7 @@ import TopicCard from '../components/TopicCard';
 export default ({ onClick, ...otherProps }) => {
   const history = useHistory();
   const _onClick = useCallback(() => {
-    history.push(`/playlist/${otherProps.id}`);
+    history.push(otherProps.link);
   }, []);
 
   return (
