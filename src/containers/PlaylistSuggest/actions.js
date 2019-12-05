@@ -17,8 +17,8 @@ export const fetchPlaylistSuggestSuccess = (playlists) => ({
 export const fetchPlaylistSuggest = () => async (dispatch) => {
   dispatch(fetchPlaylistSuggestRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/playlists/new').then(res => res.json());
-    dispatch(fetchPlaylistSuggestSuccess(data));
+    const { data } = await fetch('https://www.nhactube.com/api/stuff/maybe-you-love-them').then(res => res.json());
+    dispatch(fetchPlaylistSuggestSuccess(data.chain));
     return data;
   } catch(e) {
     dispatch(fetchPlaylistSuggestFailure());

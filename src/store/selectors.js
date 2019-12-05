@@ -16,10 +16,7 @@ export const songSelector = song => ({
   artists: song.artists.map(artist => artistSelector(artist)),
 });
 
-export const playlistSelector = playlist => ({
-  ...playlist,
-  avatarUrl: playlist.id ? `${storageUri}/o/images%2Fplaylists%2F${playlist.id}.jpg?alt=media` : '',
-});
+export const playlistSelector = playlist => playlist;
 
 export const globalPlayerModeSelector = createSelector(
   globalPlayerSelector,

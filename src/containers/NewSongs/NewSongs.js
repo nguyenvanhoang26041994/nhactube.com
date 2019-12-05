@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 
-import SongBar from '../../containers/SongBar';
+import SongBar from '../../containers/SongBar.Alpha';
 import { useNewSongsPlaylist } from './hooks';
 import { _chunk } from '../../utils';
 
