@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 import { Image, Button } from '../components/core';
 import { AvatarWithPlayButton } from '../components/commons';
 import SongBar from '../containers/SongBar';
 import { _chunk } from '../utils';
-import { useTheme } from '../hooks';
+import { useTheme, useGlobalPlayerPlaylist } from '../hooks';
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,10 +29,20 @@ const List = styled.ul``;
 const MusicCollection = ({ avatarUrl, name, id, songs, className }) => {
   const { isDark } = useTheme();
   const [first, second] = useMemo(() => songs ? _chunk(songs, 5) : [], [songs]);
+
+  const { playlist } = useGlobalPlayerPlaylist();
+
+  const handlePlayButtonClick = useCallback(() => {
+
+  }, []);
   return (
     <Wrapper className={className}>
       <MainInfoWrapper className={cn('mx-2', { '--dark': isDark })}>
-        <Avatar src={'https://firebasestorage.googleapis.com/v0/b/nhactube.appspot.com/o/images%2Fartists%2Fed-sheeran?alt=media' || avatarUrl} className="w-1/2 heavy-box-shadow" />
+        <Avatar
+          src={'https://firebasestorage.googleapis.com/v0/b/nhactube.appspot.com/o/images%2Fartists%2Fed-sheeran?alt=media' || avatarUrl}
+          className="w-1/2 heavy-box-shadow"
+          onPlayButtonClick={handlePlayButtonClick}
+        />
       </MainInfoWrapper>
       <div className="flex flex-1">
         <List className="w-1/2">
