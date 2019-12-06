@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 
-import SongBar from '../../containers/SongBar.Alpha';
+import SongBar from '../../containers/SongBar';
 import { useNewSongsPlaylist } from './hooks';
 import { _chunk } from '../../utils';
 
@@ -24,23 +24,23 @@ const NewSongs = ({ className }) => {
   return (
     <Wrapper className={className}>
       <PlaylistWrapper className="w-1/3">
-        {first && first.map(song => (
+        {first && first.map((song, idx) => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} hiddenActions />
+            <SongBar hiddenDuration {...song} hiddenActions label={idx + 1} />
           </li>
         ))}
       </PlaylistWrapper>
       <PlaylistWrapper className="w-1/3">
-        {second && second.map(song => (
+        {second && second.map((song, idx) => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} hiddenActions />
+            <SongBar hiddenDuration {...song} hiddenActions label={idx + 6} />
           </li>
         ))}
       </PlaylistWrapper>
       <PlaylistWrapper className="w-1/3">
-        {third && third.map(song => (
+        {third && third.map((song, idx) => (
           <li key={song.id}>
-            <SongBar hiddenDuration {...song} hiddenActions />
+            <SongBar hiddenDuration {...song} hiddenActions label={idx + 11} />
           </li>
         ))}
       </PlaylistWrapper>

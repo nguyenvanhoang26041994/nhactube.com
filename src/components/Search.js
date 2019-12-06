@@ -12,7 +12,6 @@ const Wrapper = styled.div`
 const InputStyled = styled(Input)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border: 1px solid #12D8FA;
   border-left: none;
 `;
 

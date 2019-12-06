@@ -22,13 +22,11 @@ const ArtistMusicCollection = ({ className }) => {
     actions.fetchArtistMusicCollection();
   }, []);
 
-  const first3ArtistMusic = useMemo(() => _take(playlists, 3), [playlists]);
+  const playlist = playlists[0] ? playlists[0] : { id: '', name: '', songs: [] };
 
   return (
     <Wrapper className={className}>
-      {first3ArtistMusic.map((playlist) => (
-        <MusicCollection key={playlist.id} {...playlist} />
-      ))}
+      <MusicCollection key={playlist.id + 1} {...playlist} className="mb-10" />
     </Wrapper>
   )
 };

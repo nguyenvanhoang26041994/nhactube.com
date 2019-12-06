@@ -20,16 +20,17 @@ const HomePage = () => {
       <ShelfRenderer title="BẢNG XẾP HẠNG" wrapperClassName="mb-5">
         <ChartMusic />
       </ShelfRenderer>
-      <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE" wrapperClassName="mt-5">
-        <PlaylistSuggest />
+      <ShelfRenderer title="CHỦ ĐỀ HOT" wrapperClassName="mt-5">
+        <TopicMusic />
       </ShelfRenderer>
       <ShelfRenderer title="BÀI HÁT MỚI" wrapperClassName="mt-5">
         <NewSongs />
       </ShelfRenderer>
-      <ShelfRenderer title="CHỦ ĐỀ HOT" wrapperClassName="mt-5">
-        <TopicMusic />
+      <ShelfRenderer title="CÓ THỂ BẠN MUỐN NGHE" wrapperClassName="mt-5">
+        <PlaylistSuggest />
       </ShelfRenderer>
       <ShelfRenderer title="BÀI HÁT THEO CA SĨ" wrapperClassName="mt-5">
+        <ArtistMusicCollection />
       </ShelfRenderer>
     </Wrapper>
   );

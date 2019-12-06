@@ -17,8 +17,9 @@ export const fetchArtistMusicCollectionSuccess = (playlists) => ({
 export const fetchArtistMusicCollection = () => async (dispatch) => {
   dispatch(fetchArtistMusicCollectionRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/playlists/new').then(res => res.json());
-    dispatch(fetchArtistMusicCollectionSuccess(data));
+    // const { data } = await fetch('https://www.nhactube.com/api/playlists/new').then(res => res.json());
+    const { data } = await fetch(`https://www.nhactube.com/api/playlists/${'best-of-ed-sheeran'}`).then(res => res.json());
+    dispatch(fetchArtistMusicCollectionSuccess([data]));
     return data;
   } catch(e) {
     dispatch(fetchArtistMusicCollectionFailure());

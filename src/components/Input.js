@@ -14,6 +14,7 @@ const Input = styled.input`
   font-family: inherit;
   font-weight: inherit;
   border-radius: 0.25em;
+  border: 1px solid #12D8FA;
 
   &::placeholder {
     color: ${props => props.theme.colors.textWeak};

@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     font-family: 'Josefin Sans', sans-serif;
   }

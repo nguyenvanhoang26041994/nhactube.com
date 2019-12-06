@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
       </MainWrapper>
       {isDark && <BlurBackgroundStyled />} 
       <GlobalPlayer onExpanded={onExpanded} style={{ zIndex: 100 }}/>
-      <Footer style={{ marginBottom: '4rem', display: expanded ? 'none' : null }} />
+      <Footer style={{ marginBottom: '6rem', display: expanded ? 'none' : null }} />
     </Wrapper>
   );
 };
