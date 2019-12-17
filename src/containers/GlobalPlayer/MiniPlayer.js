@@ -57,6 +57,7 @@ const InforWrapper = styled.div`
 const MainInfo = styled.div`
   display: flex;
   flex-direction: column;
+  width: calc(100% - 3.5rem);
 
   .__name {
     font-weight: 400;
