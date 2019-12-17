@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   overflow: hidden;
   transition: all 0.5s;
   position: relative;
-  color: #fff;
 `;
 
 const SongDiskStyled = styled(SongDisk)`

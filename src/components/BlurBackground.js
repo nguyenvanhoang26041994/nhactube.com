@@ -34,11 +34,11 @@ const BlurImage = styled(Image)`
   }
 `;
 
-export default ({ dark, ...otherProps }) => {
+export default ({ className, dark, ...otherProps }) => {
   const { song } = useGlobalPlayerSong();
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <InnerWrapper className="inner">
         <BlurImage className="inner__blur" src={song.avatarUrl || '/static/images/blur.jpg'} alt={song.name} {...otherProps} />
       </InnerWrapper>

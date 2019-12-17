@@ -8,7 +8,6 @@ import { useArtistDetail } from './hooks';
 
 const Wrapper = styled.div`
   display: flex;
-  color: #fff;
 `;
 
 const Avatar = styled(Image)`

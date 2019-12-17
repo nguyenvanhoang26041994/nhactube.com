@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 
 const MainWrapper = styled.main`
   position: relative;
+  transition: 0.3s;
 `;
 
 const BlurBackgroundStyled = styled(BlurBackground)`
@@ -36,7 +37,7 @@ const Layout = ({ children }) => {
       <MainWrapper
         className="flex-1"
         style={{
-          display: expanded ? 'none' : null,
+          opacity: expanded ? '0' : '1',
         }}
       >
         {children}

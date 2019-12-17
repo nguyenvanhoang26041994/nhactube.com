@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const Wrapper = styled.footer`
-  color: #fff;
   width: 100%;
 `;
 

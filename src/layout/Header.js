@@ -11,6 +11,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.header`
+  background-color: #fff;
   position: fixed;
   width: 100%;
   height: inherit;
@@ -18,7 +19,6 @@ const Wrapper = styled.header`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background-color: #fff;
   z-index: 1;
 
   a {
@@ -48,7 +48,6 @@ const ListMenuWrapper = styled.ul`
     display: flex;
     align-items: center;
     font-weight: 400;
-    color: ${props => props.theme.colors.text};
 
     &:hover,
     &.--hover,

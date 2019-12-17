@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100%;
   font-size: 1.125rem;
-  color: #fff;
   line-height: 1.25em;
   word-spacing: 0.125em;
   overflow: hidden;
@@ -50,10 +49,8 @@ const LyricTextStyled = styled.p`
   text-align: center;
   padding: 0 0.5em;
   line-height: 1.5em;
-  color: ${props => props.theme.colors.text};
 
   &.--active {
-    color: ${props => props.theme.colors['primary-400']};
     font-weight: 400;
   }
 `;
@@ -93,12 +90,18 @@ const SongKaraoke = ({ className, lyric, currentTime }) => {
         </li>
         {lyric.map((item, idx) => (
           <li key={idx}>
-            <LyricText parentRef={lyricWrapperRef} isActive={item.timeStart <= currentTime && item.timeEnd >= currentTime}>{item.text}</LyricText>
+            <LyricText
+              className="__lyric-line" 
+              parentRef={lyricWrapperRef}
+              isActive={item.timeStart <= currentTime && item.timeEnd >= currentTime}
+            >
+              {item.text}
+            </LyricText>
           </li>
         ))}
         {!isHasLyric && (
           <li>
-            <LyricText>Lời bài hát đang được cập nhật</LyricText>
+            <LyricText className="__lyric-line" >Lời bài hát đang được cập nhật</LyricText>
           </li>
         )}
         <li>

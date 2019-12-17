@@ -32,7 +32,6 @@ const Wrapper = styled.div`
 
   .__name {
     font-weight: 400;
-    color: ${props => props.theme.colors.text};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

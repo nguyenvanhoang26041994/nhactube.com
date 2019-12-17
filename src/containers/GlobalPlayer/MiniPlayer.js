@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   width: 100%;
   transition: all 0.5s;
   overflow: hidden;
-  color: ${props => props.theme.colors.text};
   font-weight: 300;
 `;
 
@@ -62,7 +61,6 @@ const MainInfo = styled.div`
   .__name {
     font-weight: 400;
     padding: 0.25em;
-    color: ${props => props.theme.colors.text};
 
     &:hover {
       color: ${props => props.theme.colors.link};

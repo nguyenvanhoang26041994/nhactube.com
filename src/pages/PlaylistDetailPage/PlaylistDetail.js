@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   height: calc(100vh - 8rem);
-  color: #fff;
 
   .__playlist {
     border-right: 1px solid rgba(255, 255, 255,.1);

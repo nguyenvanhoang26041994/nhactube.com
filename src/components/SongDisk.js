@@ -4,7 +4,6 @@ import { Image, Icon } from '../components/core';
 import storageCaches from '../utils/storageCaches';
 
 const Wrapper = styled.div`
-  color: #fff;
   position: relative;
   display: flex;
   flex-direction: column;

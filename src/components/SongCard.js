@@ -11,7 +11,6 @@ const MusicAvatar = styled(Image)`
 `;
 
 const Wrapper = styled.div`
-  color: #fff;
   cursor: pointer;
   width: 100%;
   display: flex;

@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.colors.textWeak};
   padding: 0.5em 0.75em;
 
   .__label {
@@ -32,7 +31,6 @@ const Wrapper = styled.div`
 
   .__name {
     font-weight: 400;
-    color: ${props => props.theme.colors.text};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

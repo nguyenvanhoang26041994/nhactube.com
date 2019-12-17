@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   height: calc(100vh - 8rem);
-  color: #fff;
 
   .__lyric {
     height: 100%;

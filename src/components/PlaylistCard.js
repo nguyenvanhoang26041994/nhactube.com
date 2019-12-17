@@ -21,7 +21,6 @@ const Text = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 400;
-  color: ${props => props.theme.colors.text};
 `;
 
 const PlaylistCard = ({ className, name, avatarUrl,onClick }) => {

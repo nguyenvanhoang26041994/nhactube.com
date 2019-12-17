@@ -19,7 +19,6 @@ const OtherWrapper = styled.div`
 const Title = styled.div`
   display: flex;
   align-items: center;
-  color: #ffffff;
   padding: 1rem 1rem 1rem 1rem;
   cursor: pointer;
   white-space: nowrap;
@@ -58,7 +57,7 @@ const Playlist = ({ className, style, playlist }) => {
         <List>
           {playlist.songs.map((song, idx) => (
             <li key={song.id}>
-              <SongBar {...song} />
+              <SongBar {...song} className="__song-bar-item" />
             </li>
           ))}
         </List>

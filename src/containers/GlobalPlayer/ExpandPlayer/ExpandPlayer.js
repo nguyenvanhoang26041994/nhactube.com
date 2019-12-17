@@ -3,22 +3,44 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import { Icon } from '../../../components/core';
-import { Playlist, Song } from '../../../components/commons';
+import { Playlist, Song, BlurBackground } from '../../../components/commons';
 import { useGlobalPlayerSong, useGlobalPlayerPlaylist, useGlobalAudio } from '../../../hooks';
 
 const Wrapper = styled.div`
-  transition: all 0.5s cubic-bezier(0.21, 0.63, 0.36, 1);
+  transition: all 0.75s cubic-bezier(0.21, 0.63, 0.36, 1);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   width: 100%;
-  color: #fff;
+
+  .__song-enhancer {
+    color: #fff;
+
+    .__karaoke {
+      color: #fff;
+
+      .__lyric-line.--active {
+        color: ${props => props.theme.colors['yellow-500']};
+      }
+    }
+  }
 `;
 
 const PlaylistStyled = styled(Playlist)`
   border-right: 1px solid rgba(255, 255, 255,.1);
   padding: 3rem 0;
+  color: #fff;
+
+  .__song-bar-item {
+    .__name {
+      color: #fff;
+    }
+
+    .__artists-name {
+      color: #dadde0;
+    }
+  }
 `;
 
 const SongEnhancerWrapper = styled.div`
@@ -27,6 +49,13 @@ const SongEnhancerWrapper = styled.div`
   .--haft {
     width: 50%;
   }
+`;
+
+const ExpandedContainer = styled.div`
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
 `;
 
 const SongEnhancer = ({ wrapperClass, onListIconClick, isSongPoolActive, ...otherProps }) => {
@@ -55,9 +84,10 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
   }, [globalAudio]);
 
   return (
-    <Wrapper className={className} ref={expandPlayerRef} style={style}>
+    <Wrapper className={className} style={style}>
       {isExpanded && (
-        <div className="flex w-full">
+        <ExpandedContainer className="container" ref={expandPlayerRef}>
+          <BlurBackground />
           <PlaylistStyled
             className="__playlist flex-1"
             isActive={isSongPoolActive}
@@ -70,7 +100,7 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
             playOrPauseSong={playOrPauseSong}
             onListIconClick={onListIconClick}
           />
-        </div>
+        </ExpandedContainer>
       )}
     </Wrapper>
   );

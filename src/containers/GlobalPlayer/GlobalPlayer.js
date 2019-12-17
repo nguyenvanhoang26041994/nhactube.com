@@ -15,10 +15,6 @@ const Wrapper = styled.div`
   z-index: 50;
   transition: all 0.5s;
   background-color: ${props => props.theme.colors['gray-200']};
-
-  .inner__blur {
-    bottom: calc(-100% - 5rem);
-  }
 `;
 
 const RelativeContainer = styled.div`
@@ -28,10 +24,17 @@ const RelativeContainer = styled.div`
 `;
 
 const ExpandPlayerStyled = styled(ExpandPlayer)`
-  position: absolute;
-  bottom: 100%;
-  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  max-width: 100%;
   z-index: -1;
+`;
+
+const BlurBackgroundStyled = styled(BlurBackground)`
+  .inner__blur {
+    bottom: calc(-100% - 5rem);
+  }
 `;
 
 const GlobalPlayer = ({ className, style, onExpanded }) => {
@@ -65,7 +68,7 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
         ...style,
       }}
     >
-      {isDark && <BlurBackground />}
+      {isDark && <BlurBackgroundStyled />}
       <GlobalAudio />
       <RelativeContainer className="container">
         <MiniPlayer

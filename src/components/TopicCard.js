@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   user-select: none;
-  color: #fff;
   position: relative;
 
   &:hover,
