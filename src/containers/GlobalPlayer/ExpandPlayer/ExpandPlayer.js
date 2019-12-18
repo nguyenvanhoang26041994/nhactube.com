@@ -29,7 +29,6 @@ const Wrapper = styled.div`
 
 const PlaylistStyled = styled(Playlist)`
   border-right: 1px solid rgba(255, 255, 255,.1);
-  padding: 3rem 0;
   color: #fff;
 
   .__song-bar-item {
@@ -48,6 +47,14 @@ const SongEnhancerWrapper = styled.div`
 
   .--haft {
     width: 50%;
+  }
+
+  .__name {
+      color: #fff;
+  }
+
+  .__artists-name {
+    color: #dadde0;
   }
 `;
 
