@@ -9,7 +9,7 @@ import light from '../variables/theme-light';
 
 const mapTheme = Object.freeze({
   [themesMode.DARK]: dark,
-  [themesMode.light]: light,
+  [themesMode.LIGHT]: light,
 });
 
 export default () => {
