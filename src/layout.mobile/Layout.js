@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Header from './Header';
+import Footer from './Footer';
 import GlobalPlayer from '../containers/GlobalPlayer/GlobalPlayer.mobile';
 
 const Wrapper = styled.div`
@@ -18,10 +20,12 @@ const MainWrapper = styled.main`
 const Layout = ({ children }) => {
   return (
     <Wrapper>
+      <Header />
       <MainWrapper>
         {children}
       </MainWrapper>
       <GlobalPlayer />
+      <Footer />
     </Wrapper>
   );
 };

@@ -24,6 +24,10 @@ const icons = {
   'heart': require('./heart').default,
   'moon-stars': require('./moon-stars').default,
   'sun': require('./sun').default,
+  'bars': require('./bars').default,
+  'home': require('./home').default,
+  'chart': require('./chart').default,
+  'bell': require('./bell').default,
 };
 
 export default icons;

@@ -7,13 +7,13 @@ import { loadable, isMobile } from './utils';
 import { register } from './utils/storageCaches';
 // import theme from './variables/theme';
 import { useTheme } from './hooks';
-import App from './App';
+// import App from './App';
 
 register();
 
-// const App = isMobile
-//   ? loadable(() => import('./App.mobile'))
-//   : loadable(() => import('./App'));
+const App = isMobile
+  ? loadable(() => import('./App.mobile'))
+  : loadable(() => import('./App'));
 
 import store from './store';
 
