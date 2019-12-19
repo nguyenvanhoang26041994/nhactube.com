@@ -7,8 +7,8 @@ const Wrapper = styled.div``;
 
 const HomePage = () => {
   return (
-    <Wrapper className="container mx-auto">
-      <NewSongs />
+    <Wrapper>
+      <NewSongs className="flex-col" />
     </Wrapper>
   );
 };

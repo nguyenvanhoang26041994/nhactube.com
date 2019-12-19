@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 const PlaylistWrapper = styled.ul`
-  flex-basis: 23rem;
   flex-shrink: 1;
   flex-grow: 1;
 `;
@@ -27,21 +26,21 @@ const NewSongs = ({ className }) => {
 
   return (
     <Wrapper className={className}>
-      <PlaylistWrapper className="w-1/3">
+      <PlaylistWrapper className="flex-1">
         {first && first.map((song, idx) => (
           <li key={song.id}>
             <SongBar hiddenDuration {...song} hiddenActions label={idx + 1} />
           </li>
         ))}
       </PlaylistWrapper>
-      <PlaylistWrapper className="w-1/3">
+      <PlaylistWrapper className="flex-1">
         {second && second.map((song, idx) => (
           <li key={song.id}>
             <SongBar hiddenDuration {...song} hiddenActions label={idx + 6} />
           </li>
         ))}
       </PlaylistWrapper>
-      <PlaylistWrapper className="w-1/3">
+      <PlaylistWrapper className="flex-1">
         {third && third.map((song, idx) => (
           <li key={song.id}>
             <SongBar hiddenDuration {...song} hiddenActions label={idx + 11} />
