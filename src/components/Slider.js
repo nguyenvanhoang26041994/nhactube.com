@@ -102,11 +102,11 @@ const Slider = ({ className, value, handleChange, style, ...otherProps }) => {
 Slider.displayName = 'Slider';
 Slider.propTypes = {
   className: PropTypes.string,
-  percent: PropTypes.number,
+  value: PropTypes.number,
   handleChange: PropTypes.func,
 };
 Slider.defaultProps = {
-  percent: 0,
+  value: 0,
   handleChange: f => f,
 };
 

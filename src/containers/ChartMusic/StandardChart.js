@@ -1,9 +1,9 @@
 
 import React, { useMemo, useEffect, useCallback } from 'react';
-import cn from 'classnames';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Button, Icon } from '../../components/core';
+import { Button } from '../../components/core';
 import SongBar from '../../containers/SongBar';
 import SongBarAlpha from '../../containers/SongBar.Alpha';
 import Album from '../../components/Album';
@@ -117,6 +117,14 @@ const StandardChart = ({ useBXHPlaylist }) => {
       </List>
     </Wrapper>
   );
+};
+
+StandardChart.displayName = 'StandardChart';
+StandardChart.propTypes = {
+  useBXHPlaylist: PropTypes.func,
+};
+StandardChart.defaultProps = {
+  useBXHPlaylist: f => f,
 };
 
 export default StandardChart;

@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import styled from 'styled-components';
 
 import { Icon } from '../../components/core';
@@ -23,5 +22,9 @@ const TheTopbar = ({}) => {
     </Wrapper>
   );
 };
+
+TheTopbar.displayName = 'TheTopbar';
+TheTopbar.propTypes = {};
+TheTopbar.defaultProps = {};
 
 export default TheTopbar;

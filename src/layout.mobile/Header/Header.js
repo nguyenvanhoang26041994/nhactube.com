@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import cn from 'classnames';
 
 import TheTopbar from './TheTopbar';
 import TheMenu from './TheMenu';
@@ -28,5 +28,12 @@ const Header = ({ className }) => {
     </Container>
   );
 };
+
+Layout.displayName = 'Layout';
+Layout.propTypes = {
+  className: PropTypes.any,
+};
+Layout.defaultProps = {};
+
 
 export default Header;

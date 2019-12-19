@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
+
 import { useGlobalPlayer } from '../hooks';
 import { mode as modeConstants } from '../store/constants';
 
@@ -50,5 +51,9 @@ const GlobalAudio = () => {
 
   return null;
 };
+
+GlobalAudio.displayName = 'GlobalAudio';
+GlobalAudio.propTypes = {};
+GlobalAudio.defaultProps = {};
 
 export default GlobalAudio;

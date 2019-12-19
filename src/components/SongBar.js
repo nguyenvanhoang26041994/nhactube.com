@@ -134,4 +134,21 @@ const SongBar = ({
   );
 };
 
+SongBar.displayName = 'SongBar';
+SongBar.propTypes = {
+  label: PropTypes.string,
+  className: PropTypes.string,
+  isActive: PropTypes.bool,
+  isPlaying: PropTypes.bool,
+  isDownloaded: PropTypes.bool,
+  avatarUrl: PropTypes.string,
+  name: PropTypes.string,
+  artistsName: PropTypes.string,
+  onClick: PropTypes.func,
+  hiddenActions: PropTypes.bool,
+};
+SongBar.defaultProps = {
+  onClick: f => f,
+};
+
 export default SongBar;

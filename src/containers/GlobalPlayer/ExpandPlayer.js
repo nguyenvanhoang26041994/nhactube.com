@@ -1,10 +1,9 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import cn from 'classnames';
 
-import { Icon } from '../../../components/core';
-import { Playlist, Song, BlurBackground } from '../../../components/commons';
-import { useGlobalPlayerSong, useGlobalPlayerPlaylist, useGlobalAudio } from '../../../hooks';
+import { Playlist, Song, BlurBackground } from '../../components/commons';
+import { useGlobalPlayerSong, useGlobalPlayerPlaylist, useGlobalAudio } from '../../hooks';
 
 const Wrapper = styled.div`
   transition: all 0.75s cubic-bezier(0.21, 0.63, 0.36, 1);
@@ -112,5 +111,14 @@ const ExpandPlayer = ({ className, style, isExpanded, expandPlayerRef }) => {
     </Wrapper>
   );
 };
+
+ExpandPlayer.diplayName = 'ExpandPlayer';
+ExpandPlayer.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  isExpanded: PropTypes.bool,
+  expandPlayerRef: PropTypes.any,
+};
+ExpandPlayer.defaultProps = {};
 
 export default ExpandPlayer;

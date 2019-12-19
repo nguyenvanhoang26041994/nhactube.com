@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import Icon from '../components/Icon';
@@ -26,5 +27,12 @@ const CircleIcon = ({ className, transparent, ...otherProps }) => {
     </Wrapper>
   );
 };
+
+CircleIcon.displayName = 'CircleIcon';
+CircleIcon.propTypes = {
+  className: PropTypes.string,
+  transparent: PropTypes.bool,
+};
+CircleIcon.defaultProps = {};
 
 export default CircleIcon;

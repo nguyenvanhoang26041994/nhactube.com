@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import GlobalAudio from '../GlobalAudio';
@@ -26,5 +26,12 @@ const GlobalPlayer = ({ className, style }) => {
     </Wrapper>
   );
 };
+
+GlobalPlayer.displayName = 'GlobalPlayer.mobile';
+GlobalPlayer.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+};
+GlobalPlayer.defaultProps = {};
 
 export default GlobalPlayer;

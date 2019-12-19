@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import PlaylistDetail from './PlaylistDetail';
@@ -14,5 +15,11 @@ const SongDetailPage = ({ className }) => {
     </Wrapper>
   );
 };
+
+SongDetailPage.displayName = 'SongDetailPage';
+SongDetailPage.propTypes = {
+  className: PropTypes.string,
+};
+SongDetailPage.defaultProps = {};
 
 export default SongDetailPage;

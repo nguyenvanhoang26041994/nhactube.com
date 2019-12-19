@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -33,5 +34,11 @@ const ArtistDetail = ({ className }) => {
     </Wrapper>
   );
 };
+
+ArtistDetail.displayName = 'ArtistDetail';
+ArtistDetail.propTypes = {
+  className: PropTypes.string,
+};
+ArtistDetail.defaultProps = {};
 
 export default ArtistDetail;

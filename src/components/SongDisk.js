@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { Image, Icon } from '../components/core';
 import storageCaches from '../utils/storageCaches';
 
@@ -85,5 +87,17 @@ const SongDisk = ({ className, isPlaying, url, artistsName, name, avatarUrl, hid
     </Wrapper>
   );
 };
+
+SongDisk.displayName = 'SongDisk';
+SongDisk.propTypes = {
+  className: PropTypes.string,
+  isPlaying: PropTypes.bool,
+  url: PropTypes.string,
+  artistsName: PropTypes.string,
+  name: PropTypes.string,
+  avatarUrl: PropTypes.string,
+  hiddenInfo: PropTypes.bool,
+};
+SongDisk.defaultProps = {};
 
 export default SongDisk;

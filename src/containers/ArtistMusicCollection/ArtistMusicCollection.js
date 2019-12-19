@@ -31,4 +31,10 @@ const ArtistMusicCollection = ({ className }) => {
   )
 };
 
+ArtistMusicCollection.displayName = 'ArtistMusicCollection';
+ArtistMusicCollection.propTypes = {
+  className: PropTypes.string,
+};
+ArtistMusicCollection.defaultProps = {};
+
 export default ArtistMusicCollection;

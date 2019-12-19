@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import GlobalPortal from './GlobalPortal';
-import { getPageX, getPageY } from '../utils';
 
 class Overlay extends React.Component {
   render () {
@@ -16,7 +16,13 @@ class Overlay extends React.Component {
   
     );
   }
-
 }
+
+Overlay.propTypes = {
+  children: PropTypes.any,
+  overlay: PropTypes.any,
+  className: PropTypes.string,
+};
+Overlay.defaultProps = {};
 
 export default Overlay;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -24,5 +25,13 @@ const Tab = ({ className, active, children }) => {
     </Wrapper>
   );
 };
+
+Tab.displayName = 'Tab';
+Tab.propTypes = {
+  className: PropTypes.string,
+  active: PropTypes.bool,
+  children: PropTypes.any,
+};
+Tab.defaultProps = {};
 
 export default Tab;

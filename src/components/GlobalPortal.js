@@ -25,6 +25,12 @@ class GlobalPortal extends React.Component {
   }
 }
 
+GlobalPortal.displayName = 'GlobalPortal';
+GlobalPortal.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.any,
+  unmountCallback: PropTypes.func,
+};
 GlobalPortal.defaultProps = {
   unmountCallback: f => f,
 };

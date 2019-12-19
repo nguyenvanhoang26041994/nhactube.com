@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { Song } from '../../components/commons';
 import { PopupModal } from '../../components/core';
 import { useGlobalPlayerSong } from '../../hooks';
@@ -14,6 +16,7 @@ const SongStyled = styled(Song)`
 
 const SongPlayerPopup = ({ children }) => {
   const { song } = useGlobalPlayerSong();
+
   return (
     <PopupModal
       overlay={(
@@ -24,5 +27,11 @@ const SongPlayerPopup = ({ children }) => {
     </PopupModal>
   );
 };
+
+SongPlayerPopup.displayName = 'SongPlayerPopup';
+SongPlayerPopup.propTypes = {
+  children: PropTypes.any,
+};
+SongPlayerPopup.defaultProps = {};
 
 export default SongPlayerPopup;

@@ -1,7 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
-import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+
 import { Icon, Image, Slider } from '../../components/core';
 import Volume from './Volume';
 import { mode as modeConstants } from '../../store/constants';
@@ -168,6 +170,18 @@ const MiniPlayer = ({ className, onSongListIconClick, miniPlayerRef, isExpanded,
       </RestWrapper>
     </Wrapper>
   );
+};
+
+MiniPlayer.displayName = 'MiniPlayer';
+MiniPlayer.propTypes = {
+  className: PropTypes.string,
+  onSongListIconClick: PropTypes.func,
+  miniPlayerRef: PropTypes.any,
+  isExpanded: PropTypes.bool,
+  style: PropTypes.object,
+};
+MiniPlayer.defaultProps = {
+  onSongListIconClick: f => f,
 };
 
 export default MiniPlayer;

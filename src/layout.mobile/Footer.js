@@ -10,4 +10,8 @@ const Footer = ({}) => {
   );
 };
 
+Footer.displayName = 'Footer';
+Footer.propTypes = {};
+Footer.defaultProps = {};
+
 export default Footer;

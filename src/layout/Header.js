@@ -58,7 +58,7 @@ const ListMenuWrapper = styled.ul`
 `;
 
 const Header = (props) => {
-  const { actions, theme, isDark } = useTheme();
+  const { actions, isDark } = useTheme();
   const history = useHistory();
   const onSearchClick = useCallback((text) => {
     history.push(`/search?q=${text}`);
@@ -101,5 +101,9 @@ const Header = (props) => {
     </Container>
   );
 };
+
+Header.displayName = 'Header';
+Header.propTypes = {};
+Header.defaultProps = {};
 
 export default Header;

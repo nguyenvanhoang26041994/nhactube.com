@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import cn from 'classnames';
 
 import { SongDisk, SongKaraoke } from '../components/commons';
 import SongBar from '../components/SongBar';
@@ -48,6 +48,17 @@ const Song = ({ className, song, playOrPauseSong }) => {
       />
     </Wrapper>
   );
+};
+
+Song.displayName = 'Song';
+Song.propTypes = {
+  className: PropTypes.string,
+  song: PropTypes.object,
+  playOrPauseSong: PropTypes.func,
+};
+Song.defaultProps = {
+  song: {},
+  playOrPauseSong: f => f,
 };
 
 export default Song;

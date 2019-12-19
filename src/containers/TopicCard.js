@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+
 import TopicCard from '../components/TopicCard';
 
-export default ({ onClick, ...otherProps }) => {
+const TopicCardContainer = ({ onClick, ...otherProps }) => {
   const history = useHistory();
   const _onClick = useCallback(() => {
     history.push(otherProps.link);
@@ -15,3 +17,14 @@ export default ({ onClick, ...otherProps }) => {
     />
   );
 };
+
+TopicCardContainer.displayName = 'TopicCardContainer';
+TopicCardContainer.propTypes = {
+  link: PropTypes.string,
+  onClick: PropTypes.func,
+};
+TopicCardContainer.defaultProps = {
+  onClick: f => f,
+};
+
+export default TopicCardContainer;

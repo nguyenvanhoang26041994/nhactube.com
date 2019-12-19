@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -19,5 +20,13 @@ const Image = ({ imgRef, className, style, ...otherProps }) => {
 
   );
 };
+
+Image.displayName = 'Image';
+Image.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes,
+  imgRef: PropTypes.any,
+};
+Image.defaultProps = {};
 
 export default Image;

@@ -56,7 +56,7 @@ const ControlWrapper = styled.div`
 `;
 
 const MiniPlayer = ({}) => {
-  const { globalAudio, duration, changeCurrentTime } = useGlobalAudio();
+  const { globalAudio } = useGlobalAudio();
   const { currentSong, goNextSong } = useGlobalPlayer();
   const playOrPauseSong = useCallback(() => {
     if (globalAudio.paused) {
@@ -65,8 +65,6 @@ const MiniPlayer = ({}) => {
 
     return globalAudio.pause();
   }, [globalAudio]);
-
-  const handleChangeCurrentTime = useCallback(percent => changeCurrentTime(percent * duration), [changeCurrentTime, duration]);
 
   const iconPlay = useMemo(() => currentSong.isPlaying ? 'pause' : 'play', [currentSong.isPlaying]);
 
@@ -86,5 +84,9 @@ const MiniPlayer = ({}) => {
     </Wrapper>
   );
 };
+
+MiniPlayer.displayName = 'MiniPlayer.mobile';
+MiniPlayer.propTypes = {};
+MiniPlayer.defaultProps = {};
 
 export default MiniPlayer;

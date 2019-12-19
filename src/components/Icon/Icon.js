@@ -37,13 +37,15 @@ const Icon = ({ className, name, size, color, iconRef, ...otherProps }) => {
   );
 };
 
+Icon.displayName = 'Icon';
 Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.oneOf(Object.keys(icons)).isRequired,
   size: PropTypes.string,
+  color: PropTypes.string,
+  iconRef: PropTypes.any,
 };
 Icon.defaultProps = {
-  color: '',
 };
 
 export default Icon;

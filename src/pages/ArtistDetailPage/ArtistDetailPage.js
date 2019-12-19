@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import ArtistDetail from './ArtistDetail';
@@ -14,5 +15,11 @@ const ArtistDetailPage = ({ className }) => {
     </Wrapper>
   );
 };
+
+ArtistDetailPage.displayName = 'ArtistDetailPage';
+ArtistDetailPage.propTypes = {
+  className: PropTypes.string,
+};
+ArtistDetailPage.defaultProps = {};
 
 export default ArtistDetailPage;

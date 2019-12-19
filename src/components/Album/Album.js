@@ -1,18 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Card from './Card';
-
-const getPrevIdx = (currentIdx, length, gap) => {
-  const prevIdx = currentIdx - gap;
-
-  if (prevIdx < 0) {
-    return length + prevIdx;
-  }
-
-  return prevIdx;
-}
 
 const getNextIdx = (currentIdx, length, gap) => {
   const nextIdx = currentIdx + gap;
@@ -70,6 +61,15 @@ const Album = ({ className, list }) => {
       </List>
     </Wrapper>
   );
+};
+
+Album.displayName = 'Album';
+Album.propTypes = {
+  className: PropTypes.string,
+  list: PropTypes.array,
+};
+Album.defaultProps = {
+  list: [],
 };
 
 export default Album;

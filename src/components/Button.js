@@ -58,6 +58,10 @@ Button.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   color: PropTypes.string,
+  textColor: PropTypes.string,
+  rounded: PropTypes.bool,
+  transparent: PropTypes.bool,
+  buttonRef: PropTypes.any,
 };
 Button.defaultProps = {
   size: 'base',

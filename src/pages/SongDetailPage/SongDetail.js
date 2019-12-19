@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -55,5 +56,11 @@ const SongDetail = ({ className }) => {
     </Wrapper>
   );
 };
+
+SongDetail.displayName = 'SongDetail';
+SongDetail.propTypes = {
+  className: PropTypes.string,
+};
+SongDetail.defaultProps = {};
 
 export default SongDetail;

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
@@ -105,11 +105,16 @@ const Carousel = ({ className, style, list, onClick }) => {
   );
 };
 
+Carousel.displayName = 'Carousel';
 Carousel.propTypes = {
+  className: PropTypes.string,
   onClick: PropTypes.func,
+  style: PropTypes.object,
+  list: PropTypes.array,
 };
 Carousel.defaultProps = {
   onClick: f => f,
+  list: [],
 };
 
 export default Carousel;

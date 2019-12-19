@@ -9,4 +9,8 @@ const CardSkeleton = () => {
   );
 };
 
+CardSkeleton.displayName = 'CardSkeleton';
+CardSkeleton.propTypes = {};
+CardSkeleton.defaultProps = {};
+
 export default CardSkeleton;

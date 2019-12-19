@@ -1,5 +1,4 @@
-import React, { useMemo, useEffect, useCallback } from 'react';
-import cn from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -27,5 +26,11 @@ const ChartMusic = ({ className }) => {
     </Wrapper>
   )
 };
+
+ChartMusic.displayName = 'ChartMusic';
+ChartMusic.propTypes = {
+  className: PropTypes.string,
+};
+ChartMusic.defaultProps = {};
 
 export default ChartMusic;

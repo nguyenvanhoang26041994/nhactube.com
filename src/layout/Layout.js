@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { BlurBackground } from '../components/commons';
@@ -48,5 +49,11 @@ const Layout = ({ children }) => {
     </Wrapper>
   );
 };
+
+Layout.displayName = 'Layout';
+Layout.propTypes = {
+  children: PropTypes.any,
+};
+Layout.defaultProps = {};
 
 export default Layout;

@@ -95,11 +95,12 @@ Switch.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
   onChange: PropTypes.func,
+  trueable: PropTypes.any,
+  falseable: PropTypes.any,
 };
 Switch.defaultProps = {
   onChange: f => f,
   size: 'base',
-  color: '',
 };
 
 

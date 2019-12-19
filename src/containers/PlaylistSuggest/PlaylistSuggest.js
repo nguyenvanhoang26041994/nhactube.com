@@ -1,5 +1,4 @@
-import React, { useMemo, useEffect, useCallback } from 'react';
-import cn from 'classnames';
+import React, { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -38,5 +37,11 @@ const PlaylistSuggest = ({ className }) => {
     </Wrapper>
   )
 };
+
+PlaylistSuggest.displayName = 'PlaylistSuggest';
+PlaylistSuggest.propTypes = {
+  className: PropTypes.string,
+};
+PlaylistSuggest.defaultProps = {};
 
 export default PlaylistSuggest;

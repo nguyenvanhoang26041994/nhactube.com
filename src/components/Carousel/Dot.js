@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -22,6 +23,16 @@ const Dot = ({ className, onClick, active }) => {
   return (
     <Wrapper className={cn({ '--active': active }, className)} onClick={onClick} />
   );
-}
+};
+
+Dot.displayName = 'Dot';
+Dot.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  active: PropTypes.bool,
+};
+Dot.defaultProps = {
+  onClick: f => f,
+};
 
 export default Dot;

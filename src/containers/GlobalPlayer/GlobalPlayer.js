@@ -1,5 +1,7 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import MiniPlayer from './MiniPlayer';
 import ExpandPlayer from './ExpandPlayer';
 import GlobalAudio from '../GlobalAudio';
@@ -88,6 +90,16 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
       </RelativeContainer>
     </Wrapper>
   );
+};
+
+GlobalPlayer.displayName = 'GlobalPlayer';
+GlobalPlayer.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  onExpanded: PropTypes.func,
+};
+GlobalPlayer.defaultProps = {
+  onExpanded: f => f,
 };
 
 export default GlobalPlayer;

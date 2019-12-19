@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
 import { loadable } from './utils';
 import GlobalStyle from './global-styles';
 import Layout from './layout.mobile';
@@ -19,5 +20,9 @@ const App = () => {
     </BrowserRouter>
   );
 };
+
+App.displayName = 'App.mobile';
+App.propTypes = {};
+App.defaultProps = {};
 
 export default App;

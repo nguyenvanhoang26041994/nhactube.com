@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { Image, Button } from '../components/core';
 import { AvatarWithPlayButton } from '../components/commons';
 import SongBar from '../containers/SongBar';
 import { _chunk } from '../utils';
@@ -26,15 +26,14 @@ const Avatar = styled(AvatarWithPlayButton)`
 
 const List = styled.ul``;
 
-const MusicCollection = ({ avatarUrl, name, id, songs, className }) => {
+const MusicCollection = ({ avatarUrl, songs, className }) => {
   const { isDark } = useTheme();
   const [first, second] = useMemo(() => songs ? _chunk(songs, 5) : [], [songs]);
-
-  const { playlist } = useGlobalPlayerPlaylist();
 
   const handlePlayButtonClick = useCallback(() => {
 
   }, []);
+
   return (
     <Wrapper className={className}>
       <MainInfoWrapper className={cn('mx-2', { '--dark': isDark })}>
@@ -62,6 +61,16 @@ const MusicCollection = ({ avatarUrl, name, id, songs, className }) => {
       </div>
     </Wrapper>
   );
+};
+
+MusicCollection.displayName = 'MusicCollection';
+MusicCollection.propTypes = {
+  className: PropTypes.string,
+  avatarUrl: PropTypes.string,
+  songs: PropTypes.array,
+};
+MusicCollection.defaultProps = {
+  songs: [],
 };
 
 export default MusicCollection;

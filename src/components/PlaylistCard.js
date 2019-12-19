@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { Image } from '../components/core';
 
 const Avatar = styled(Image)`
@@ -23,13 +25,24 @@ const Text = styled.div`
   font-weight: 400;
 `;
 
-const PlaylistCard = ({ className, name, avatarUrl,onClick }) => {
+const PlaylistCard = ({ className, name, avatarUrl, onClick }) => {
   return (
     <Wrapper className={className} onClick={onClick}>
       <Avatar className="__avatar" src={avatarUrl} />
       <Text className="my-3">{name}</Text>
     </Wrapper>
   );
+};
+
+PlaylistCard.displayName = 'PlaylistCard';
+PlaylistCard.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  name: PropTypes.string,
+  avatarUrl: PropTypes.string,
+};
+PlaylistCard.defaultProps = {
+  onClick: f => f,
 };
 
 export default PlaylistCard;

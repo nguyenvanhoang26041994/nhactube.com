@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import Overlay from './Overlay';
 
@@ -14,7 +14,7 @@ const Style = createGlobalStyle`
   }
 `;
 
-const PopupModal = ({ children, className, overlay }) => {
+const PopupModal = ({ children, overlay }) => {
   return (
     <Overlay className="popup-modal" overlay={overlay}>
       {children}
@@ -22,5 +22,12 @@ const PopupModal = ({ children, className, overlay }) => {
     </Overlay>
   );
 };
+
+PopupModal.displayName = 'PopupModal';
+PopupModal.propTypes = {
+  children: PropTypes.any,
+  overlay: PropTypes.any,
+};
+PopupModal.defaultProps = {};
 
 export default PopupModal;

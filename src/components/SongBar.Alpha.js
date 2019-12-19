@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -98,6 +98,22 @@ const SongBar = ({
       )}
     </Wrapper>
   );
+};
+
+SongBar.displayName = 'SongBar.Alpha';
+SongBar.propTypes = {
+  className: PropTypes.string,
+  isActive: PropTypes.bool,
+  isPlaying: PropTypes.bool,
+  isDownloaded: PropTypes.bool,
+  avatarUrl: PropTypes.string,
+  name: PropTypes.string,
+  artistsName: PropTypes.string,
+  onClick: PropTypes.func,
+  hiddenActions: PropTypes.bool,
+};
+SongBar.defaultProps = {
+  onClick: f => f,
 };
 
 export default SongBar;

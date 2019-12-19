@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -34,7 +35,7 @@ const BlurImage = styled(Image)`
   }
 `;
 
-export default ({ className, dark, ...otherProps }) => {
+const BlurBackground = ({ className, dark, ...otherProps }) => {
   const { song } = useGlobalPlayerSong();
 
   return (
@@ -45,3 +46,12 @@ export default ({ className, dark, ...otherProps }) => {
     </Wrapper>
   );
 };
+
+BlurBackground.displayName = 'BlurBackground';
+BlurBackground.propTypes = {
+  className: PropTypes.string,
+  dark: PropTypes.bool,
+};
+BlurBackground.defaultProps = {};
+
+export default BlurBackground;

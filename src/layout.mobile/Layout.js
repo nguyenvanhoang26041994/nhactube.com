@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Header from './Header';
@@ -29,5 +30,11 @@ const Layout = ({ children }) => {
     </Wrapper>
   );
 };
+
+Layout.displayName = 'Layout';
+Layout.propTypes = {
+  children: PropTypes.any,
+};
+Layout.defaultProps = {};
 
 export default Layout;

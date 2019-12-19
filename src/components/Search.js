@@ -1,5 +1,7 @@
 import React, { useCallback, useRef } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import Input from '../components/Input';
 import Icon from '../components/Icon';
 import Button from '../components/Button';
@@ -34,6 +36,14 @@ const Search = ({ onSearchClick, ...otherProps }) => {
       />
    </Wrapper>
   );
+};
+
+Search.displayName = 'Search';
+Search.propTypes = {
+  onSearchClick: PropTypes.func,
+};
+Search.defaultProps = {
+  onSearchClick: f => f,
 };
 
 export default Search;

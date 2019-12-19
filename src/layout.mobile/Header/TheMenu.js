@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Icon } from '../../components/core';
@@ -38,5 +38,13 @@ const TheMenu = ({}) => {
     </Wrapper>
   );
 };
+
+TheMenu.displayName = 'TheMenu';
+TheMenu.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string,
+  icon: PropTypes.string,
+};
+TheMenu.defaultProps = {};
 
 export default TheMenu;

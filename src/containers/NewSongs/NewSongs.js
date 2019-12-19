@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import styled from 'styled-components';
 
 import SongBar from '../../containers/SongBar';
@@ -18,6 +17,7 @@ const PlaylistWrapper = styled.ul`
 
 const NewSongs = ({ className }) => {
   const { playlist, actions } = useNewSongsPlaylist();
+
   useEffect(() => {
     actions.fetchNewSongs();
   }, []);
@@ -50,5 +50,11 @@ const NewSongs = ({ className }) => {
     </Wrapper>
   );
 };
+
+NewSongs.displayName = 'NewSongs';
+NewSongs.propTypes = {
+  className: PropTypes.string,
+};
+NewSongs.defaultProps = {};
 
 export default NewSongs;

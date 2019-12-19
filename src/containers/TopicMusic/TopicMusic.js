@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from 'react';
-import cn from 'classnames';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -38,5 +37,11 @@ const TopicMusic = ({ className }) => {
     </Wrapper>
   );
 };
+
+TopicMusic.displayName = 'TopicMusic';
+TopicMusic.propTypes = {
+  className: PropTypes.string,
+};
+TopicMusic.defaultProps = {};
 
 export default TopicMusic;

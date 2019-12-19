@@ -3,10 +3,14 @@ import StandardChart from './StandardChart';
 
 import { useBXHUSUKPlaylist } from './hooks';
 
-const VietnamChart = (props) => {
+const USUKChart = (props) => {
   return (
     <StandardChart {...props} useBXHPlaylist={useBXHUSUKPlaylist} />
   );
 };
 
-export default VietnamChart;
+USUKChart.displayName = 'USUKChart';
+USUKChart.propTypes = {};
+USUKChart.defaultProps = {};
+
+export default USUKChart;

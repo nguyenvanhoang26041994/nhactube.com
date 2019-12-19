@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import PlaylistCard from '../../containers/PlaylistCard';
-import { SlickSlider } from '../../components/commons';
+
 import ShelfRenderer from './ShelfRenderer';
 import ChartMusic from '../../containers/ChartMusic';
 import NewSongs from '../../containers/NewSongs';
@@ -10,8 +9,7 @@ import TopicMusic from '../../containers/TopicMusic';
 import ArtistMusicCollection from '../../containers/ArtistMusicCollection';
 import MassiveHeaderCarousel from '../../containers/MassiveHeaderCarousel';
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;
 
 const HomePage = () => {
   return (
@@ -35,5 +33,9 @@ const HomePage = () => {
     </Wrapper>
   );
 };
+
+HomePage.displayName = 'HomePage';
+HomePage.propTypes = {};
+HomePage.defaultProps = {};
 
 export default HomePage;

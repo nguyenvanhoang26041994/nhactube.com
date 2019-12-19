@@ -1,8 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+
 import { useGlobalPlayerPlaylist } from '../hooks';
 
-export default () => {
+const Prefetch = () => {
   const { playlist } = useGlobalPlayerPlaylist();
 
   return (
@@ -16,3 +17,9 @@ export default () => {
     </React.Fragment>
   );
 }
+
+Prefetch.displayName = 'Prefetch';
+Prefetch.propTypes = {};
+Prefetch.defaultProps = {};
+
+export default Prefetch;

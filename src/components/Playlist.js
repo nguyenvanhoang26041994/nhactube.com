@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Icon } from '../components/core';
@@ -64,6 +65,16 @@ const Playlist = ({ className, style, playlist }) => {
       </OtherWrapper>
     </Wrapper>
   );
+};
+
+Playlist.displayName = 'Playlist';
+Playlist.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+  playlist: PropTypes.array,
+};
+Playlist.defaultProps = {
+  playlist: [],
 };
 
 export default Playlist;

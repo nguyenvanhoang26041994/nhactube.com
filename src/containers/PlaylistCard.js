@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+
 import PlaylistCard from '../components/PlaylistCard';
 
-export default ({ onClick, ...otherProps }) => {
+const PlaylistCardContainer = ({ onClick, ...otherProps }) => {
   const history = useHistory();
   const _onClick = useCallback(() => {
     history.push(otherProps.link);
@@ -15,3 +17,14 @@ export default ({ onClick, ...otherProps }) => {
     />
   );
 };
+
+PlaylistCardContainer.displayName = 'PlaylistCardContainer';
+PlaylistCardContainer.propTypes = {
+  onClick: PropTypes.func,
+  link: PropTypes.string,
+};
+PlaylistCardContainer.defaultProps = {
+  onClick: f => f,
+};
+
+export default PlaylistCardContainer;

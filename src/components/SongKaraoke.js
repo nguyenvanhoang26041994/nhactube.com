@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
+
 import { getPageY } from '../utils';
 
 const Wrapper = styled.div`
@@ -110,6 +112,17 @@ const SongKaraoke = ({ className, lyric, currentTime }) => {
       </LyricWrapper>
     </Wrapper>
   );
+};
+
+SongKaraoke.displayName = 'SongKaraoke';
+SongKaraoke.propTypes = {
+  className: PropTypes.string,
+  lyric: PropTypes.array,
+  currentTime: PropTypes.number,
+};
+SongKaraoke.defaultProps = {
+  lyric: [],
+  currentTime: 0,
 };
 
 export default SongKaraoke;

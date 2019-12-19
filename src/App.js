@@ -30,4 +30,8 @@ const App = () => {
   );
 };
 
+App.displayName = 'App';
+App.propTypes = {};
+App.defaultProps = {};
+
 export default App;

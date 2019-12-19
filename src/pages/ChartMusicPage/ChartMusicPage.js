@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 import styled from 'styled-components';
 
 import ChartMusic from '../../containers/ChartMusic';
@@ -14,5 +13,11 @@ const ChartMusicPage = ({}) => {
     </Wrapper>
   );
 };
+
+ChartMusicPage.displayName = 'ChartMusicPage';
+ChartMusicPage.propTypes = {
+  className: PropTypes.string,
+};
+ChartMusicPage.defaultProps = {};
 
 export default ChartMusicPage;

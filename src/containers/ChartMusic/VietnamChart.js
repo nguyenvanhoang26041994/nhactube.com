@@ -9,4 +9,8 @@ const VietnamChart = (props) => {
   );
 };
 
+VietnamChart.displayName = 'VietnamChart';
+VietnamChart.propTypes = {};
+VietnamChart.defaultProps = {};
+
 export default VietnamChart;

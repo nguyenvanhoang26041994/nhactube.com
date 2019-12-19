@@ -1,7 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import cn from 'classnames';
-import styled from 'styled-components';
+import React, { useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Carousel } from '../../components/core';
@@ -27,5 +24,9 @@ const MassiveHeaderCarousel = (props) => {
     />
   );
 };
+
+MassiveHeaderCarousel.displayName = 'MassiveHeaderCarousel';
+MassiveHeaderCarousel.propTypes = {};
+MassiveHeaderCarousel.defaultProps = {};
 
 export default MassiveHeaderCarousel;

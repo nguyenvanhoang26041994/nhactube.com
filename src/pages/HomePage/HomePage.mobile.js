@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import NewSongs from '../../containers/NewSongs';
@@ -12,5 +12,9 @@ const HomePage = () => {
     </Wrapper>
   );
 };
+
+HomePage.displayName = 'HomePage.mobile';
+HomePage.propTypes = {};
+HomePage.defaultProps = {};
 
 export default HomePage;

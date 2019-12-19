@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import cn from 'classnames';
 
 import Image from './Image';
 import Icon from './Icon';
@@ -39,6 +39,14 @@ const AvatarWithPlayButton = ({ className, sizeButton, onPlayButtonClick, isAcit
   );
 };
 
+AvatarWithPlayButton.displayName = 'AvatarWithPlayButton';
+AvatarWithPlayButton.propTypes = {
+  className: PropTypes.string,
+  isAcitve: PropTypes.bool,
+  isPlaying: PropTypes.bool,
+  sizeButton: PropTypes.string,
+  onPlayButtonClick: PropTypes.func,
+};
 AvatarWithPlayButton.defaultProps = {
   sizeButton: '5xl',
   onPlayButtonClick: f => f,

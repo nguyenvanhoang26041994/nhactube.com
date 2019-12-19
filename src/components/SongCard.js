@@ -43,7 +43,7 @@ const Text = styled.div`
   }
 `;
 
-const SongCard = ({ className, name, artists, isActive, isPlaying, isDownloaded, onClick, avatarUrl }) => {
+const SongCard = ({ className, name, artists, isActive, isDownloaded, onClick, avatarUrl }) => {
   const artistsName = useMemo(() => artists.map(art => art.name).join(', '), [artists]);
 
   return (
@@ -60,12 +60,15 @@ const SongCard = ({ className, name, artists, isActive, isPlaying, isDownloaded,
   );
 };
 
+SongCard.displayName = 'SongCard';
 SongCard.propTypes = {
   className: PropTypes.string,
   avatarUrl: PropTypes.string,
   name: PropTypes.string,
   artists: PropTypes.array,
   onClick: PropTypes.func,
+  isActive: PropTypes.bool,
+  isDownloaded: PropTypes.bool,
 };
 
 SongCard.defaultProps = {

@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { useQuery } from '../../hooks';
 
 const Wrapper = styled.div``;
@@ -14,5 +16,11 @@ const SearchPage = ({ className }) => {
     </Wrapper>
   );
 };
+
+SearchPage.displayName = 'SearchPage';
+SearchPage.propTypes = {
+  className: PropTypes.string,
+};
+SearchPage.defaultProps = {};
 
 export default SearchPage;
