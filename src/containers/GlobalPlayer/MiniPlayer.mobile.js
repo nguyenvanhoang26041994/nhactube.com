@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3.5rem;
+  height: 3.7rem;
   background-color: ${props => props.theme.colors['gray-200']};
 `;
 
@@ -31,13 +32,14 @@ const InforWrapper = styled.div`
 
   .__artists-name {
     color: ${props => props.theme.colors.textWeak};
+    font-size: ${props => props.theme.fontSizes.sm};
   }
 `;
 
 const Avatar = styled(Image)`
   border-radius: 999px;
-  width: 3rem;
-  height: 3rem;
+  width: 2.7rem;
+  height: 2.7rem;
 
   &.--spin {
     animation: ${spin} 10s linear infinite;
@@ -55,7 +57,9 @@ const ControlWrapper = styled.div`
   display: flex;
 `;
 
-const MiniPlayer = ({}) => {
+const MiniPlayer = ({ className, onClick, ...otherProps }) => {
+  const ignoreRef = useRef();
+  const wrapperRef = useRef();
   const { globalAudio } = useGlobalAudio();
   const { currentSong, goNextSong } = useGlobalPlayer();
   const playOrPauseSong = useCallback(() => {
@@ -66,18 +70,25 @@ const MiniPlayer = ({}) => {
     return globalAudio.pause();
   }, [globalAudio]);
 
+  const _onClick = useCallback((e) => {
+    if (ignoreRef.current.contains(e.target)) {
+      return;
+    }
+    return onClick();
+  }, [onClick]);
+
   const iconPlay = useMemo(() => currentSong.isPlaying ? 'pause' : 'play', [currentSong.isPlaying]);
 
   return (
-    <Wrapper className="px-3">
+    <Wrapper className="px-3" {...otherProps} ref={wrapperRef} onClick={_onClick}>
       <InforWrapper className="flex-1">
         <Avatar src={currentSong.avatarUrl} className={cn('__avatar', { '--spin': currentSong.isPlaying })} />
         <MainInfo className="ml-2">
-          <span className="__name mb-1">{currentSong.name}</span>
+          <span className="__name mb-2">{currentSong.name}</span>
           <span className="__artists-name">{currentSong.artistsName}</span>
         </MainInfo>
       </InforWrapper>
-      <ControlWrapper className="flex">
+      <ControlWrapper className="flex" ref={ignoreRef}>
         <StyledIcon name={iconPlay} size="lg" className="mx-3" onClick={playOrPauseSong} />
         <StyledIcon name="step-forward" size="lg" className="mx-3" onClick={goNextSong} />
       </ControlWrapper>
@@ -86,7 +97,12 @@ const MiniPlayer = ({}) => {
 };
 
 MiniPlayer.displayName = 'MiniPlayer.mobile';
-MiniPlayer.propTypes = {};
-MiniPlayer.defaultProps = {};
+MiniPlayer.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+};
+MiniPlayer.defaultProps = {
+  onClick: f => f,
+};
 
 export default MiniPlayer;

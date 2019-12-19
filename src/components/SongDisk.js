@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 `;
 
 const AvatarImage = styled(Image)`
-  width: 18em;
-  height: 18em;
+  width: 16em;
+  height: 16em;
   border-radius: 999px;
   margin: 0 auto;
   transition: transform 0.2s cubic-bezier(0.5, 0.5, 1, 1), opacity 0.2s;

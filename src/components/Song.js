@@ -34,7 +34,7 @@ const Song = ({ className, song, playOrPauseSong }) => {
 
   return (
     <Wrapper className={className}>
-      <SongBar isActive {...song} className="w-full" />
+      <SongBar isActive {...song} className="w-full" hiddenActions />
       <SongDiskStyled
         {...song}
         hiddenInfo

@@ -30,8 +30,8 @@ const BlurImage = styled(Image)`
   height: 100vh;
 
   img {
-    filter: blur(60px) brightness(0.5);
-    transform: scale(1.5);
+    filter: blur(60px) brightness(0.4);
+    transform: scale(1.4);
   }
 `;
 

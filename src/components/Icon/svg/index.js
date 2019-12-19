@@ -28,6 +28,7 @@ const icons = {
   'home': require('./home').default,
   'chart': require('./chart').default,
   'bell': require('./bell').default,
+  'chevron-down': require('./chevron-down').default,
 };
 
 export default icons;
