@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 4rem;
+  background-color: #fff;
 `;
 
 const MenuWrapper = styled.div`

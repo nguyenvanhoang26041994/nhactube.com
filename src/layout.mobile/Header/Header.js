@@ -5,12 +5,22 @@ import cn from 'classnames';
 import TheTopbar from './TheTopbar';
 import TheMenu from './TheMenu';
 
-const Container = styled.div``
-const Wrapper = styled.header``;
+const Container = styled.div`
+  height: 6.7rem;
+  z-index: 100;
+`;
 
-const Header = ({}) => {
+const Wrapper = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: inherit;
+`;
+
+const Header = ({ className }) => {
   return (
-    <Container>
+    <Container className={className}>
       <Wrapper>
         <TheTopbar />
         <TheMenu />

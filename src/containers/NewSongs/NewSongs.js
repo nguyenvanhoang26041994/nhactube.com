@@ -9,8 +9,12 @@ import { _chunk } from '../../utils';
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 const PlaylistWrapper = styled.ul`
+  flex-basis: 23rem;
+  flex-shrink: 1;
+  flex-grow: 1;
 `;
 
 const NewSongs = ({ className }) => {
