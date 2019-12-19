@@ -29,11 +29,11 @@ const Header = ({ className }) => {
   );
 };
 
-Layout.displayName = 'Layout';
-Layout.propTypes = {
+Header.displayName = 'Header';
+Header.propTypes = {
   className: PropTypes.any,
 };
-Layout.defaultProps = {};
+Header.defaultProps = {};
 
 
 export default Header;
