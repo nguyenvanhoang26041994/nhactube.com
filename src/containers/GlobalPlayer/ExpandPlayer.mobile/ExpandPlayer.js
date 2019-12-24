@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Icon } from '../../../components/core';
 import { Song } from '../../../components/commons';
 import PlayerControl from './PlayerControl';
+import { BlurBackground } from '../../../components/commons';
 import { useGlobalPlayerSong } from '../../../hooks';
 
 const Container = styled.div`
@@ -22,10 +23,23 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  background-color: #fff;
+  background-color: #000;
+  color: #fff;
 
-  > .__song {
-    max-height: 55rem;
+  .__player-control {
+    height: 6rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .__song {
+    .__artists-name {
+      color: #dadde0;
+    }
+
+    .__lyric-line.--active {
+      color: ${props => props.theme.colors['yellow-500']};
+    }
   }
 `;
 const CloseIcon = styled(Icon)`
@@ -35,14 +49,19 @@ const CloseIcon = styled(Icon)`
   z-index: 1;
 `;
 
+const BlurBackgroundStyled = styled(BlurBackground)`
+  z-index: 0;
+`;
+
 const ExpandPlayer = ({ className, onClose }) => {
   const { song } = useGlobalPlayerSong();
   return (
     <Container className={className}>
       <Wrapper>
+        <BlurBackgroundStyled />
         <CloseIcon name="chevron-down" size="xl" className="m-2" onClick={onClose} />
-        <Song song={song} className="flex-1" />
-        <PlayerControl className="pb-10" />
+        <Song song={song} className="__song flex-1" />
+        <PlayerControl className="__player-control" />
       </Wrapper>
     </Container>
   );
