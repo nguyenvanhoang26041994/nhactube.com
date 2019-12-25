@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styled from 'styled-components';
 
-import { Icon } from '../../../components/core';
-import { Song } from '../../../components/commons';
+import { Icon, Image } from '../../../components/core';
 import PlayerControl from './PlayerControl';
 import { BlurBackground } from '../../../components/commons';
+import SongHeader from './SongHeader';
 import { useGlobalPlayerSong } from '../../../hooks';
+import { spin } from '../../../global-styles';
 
 const Container = styled.div`
   position: fixed;
@@ -17,6 +18,7 @@ const Container = styled.div`
   width: 100%;
   z-index: 999;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -27,9 +29,8 @@ const Wrapper = styled.div`
   color: #fff;
 
   .__player-control {
-    height: 6rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .__song {
@@ -42,15 +43,33 @@ const Wrapper = styled.div`
     }
   }
 `;
-const CloseIcon = styled(Icon)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-`;
 
 const BlurBackgroundStyled = styled(BlurBackground)`
   z-index: 0;
+`;
+
+const SongHeaderStyled = styled(SongHeader)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+`;
+
+const Avatar = styled(Image)`
+  height: 24rem;
+  width: 24rem;
+  max-width: 100%;
+  z-index: 1;
+  margin: 8rem auto;
+`;
+
+const PlayerControlStyled = styled(PlayerControl)`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 `;
 
 const ExpandPlayer = ({ className, onClose }) => {
@@ -59,9 +78,9 @@ const ExpandPlayer = ({ className, onClose }) => {
     <Container className={className}>
       <Wrapper>
         <BlurBackgroundStyled />
-        <CloseIcon name="chevron-down" size="xl" className="m-2" onClick={onClose} />
-        <Song song={song} className="__song flex-1" />
-        <PlayerControl className="__player-control" />
+        <SongHeaderStyled {...song} onDownClick={onClose} />
+        <Avatar src={song.avatarUrl} />
+        <PlayerControlStyled className="__player-control" />
       </Wrapper>
     </Container>
   );
