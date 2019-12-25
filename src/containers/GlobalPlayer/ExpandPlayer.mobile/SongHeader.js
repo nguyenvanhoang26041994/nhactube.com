@@ -3,13 +3,23 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-import { Icon } from '../../../components/core';
+import { Icon, Image } from '../../../components/core';
+import { spin } from '../../../global-styles';
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   cursor: pointer;
   padding: 0.5em 0.75em;
+`;
+
+const Avatar = styled(Image)`
+  height: 2.7rem;
+  width: 2.7rem;
+  border-radius: 999px;
+
+  &.--playing {
+    animation: ${spin} 10s linear infinite;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -36,12 +46,15 @@ const InfoWrapper = styled.div`
 const SongHeader = ({
   className,
   name,
+  avatarUrl,
+  isPlaying,
   artistsName,
   onDownClick,
 }) => {
   return (
     <Wrapper className={className}>
-      <InfoWrapper>
+      <Avatar src={avatarUrl} className={cn({ '--playing': isPlaying })} />
+      <InfoWrapper className="ml-1 flex-1">
         <div className="__name flex items-base p-1">
           {name}
         </div>

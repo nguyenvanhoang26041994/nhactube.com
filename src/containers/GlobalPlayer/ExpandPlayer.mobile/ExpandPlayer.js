@@ -5,10 +5,9 @@ import styled from 'styled-components';
 
 import { Icon, Image } from '../../../components/core';
 import PlayerControl from './PlayerControl';
-import { BlurBackground } from '../../../components/commons';
+import { BlurBackground, SongKaraoke } from '../../../components/commons';
 import SongHeader from './SongHeader';
-import { useGlobalPlayerSong } from '../../../hooks';
-import { spin } from '../../../global-styles';
+import { useGlobalPlayerSong, useGlobalAudio } from '../../../hooks';
 
 const Container = styled.div`
   position: fixed;
@@ -56,12 +55,14 @@ const SongHeaderStyled = styled(SongHeader)`
   z-index: 1;
 `;
 
-const Avatar = styled(Image)`
-  height: 24rem;
-  width: 24rem;
-  max-width: 100%;
-  z-index: 1;
-  margin: 8rem auto;
+const SongKaraokeStyled = styled(SongKaraoke)`
+  max-height: calc(100vh - 15rem);
+  margin-top: 5rem;
+  margin-bottom: 7rem;
+
+  .__lyric-line.--active {
+    color: ${props => props.theme.colors['yellow-500']};
+  }
 `;
 
 const PlayerControlStyled = styled(PlayerControl)`
@@ -74,12 +75,17 @@ const PlayerControlStyled = styled(PlayerControl)`
 
 const ExpandPlayer = ({ className, onClose }) => {
   const { song } = useGlobalPlayerSong();
+  const { currentTime } = useGlobalAudio();
+
   return (
     <Container className={className}>
       <Wrapper>
         <BlurBackgroundStyled />
         <SongHeaderStyled {...song} onDownClick={onClose} />
-        <Avatar src={song.avatarUrl} />
+        <SongKaraokeStyled
+          lyric={song.lyric}
+          currentTime={song.isPlaying ? currentTime : 0}
+        />
         <PlayerControlStyled className="__player-control" />
       </Wrapper>
     </Container>
