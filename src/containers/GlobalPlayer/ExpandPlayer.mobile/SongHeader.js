@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 import { Icon, Image } from '../../../components/core';
+import CircleIconButton from './CircleIconButton';
 import { spin } from '../../../global-styles';
 
 const Wrapper = styled.div`
@@ -62,7 +63,7 @@ const SongHeader = ({
           {artistsName}
         </div>
       </InfoWrapper>
-      <Icon name="chevron-down" size="xl" className="m-2" onClick={onDownClick} />
+      <CircleIconButton name="chevron-down" size="xl" className="m-2" onClick={onDownClick} />
     </Wrapper>
   );
 };
