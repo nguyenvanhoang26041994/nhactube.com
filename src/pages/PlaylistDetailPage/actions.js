@@ -1,4 +1,5 @@
 import { playlistConstants } from './constants';
+import api from '../../config/api';
 
 // PLAYLIST DETAIL
 export const fetchPlaylistRequest = () => ({
@@ -17,7 +18,7 @@ export const fetchPlaylistSuccess = (playlist) => ({
 export const fetchPlaylist = (id) => async (dispatch) => {
   dispatch(fetchPlaylistRequest());
   try {
-    const { data } = await fetch(`https://www.nhactube.com/api/playlists/${id}`).then(res => res.json());
+    const { data } = await fetch(api.main.playlists.main(id)).then(res => res.json());
     dispatch(fetchPlaylistSuccess(data));
     return data;
   } catch(e) {

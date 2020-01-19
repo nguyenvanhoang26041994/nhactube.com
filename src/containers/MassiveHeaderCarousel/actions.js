@@ -1,4 +1,5 @@
 import { mainConstants } from './constants';
+import api from '../../config/api';
 
 export const fetchDataRequest = () => ({
   type: mainConstants.GET_DATA_REQUEST,
@@ -16,7 +17,7 @@ export const fetchDataSuccess = (list) => ({
 export const fetchData = () => async (dispatch) => {
   dispatch(fetchDataRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/stuff/massive-header-slider').then(res => res.json());
+    const { data } = await fetch(api.main.stuff.massiveHeaderSlider).then(res => res.json());
     dispatch(fetchDataSuccess(data.chain));
     return data;
   } catch(e) {

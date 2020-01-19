@@ -1,4 +1,5 @@
 import { playlistSuggestConstants } from './constants';
+import api from '../../config/api';
 
 // NEW SONGS
 export const fetchPlaylistSuggestRequest = () => ({
@@ -17,7 +18,7 @@ export const fetchPlaylistSuggestSuccess = (playlists) => ({
 export const fetchPlaylistSuggest = () => async (dispatch) => {
   dispatch(fetchPlaylistSuggestRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/stuff/maybe-you-love-them').then(res => res.json());
+    const { data } = await fetch(api.main.stuff.maybeYouLoveThem).then(res => res.json());
     dispatch(fetchPlaylistSuggestSuccess(data.chain));
     return data;
   } catch(e) {

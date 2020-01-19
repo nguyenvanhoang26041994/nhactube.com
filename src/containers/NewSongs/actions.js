@@ -1,4 +1,5 @@
 import { newSongsConstants } from './constants';
+import api from '../../config/api';
 
 // NEW SONGS
 export const fetchNewSongsRequest = () => ({
@@ -17,7 +18,7 @@ export const fetchNewSongsSuccess = (songs) => ({
 export const fetchNewSongs = () => async (dispatch) => {
   dispatch(fetchNewSongsRequest());
   try {
-    const { data } = await fetch('https://www.nhactube.com/api/songs/new').then(res => res.json());
+    const { data } = await fetch(api.main.songs.new).then(res => res.json());
     dispatch(fetchNewSongsSuccess(data));
     return data;
   } catch(e) {

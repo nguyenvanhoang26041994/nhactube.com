@@ -1,4 +1,5 @@
 import { globalPlayer } from '../constants';
+import api from '../../config/api';
 
 // MODE
 export const changeMode = mode => ({
@@ -24,7 +25,7 @@ export const fetchLyric = songId => async (dispatch) => {
   dispatch(fetchLyricRequest());
 
   try {
-    const data = await fetch(`https://www.nhactube.com/api/lyrics/${songId}`).then(res => res.json());
+    const data = await fetch(api.main.lyrics.main(songId)).then(res => res.json());
     dispatch(fetchLyricSuccess(data.data));
     return data.data;
   } catch(e) {

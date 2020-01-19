@@ -71,8 +71,22 @@ module.exports = require('./base.config')({
             },
           },
         },
+        // {
+        //   urlPattern: /^https:\/\/wwww\.nhactube\.com\/api/,
+        //   handler: 'NetworkFirst',
+        //   options: {
+        //     networkTimeoutSeconds: 5,
+        //     cacheName: 'api-cache',
+        //     cacheableResponse: {
+        //       statuses: [0, 200, 206],
+        //     },
+        //     expiration: {
+        //       maxAgeSeconds: 60 * 60 * 24,
+        //     },
+        //   },
+        // },
         {
-          urlPattern: /^https:\/\/wwww\.nhactube\.com\/api/,
+          urlPattern: /^https:\/\/\.us-central1-nhactube\.cloudfunctions\.net\/api/,
           handler: 'NetworkFirst',
           options: {
             networkTimeoutSeconds: 5,

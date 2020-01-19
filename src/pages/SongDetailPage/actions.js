@@ -1,4 +1,5 @@
 import { songConstants, lyricConstants } from './constants';
+import api from '../../config/api';
 
 // LYRICS
 export const fetchLyricRequest = () => ({
@@ -18,7 +19,7 @@ export const fetchLyric = (id) => async (dispatch) => {
   dispatch(fetchLyricRequest());
 
   try {
-    const { data } = await fetch(`https://www.nhactube.com/api/lyrics/${id}`).then(res => res.json());
+    const { data } = await fetch(api.main.lyrics.main(id)).then(res => res.json());
     dispatch(fetchLyricSuccess(data));
     return data;
   } catch(e) {
@@ -43,7 +44,7 @@ export const fetchSongSuccess = (song) => ({
 export const fetchSong = (id) => async (dispatch) => {
   dispatch(fetchSongRequest());
   try {
-    const { data } = await fetch(`https://www.nhactube.com/api/songs/${id}`).then(res => res.json());
+    const { data } = await fetch(api.main.songs.main(id)).then(res => res.json());
     dispatch(fetchLyric(id));
     dispatch(fetchSongSuccess(data));
     return data;

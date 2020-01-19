@@ -1,4 +1,5 @@
 import { artistConstants } from './constants';
+import api from '../../config/api';
 
 // SONG DETAIL
 export const fetchArtistRequest = () => ({
@@ -17,7 +18,7 @@ export const fetchArtistSuccess = (artist) => ({
 export const fetchArtist = (id) => async (dispatch) => {
   dispatch(fetchArtistRequest());
   try {
-    const { data } = await fetch(`https://www.nhactube.com/api/artists/${id}`).then(res => res.json());
+    const { data } = await fetch(api.main.artists.main(id)).then(res => res.json());
     dispatch(fetchArtistSuccess(data));
     return data;
   } catch(e) {
