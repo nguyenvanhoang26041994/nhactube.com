@@ -82,7 +82,7 @@ const GlobalPlayer = ({ className, style, onExpanded }) => {
           style={{
             height: 'calc(100vh - 5rem)',
             transform: expanded ? null : 'translateY(100vh)',
-            opacity: expanded ? '1' : '0',
+            transition: expanded ? 'all 0.75s cubic-bezier(0.21, 0.63, 0.36, 1)' : null,
           }}
           expandPlayerRef={expandPlayerRef}
           isExpanded={expanded}

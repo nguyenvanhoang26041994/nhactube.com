@@ -6,7 +6,6 @@ import { Playlist, Song, BlurBackground } from '../../components/commons';
 import { useGlobalPlayerSong, useGlobalPlayerPlaylist, useGlobalAudio } from '../../hooks';
 
 const Wrapper = styled.div`
-  transition: all 0.75s cubic-bezier(0.21, 0.63, 0.36, 1);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
