@@ -42,7 +42,9 @@
     "deploy": "yarn build && firebase deploy --only hosting:nhactube",
     "start": "electron ./src/desktop-app",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "clean-music-app": "rimraf \"../public/music-app\"",
+    "build-music-app": "yarn clean-music-app && cross-env NODE_ENV=development webpack --config webpack/music-app.config.js"
   },
   "author": "Hoang Nguyen",
   "license": "ISC",
